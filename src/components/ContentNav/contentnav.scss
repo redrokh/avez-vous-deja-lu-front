@@ -1,0 +1,9 @@
+.content-nav {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+
+  .content-nav__item {
+    margin-left: 1em;
+  }
+}

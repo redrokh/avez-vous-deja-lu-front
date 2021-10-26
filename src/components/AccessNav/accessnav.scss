@@ -1,0 +1,9 @@
+.access-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-top: 0;
+  .access-nav__item {
+    margin: 0.5em;
+  }
+}

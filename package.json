@@ -51,9 +51,12 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-responsive": "^9.0.0-beta.4",
+    "react-router-dom": "^5.3.0"
   },
   "jest": {
     "modulePaths": [
@@ -62,11 +65,13 @@
     "roots": [
       "<rootDir>/src",
       "<rootDir>/tests"
-    ],    
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less|scss)$": "<rootDir>/tests/__mocks__/styleMock.js"
     },
-    "setupFilesAfterEnv": ["<rootDir>/tests/.setup.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/.setup.js"
+    ]
   }
 }
