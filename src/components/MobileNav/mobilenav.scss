@@ -1,0 +1,12 @@
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  
+  .mobile-nav__links {
+    .mobile-nav__item {
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+
