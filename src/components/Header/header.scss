@@ -1,0 +1,19 @@
+.header {
+  background-color: lightgrey;
+  .header__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+
+    .header__title {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .header__bottom {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+  }
+}
