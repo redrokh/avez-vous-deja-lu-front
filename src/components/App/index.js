@@ -1,5 +1,6 @@
 // Import components
 import Header from '../Header';
+import Footer from '../Footer';
 
 // Import styles
 import './styles.scss';
@@ -9,7 +10,7 @@ const App = () => (
   <div className="app">
     <Header />
     <div>Main</div>
-    <div>Footer</div>
+    <Footer />
   </div>
 );
 
