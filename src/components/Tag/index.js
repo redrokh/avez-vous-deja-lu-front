@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import './tag.scss';
 
 const Tag = ({ name, color }) => {
-  console.log(color);
   return (
     <span
       className="tag"
