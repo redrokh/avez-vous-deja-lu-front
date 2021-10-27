@@ -4,16 +4,19 @@ import PropTypes from 'prop-types';
 // Import styles
 import './tag.scss';
 
-const Tag = ({ name, color }) => (
-  <span
-    className="tag"
-    style={{
-      backgroundColor: color,
-    }}
-  >
-    {name}
-  </span>
-);
+const Tag = ({ name, color }) => {
+  console.log(color);
+  return (
+    <span
+      className="tag"
+      style={{
+        backgroundColor: color,
+      }}
+    >
+      {name}
+    </span>
+  );
+};
 
 Tag.propTypes = {
   name: PropTypes.string.isRequired,
