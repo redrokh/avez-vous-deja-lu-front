@@ -33,7 +33,7 @@ AnecdoteCard.propTypes = {
     pseudo: PropTypes.string.isRequired,
   }).isRequired,
   createdAt: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.shape({
+  categories: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,

@@ -5,20 +5,20 @@ import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 import AnecdoteCard from '../AnecdoteCard';
 
 // Import styles
-import './latestcarousel.scss';
+import './bestcarousel.scss';
 
-const LatestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
+const BestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
   console.log(anecdotes);
   return (
-    <section className="latest-carousel">
-      <h2 className="latest-carousel__title">{title}</h2>
+    <section className="best-carousel">
+      <h2 className="best-carousel__title">{title}</h2>
 
       <AnecdoteCard
         {...anecdotes[currentIndex]}
       />
 
       <ArrowLeftCircle
-        className="latest-carousel__left-arrow"
+        className="best-carousel__left-arrow"
         onClick={() => {
           if (currentIndex == 0) {
             modifyIndex(anecdotes.length - 1);
@@ -28,7 +28,7 @@ const LatestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
         }}
       />
       <ArrowRightCircle
-        className="latest-carousel__right-arrow"
+        className="best-carousel__right-arrow"
         onClick={() => {
           modifyIndex((currentIndex + 1) % anecdotes.length);
         }}
@@ -37,4 +37,4 @@ const LatestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
   );
 };
 
-export default LatestCarousel;
+export default BestCarousel;

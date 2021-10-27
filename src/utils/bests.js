@@ -12,7 +12,7 @@ export default [
       {
         id: 1,
         name: 'Nulla',
-        color: 'lightred',
+        color: 'red',
       },
     ],
   },
@@ -29,7 +29,7 @@ export default [
       {
         id: 2,
         name: 'Mauris',
-        color: 'lightblue',
+        color: 'blue',
       },
     ],
   },
@@ -46,7 +46,7 @@ export default [
       {
         id: 1,
         name: 'Nulla',
-        color: 'lightred',
+        color: 'red',
       },
     ],
   },
@@ -63,7 +63,7 @@ export default [
       {
         id: 2,
         name: 'Mauris',
-        color: 'lightblue',
+        color: 'blue',
       },
     ],
   },
@@ -80,12 +80,12 @@ export default [
       {
         id: 2,
         name: 'Mauris',
-        color: 'lightblue',
+        color: 'blue',
       },
       {
         id: 1,
         name: 'Nulla',
-        color: 'lightred',
+        color: 'red',
       },
     ],
   },

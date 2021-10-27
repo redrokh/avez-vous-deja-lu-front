@@ -5,6 +5,8 @@ import { useState } from 'react';
 // Import components
 import Header from '../Header';
 import Footer from '../Footer';
+import HomeMessage from '../HomeMessage';
+import BestCarousel from '../BestCarousel';
 import LatestCarousel from '../LatestCarousel';
 
 // Import styles
@@ -12,6 +14,7 @@ import './styles.scss';
 
 // Import data
 import latests from '../../utils/latests';
+import bests from '../../utils/bests';
 
 // == Composant
 const App = () => {
@@ -20,6 +23,8 @@ const App = () => {
   return (
   <div className="app">
     <Header />
+    <HomeMessage />
+    <BestCarousel title="Nos meilleures anecdotes" anecdotes={bests} currentIndex={bestIndex} modifyIndex={setBestIndex} />
     <LatestCarousel title="Nos dernières anecdotes" anecdotes={latests} currentIndex={latestIndex} modifyIndex={setLatestIndex} />
     <Footer />
   </div>
