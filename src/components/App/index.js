@@ -1,7 +1,8 @@
-// == Import
-import './styles.scss';
-
+// Import components
 import Header from '../Header';
+
+// Import styles
+import './styles.scss';
 
 // == Composant
 const App = () => (
