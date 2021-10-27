@@ -8,7 +8,6 @@ import AnecdoteCard from '../AnecdoteCard';
 import './latestcarousel.scss';
 
 const LatestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
-  console.log(anecdotes);
   return (
     <section className="latest-carousel">
       <h2 className="latest-carousel__title">{title}</h2>

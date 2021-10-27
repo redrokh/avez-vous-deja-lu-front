@@ -1,0 +1,12 @@
+.home-message {
+  padding: 2em;
+
+  &__title {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  &__content {
+    text-align: left;
+  }
+}

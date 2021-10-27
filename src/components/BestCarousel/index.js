@@ -8,7 +8,6 @@ import AnecdoteCard from '../AnecdoteCard';
 import './bestcarousel.scss';
 
 const BestCarousel = ({ title, anecdotes, currentIndex, modifyIndex }) => {
-  console.log(anecdotes);
   return (
     <section className="best-carousel">
       <h2 className="best-carousel__title">{title}</h2>
