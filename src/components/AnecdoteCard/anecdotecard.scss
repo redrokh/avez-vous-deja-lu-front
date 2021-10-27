@@ -1,0 +1,23 @@
+.anecdote-card {
+  margin: 1em;
+  padding: 1em;
+  text-align: left;
+  border: 1px solid black;
+
+  &__title {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
+
+  &__tags {
+    margin-bottom: 0.5em;
+  }
+
+  &__date {
+    margin-bottom: 0.5em;
+  }
+
+  &__description {
+    margin-bottom: 0.5em;
+  }
+}
