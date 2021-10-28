@@ -29,6 +29,7 @@ const AnecdoteCard = ({ title, writer, createdAt, description, categories }) => 
 
 AnecdoteCard.propTypes = {
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   writer: PropTypes.shape({
     pseudo: PropTypes.string.isRequired,
   }).isRequired,
@@ -38,6 +39,6 @@ AnecdoteCard.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
-}
+};
 
 export default AnecdoteCard;
