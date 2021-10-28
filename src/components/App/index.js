@@ -22,13 +22,14 @@ const App = () => {
   const [latestIndex, setLatestIndex] = useState(0);
   const [bestIndex, setBestIndex] = useState(0);
   return (
-  <div className="app">
-    <Header />
-    <HomeMessage />
-    <BestCarousel title="Nos meilleures anecdotes" anecdotes={bests} currentIndex={bestIndex} modifyIndex={setBestIndex} />
-    <LatestCarousel title="Nos dernières anecdotes" anecdotes={latests} currentIndex={latestIndex} modifyIndex={setLatestIndex} />
-    <Footer />
-  </div>
+    <div className="app">
+      <Header />
+      <HomeMessage />
+      <Anecdote />
+      <BestCarousel title="Nos meilleures anecdotes" anecdotes={bests} currentIndex={bestIndex} modifyIndex={setBestIndex} />
+      <LatestCarousel title="Nos dernières anecdotes" anecdotes={latests} currentIndex={latestIndex} modifyIndex={setLatestIndex} />
+      <Footer />
+    </div>
   );
 };
 
