@@ -21,7 +21,8 @@ const BestCarousel = ({ anecdotes, currentIndex, modifyIndex }) => (
       onClick={() => {
         if (currentIndex === 0) {
           modifyIndex(anecdotes.length - 1);
-        } else {
+        }
+        else {
           modifyIndex(currentIndex - 1);
         }
       }}
