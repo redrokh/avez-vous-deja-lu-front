@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
 
-const Anecdotes = ({ anecdotes }) => (
+// Import styles
+import './anecdotes.scss';
+
+const Anecdotes = ({ title, anecdotes }) => (
   <section className="anecdotes">
-    <h2 className="anecdotes__title">Découvrez nos anecdotes</h2>
+    <h2 className="anecdotes__title">{title}</h2>
+
     <ul className="anecdotes__list">
       {
         anecdotes.map((anecdote) => (
@@ -20,6 +24,7 @@ const Anecdotes = ({ anecdotes }) => (
 );
 
 Anecdotes.propTypes = {
+  title: PropTypes.string.isRequired,
   anecdotes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

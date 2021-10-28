@@ -25,10 +25,27 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Anecdotes anecdotes={anecdotes} />
-      {/* <HomeMessage />
-      <BestCarousel title="Nos meilleures anecdotes" anecdotes={bests} currentIndex={bestIndex} modifyIndex={setBestIndex} />
-      <LatestCarousel title="Nos dernières anecdotes" anecdotes={latests} currentIndex={latestIndex} modifyIndex={setLatestIndex} /> */}
+      <Switch>
+        <Route path="/" exact>
+          <HomeMessage />
+          <BestCarousel
+            anecdotes={bests}
+            currentIndex={bestIndex}
+            modifyIndex={setBestIndex}
+          />
+          <LatestCarousel
+            anecdotes={latests}
+            currentIndex={latestIndex}
+            modifyIndex={setLatestIndex}
+          />
+        </Route>
+        <Route path="/anecdotes" exact>
+          <Anecdotes
+            title="Toutes nos anecdotes"
+            anecdotes={anecdotes}
+          />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );
