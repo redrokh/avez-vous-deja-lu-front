@@ -9,6 +9,7 @@ import Footer from '../Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../BestCarousel';
 import LatestCarousel from '../LatestCarousel';
+import Anecdotes from '../Anecdotes';
 
 // Import styles
 import './styles.scss';
@@ -16,6 +17,7 @@ import './styles.scss';
 // Import data
 import latests from '../../utils/latests';
 import bests from '../../utils/bests';
+import anecdotes from '../../utils/anecdotes';
 
 // == Composant
 const App = () => {
@@ -24,10 +26,27 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <HomeMessage />
-      <Anecdote />
-      <BestCarousel title="Nos meilleures anecdotes" anecdotes={bests} currentIndex={bestIndex} modifyIndex={setBestIndex} />
-      <LatestCarousel title="Nos dernières anecdotes" anecdotes={latests} currentIndex={latestIndex} modifyIndex={setLatestIndex} />
+      <Switch>
+        <Route path="/" exact>
+          <HomeMessage />
+          <BestCarousel
+            anecdotes={bests}
+            currentIndex={bestIndex}
+            modifyIndex={setBestIndex}
+          />
+          <LatestCarousel
+            anecdotes={latests}
+            currentIndex={latestIndex}
+            modifyIndex={setLatestIndex}
+          />
+        </Route>
+        <Route path="/anecdotes" exact>
+          <Anecdotes
+            title="Toutes nos anecdotes"
+            anecdotes={anecdotes}
+          />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );
