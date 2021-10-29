@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 // Import components
 import Header from '../Header';
+import Anecdote from '../Anecdote';
 import Footer from '../Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
