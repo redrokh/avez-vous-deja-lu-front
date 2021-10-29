@@ -18,6 +18,7 @@ import './styles.scss';
 import latests from '../../utils/latests';
 import bests from '../../utils/bests';
 import anecdotes from '../../utils/anecdotes';
+import Categories from '../../components/Categories';
 
 // == Composant
 const App = () => {
@@ -45,6 +46,9 @@ const App = () => {
             title="Toutes nos anecdotes"
             anecdotes={anecdotes}
           />
+        </Route>
+        <Route path="/categories" exact>
+          <Categories />
         </Route>
       </Switch>
       <Footer />

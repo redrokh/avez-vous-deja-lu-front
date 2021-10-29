@@ -1,0 +1,22 @@
+.categorie__grid {
+display: grid;
+grid-template-columns: 2fr 2fr 2fr;
+height: 40vh;
+width: 100%;
+margin-top: 2em;
+margin-left: 0.5em;
+margin-bottom: 1em;
+
+.grid__card {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 1em;
+  padding-bottom: 1em;
+  margin-top: 1em;
+  width: 90%;
+  font-weight: bold;
+  }
+}
+
+
