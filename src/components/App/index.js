@@ -9,6 +9,7 @@ import Footer from '../Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
+import Categories from '../../components/Categories';
 import Anecdotes from '../../containers/Anecdotes';
 
 // Import styles
@@ -40,7 +41,7 @@ const App = () => {
           />
         </Route>
         <Route path="/categories" exact>
-          <Anecdote />
+          <Categories />
         </Route>
       </Switch>
       <Footer />
