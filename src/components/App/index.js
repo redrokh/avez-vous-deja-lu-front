@@ -39,6 +39,9 @@ const App = () => {
             title="Toutes nos anecdotes"
           />
         </Route>
+        <Route path="/categories" exact>
+          <Anecdote />
+        </Route>
       </Switch>
       <Footer />
     </div>

@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
 
-// Import actions
-import { loadAnecdotes } from '../../actions';
-
 // Import styles
 import './anecdotes.scss';
 
 const Anecdotes = ({ title, anecdotes, initialize }) => {
   useEffect(() => {
-    initialize(loadAnecdotes);
+    initialize();
   }, []);
   return (
     <section className="anecdotes">

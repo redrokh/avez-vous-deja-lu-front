@@ -6,9 +6,6 @@ import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
 
-// Import actions
-import { loadBests } from '../../actions';
-
 // Import styles
 import './bestcarousel.scss';
 
@@ -20,7 +17,7 @@ const BestCarousel = ({
   initialize,
 }) => {
   useEffect(() => {
-    initialize(loadBests);
+    initialize();
   }, []);
 
   return (

@@ -1,7 +1,11 @@
 // Import from libraries
 import { connect } from 'react-redux';
+
+// Import components
 import LatestCarousel from '../../components/LatestCarousel';
-import { setLatestIndex } from '../../actions';
+
+// Import actions
+import { setLatestIndex, loadLatests } from '../../actions';
 
 const mapStateToProps = (state) => ({
   title: state.latestsTitle,
@@ -11,7 +15,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   modifyIndex: (newIndex) => dispatch(setLatestIndex(newIndex)),
-  initialize: (actionCreator) => dispatch(actionCreator()),
+  initialize: () => dispatch(loadLatests()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LatestCarousel);

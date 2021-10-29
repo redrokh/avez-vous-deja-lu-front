@@ -1,7 +1,11 @@
 // Import from libraries
 import { connect } from 'react-redux';
+
+// Import components
 import BestCarousel from '../../components/BestCarousel';
-import { setBestIndex } from '../../actions';
+
+// Import actions
+import { setBestIndex, loadBests } from '../../actions';
 
 const mapStateToProps = (state) => ({
   title: state.bestsTitle,
@@ -11,7 +15,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   modifyIndex: (newIndex) => dispatch(setBestIndex(newIndex)),
-  initialize: (actionCreator) => dispatch(actionCreator()),
+  initialize: () => dispatch(loadBests()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BestCarousel);

@@ -6,9 +6,6 @@ import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
 
-// Import actions
-import { loadLatests } from '../../actions';
-
 // Import styles
 import './latestcarousel.scss';
 
@@ -20,7 +17,7 @@ const LatestCarousel = ({
   initialize,
 }) => {
   useEffect(() => {
-    initialize(loadLatests);
+    initialize();
   }, []);
   return (
     <section className="latest-carousel">
