@@ -1,8 +1,16 @@
+@use 'src/styles/vars';
+
 .header {
-  .header__top {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: black;
+  padding: vars.$gutterMd;
+  color: white;
+  &__top {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
+    margin: 0em;
 
     .header__title {
       display: flex;
@@ -10,9 +18,12 @@
     }
   }
 
-  .header__bottom {
+  &__bottom {
     display: flex;
     justify-content: center;
-    padding: 1em;
   }
+}
+
+.header--mobile {
+  position: static;
 }

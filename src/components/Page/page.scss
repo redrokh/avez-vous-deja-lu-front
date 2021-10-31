@@ -1,5 +1,11 @@
 .page {
-  margin: auto;
-  max-width: 800px;
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 12em;
+}
+
+.page--mobile {
+  padding-top: 0em;
 }

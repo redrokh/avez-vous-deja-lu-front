@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 // Import components
 import Header from '../Header';
+import Page from '../Page';
 import Anecdote from '../Anecdote';
 import Footer from '../Footer';
 import HomeMessage from '../HomeMessage';
@@ -22,27 +23,29 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Switch>
-        <Route path="/" exact>
-          <HomeMessage />
-          <BestCarousel
-            currentIndex={bestIndex}
-            modifyIndex={setBestIndex}
-          />
-          <LatestCarousel
-            currentIndex={latestIndex}
-            modifyIndex={setLatestIndex}
-          />
-        </Route>
-        <Route path="/anecdotes" exact>
-          <Anecdotes
-            title="Toutes nos anecdotes"
-          />
-        </Route>
-        <Route path="/categories" exact>
-          <Anecdote />
-        </Route>
-      </Switch>
+      <Page>
+        <Switch>
+          <Route path="/" exact>
+            <HomeMessage />
+            <BestCarousel
+              currentIndex={bestIndex}
+              modifyIndex={setBestIndex}
+            />
+            <LatestCarousel
+              currentIndex={latestIndex}
+              modifyIndex={setLatestIndex}
+            />
+          </Route>
+          <Route path="/anecdotes" exact>
+            <Anecdotes
+              title="Toutes nos anecdotes"
+            />
+          </Route>
+          <Route path="/categories" exact>
+            <Anecdote />
+          </Route>
+        </Switch>
+      </Page>
       <Footer />
     </div>
   );

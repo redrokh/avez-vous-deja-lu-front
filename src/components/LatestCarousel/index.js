@@ -1,7 +1,8 @@
 // Import from libraries
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ArrowLeftCircle, ArrowRightCircle } from 'react-feather';
+import { ArrowLeft, ArrowRight } from 'react-feather';
+import classNames from 'classnames';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
@@ -19,39 +20,68 @@ const LatestCarousel = ({
   useEffect(() => {
     initialize();
   }, []);
+
+  if (anecdotes.length === 0) {
+    return (
+      <></>
+    );
+  }
+
   return (
     <section className="latest-carousel">
       <h2 className="latest-carousel__title">{title}</h2>
 
-      {
-        anecdotes.length > 0
-        && (
-          <AnecdoteCard
-            {...anecdotes[currentIndex]}
-          />
-        )
-      }
+      <div className="latest-carousel__prev">
+        <ArrowLeft
+          onClick={() => {
+            if (currentIndex === 0) {
+              modifyIndex(anecdotes.length - 1);
+            }
+            else {
+              modifyIndex(currentIndex - 1);
+            }
+          }}
+        />
+      </div>
 
-      <ArrowLeftCircle
-        className="latest-carousel__left-arrow"
-        onClick={() => {
-          if (currentIndex == 0) {
-            modifyIndex(anecdotes.length - 1);
-          }
-          else {
-            modifyIndex(currentIndex - 1);
-          }
-        }}
-      />
-      <ArrowRightCircle
-        className="latest-carousel__right-arrow"
-        onClick={() => {
-          modifyIndex((currentIndex + 1) % anecdotes.length);
-        }}
-      />
+      <div>
+        <AnecdoteCard
+          className="latest-carousel__anecdote"
+          {...anecdotes[currentIndex]}
+        />
+      </div>
+
+      <div className="latest-carousel__next">
+        <ArrowRight
+          onClick={() => {
+            modifyIndex((currentIndex + 1) % anecdotes.length);
+          }}
+        />
+      </div>
+
+      <div className="latest-carousel__shortcuts">
+        {
+          anecdotes.map((item, index) => (
+            <div
+              key={item.id}
+              className={classNames(
+                'latest-carousel__shortcut-ext',
+                {
+                  'latest-carousel__shortcut-ext--selected': currentIndex === index,
+                },
+              )}
+              onClick={() => modifyIndex(index)}
+            >
+              <div
+                className="latest-carousel__shortcut-int"
+              />
+            </div>
+          ))
+        }
+      </div>
     </section>
   );
-}
+};
 
 LatestCarousel.propTypes = {
   title: PropTypes.string.isRequired,
@@ -62,7 +92,7 @@ LatestCarousel.propTypes = {
       pseudo: PropTypes.string.isRequired,
     }).isRequired,
     createdAt: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.shape({
+    category: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,

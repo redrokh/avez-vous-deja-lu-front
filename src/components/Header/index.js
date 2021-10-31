@@ -2,6 +2,7 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import classNames from 'classnames';
 
 // Import components
 import AccessNav from '../AccessNav';
@@ -18,7 +19,9 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="header">
+    <header
+      className={classNames('header', { 'header--mobile': isMobile })}
+    >
       <nav>
         <div className="header__top">
           <NavLink className="header__title" to="/">Avez-vous déjà lu..?</NavLink>

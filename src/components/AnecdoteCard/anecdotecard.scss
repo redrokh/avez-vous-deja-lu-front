@@ -1,23 +1,38 @@
+@use 'src/styles/vars';
+
 .anecdote-card {
-  margin: 1em;
-  padding: 1em;
+  padding: vars.$gutterMd;
   text-align: left;
-  border: 1px solid black;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.2);
 
   &__title {
     font-size: 1.3em;
-    margin-bottom: 0.5em;
+    margin-bottom: vars.$gutterSm;
   }
 
   &__tags {
-    margin-bottom: 0.5em;
+    margin-bottom: vars.$gutterSm;
   }
 
   &__date {
-    margin-bottom: 0.5em;
+    margin-bottom: vars.$gutterSm;
   }
 
   &__description {
-    margin-bottom: 0.5em;
+    margin-bottom: vars.$gutterSm;
+  }
+
+  @media (max-width: 360px) {
+    height: 800px;
+  }
+
+  @media (min-width: 360px) {
+    height: 500px;
+  }
+
+  @media (min-width: 600px) {
+    height: 400px;
   }
 }
+

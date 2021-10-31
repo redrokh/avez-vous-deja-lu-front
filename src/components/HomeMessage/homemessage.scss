@@ -1,12 +1,18 @@
+@use 'src/styles/vars';
+
 .home-message {
-  padding: 2em;
+  margin: 0em auto vars.$gutterLg;
+  max-width: 800px;
+  padding: 0em vars.$gutterLg 0em;
 
   &__title {
-    font-size: 1.5em;
-    margin-bottom: 1em;
+    font-size: vars.$fsH1Lg;
+    margin-bottom: vars.$gutterMd;
   }
 
   &__content {
+    font-size: vars.$fsBody;
     text-align: left;
+    line-height: vars.$lhBodyLg;
   }
 }

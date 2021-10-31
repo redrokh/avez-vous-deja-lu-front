@@ -1,4 +1,7 @@
 .anecdote {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
 
   .main__title {
     font-size: 2em;

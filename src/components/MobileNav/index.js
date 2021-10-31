@@ -17,16 +17,16 @@ const MobileNav = ({ isConnected }) => (
         <NavLink to="/">Accueil</NavLink>
       </li>
       <li className="mobile-nav__item">
-        <NavLink to="/anecdotes">Anecdotes</NavLink>
+        <NavLink to="/anecdotes">Toutes nos Anecdotes</NavLink>
       </li>
       <li className="mobile-nav__item">
-        <NavLink to="/categories">Catégories</NavLink>
+        <NavLink to="/categories">Par Catégorie</NavLink>
       </li>
       <li className="mobile-nav__item">
-        <NavLink to="/au-hasard">Hasard</NavLink>
+        <NavLink to="/au-hasard">Au Hasard</NavLink>
       </li>
       <li className="mobile-nav__item">
-        <NavLink to="/nos-meilleures-anecdotes">Meilleures</NavLink>
+        <NavLink to="/nos-meilleures-anecdotes">Nos Meilleures</NavLink>
       </li>
     </ul>
   </div>

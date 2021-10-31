@@ -7,14 +7,14 @@ import Tag from '../Tag';
 // Import styles
 import './anecdotecard.scss';
 
-const AnecdoteCard = ({ title, writer, createdAt, description, categories }) => (
+const AnecdoteCard = ({ title, writer, createdAt, description, category }) => (
   <div className="anecdote-card">
     <h4 className="anecdote-card__title">{title}</h4>
 
     <div className="anecdote-card__tags">
       {
-        categories.map((category) => (
-          <Tag key={category.id} {...category} />
+        category.map((item) => (
+          <Tag key={item.id} {...item} />
         ))
         }
     </div>
@@ -34,7 +34,7 @@ AnecdoteCard.propTypes = {
     pseudo: PropTypes.string.isRequired,
   }).isRequired,
   createdAt: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
+  category: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,

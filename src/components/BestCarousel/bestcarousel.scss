@@ -1,23 +1,79 @@
+@use 'src/styles/vars';
+
 .best-carousel {
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
-  padding: 1em 3em 0em;
+  justify-content: center;
+  align-items: center;
+  padding: 0em vars.$gutterLg 0em;
+  margin-bottom: vars.$gutterLg;
+  max-width: 800px;
+  width: 100%;
+
   &__title {
-    font-size: 1.2em;
+    font-size: vars.$fsH2Lg;
+    width: 100%;
+    margin-bottom: vars.$gutterMd;
+    text-align: left;
   }
 
-  &__left-arrow {
+  &__next, &__prev {
     position: absolute;
-    left: 1em;
-    top: 50%;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background-color: rgb(0, 0, 0, 0.3);
   }
 
-  &__right-arrow {
-    position: absolute;
-    right: 1em;
-    top: 50%;
+  &__next:hover, &__prev:hover {
+    background-color: rgb(0, 0, 0, 0.1);
+  }
+
+  &__prev {
+    top: center;
+    left: 0.5em;
+  }
+
+  &__next {
+    top: center;
+    right: 0.5em;
+  }
+
+  &__shortcuts {
+    margin-top: vars.$gutterSm;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+
+    .best-carousel__shortcut-ext {
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      background-color: transparent;
+
+      .best-carousel__shortcut-int {
+        height: 50%;
+        width: 50%;
+        margin-left: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        background-color: white;
+        opacity: 0.5;
+      }
+    }
+
+    .best-carousel__shortcut-ext--selected {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .best-carousel__shortcut-ext--selected .best-carousel__shortcut-int {
+      opacity: 1;
+    }
+
   }
 }

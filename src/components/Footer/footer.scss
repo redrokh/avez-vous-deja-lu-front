@@ -1,29 +1,24 @@
+@use 'src/styles/vars';
+
 .footer {
-  width: auto;
-  border-top: 1px solid black;
+  width: 100%;
   display: flex;
   justify-content: center;
+  padding: vars.$gutterMd;
+  margin: 0em;
+  background-color: black;
 
   &__list {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    gap: vars.$gutterSm;
     text-align: center;
     width: 100%;
-
-    .footer__item {
-      margin-top: 1em;
-      margin-left: 1em;
-    }
   }
 
   &__list--mobile {
     flex-direction: column;
     align-items: center;
-  }
-}
-
-@media (max-width: 425px) {
-  .footer {
   }
 }

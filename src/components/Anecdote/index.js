@@ -1,6 +1,6 @@
 // import libraries
 import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import styles
 import './anecdote.scss';
 
