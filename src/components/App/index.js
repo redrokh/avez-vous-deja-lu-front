@@ -4,13 +4,14 @@ import { useState } from 'react';
 
 // Import components
 import Header from '../../containers/Header';
+import Connection from '../Connection';
 import Page from '../../containers/Page';
 import Anecdote from '../Anecdote';
 import Footer from '../../containers/Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
-import Categories from '../../components/Categories';
+import Categories from '../Categories';
 import Anecdotes from '../../containers/Anecdotes';
 
 // Import styles
@@ -22,6 +23,9 @@ const App = () => (
     <Header />
     <Page>
       <Switch>
+        <Route path="/connexion" exact>
+          <Connection />
+        </Route>
         <Route path="/" exact>
           <HomeMessage />
           <BestCarousel />
