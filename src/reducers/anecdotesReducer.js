@@ -9,10 +9,10 @@ import {
 const initialState = {
   bests: [],
   bestIndex: 0,
-  latests: [],
-  latestsTitle: 'Nos dernières anecdotes',
   bestsTitle: 'Nos meilleures anecdotes',
+  latests: [],
   latestIndex: 0,
+  latestsTitle: 'Nos dernières anecdotes',
   latestsLoaded: false,
   bestsLoaded: false,
   anecdotesLoaded: false,

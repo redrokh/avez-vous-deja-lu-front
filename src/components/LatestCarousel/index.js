@@ -16,6 +16,7 @@ const LatestCarousel = ({
   currentIndex,
   modifyIndex,
   initialize,
+  context,
 }) => {
   useEffect(() => {
     initialize();
@@ -101,6 +102,7 @@ LatestCarousel.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   modifyIndex: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default LatestCarousel;

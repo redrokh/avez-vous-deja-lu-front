@@ -7,7 +7,14 @@ import Tag from '../Tag';
 // Import styles
 import './anecdotecard.scss';
 
-const AnecdoteCard = ({ title, writer, createdAt, description, category }) => (
+const AnecdoteCard = ({
+  id,
+  title,
+  writer,
+  createdAt,
+  description,
+  category,
+}) => (
   <div className="anecdote-card">
     <h4 className="anecdote-card__title">{title}</h4>
 
@@ -23,11 +30,14 @@ const AnecdoteCard = ({ title, writer, createdAt, description, category }) => (
 
     <p className="anecdote-card__description">{description}</p>
 
-    <div>En savoir plus...</div>
+    <div>
+      En savoir plus...
+    </div>
   </div>
 );
 
 AnecdoteCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   writer: PropTypes.shape({

@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   title: state.anecdotes.latestsTitle,
   anecdotes: state.anecdotes.latests,
   currentIndex: state.anecdotes.latestIndex,
+  context: state.anecdotes.latestsContext,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -28,7 +28,9 @@ const BestCarousel = ({
   }
 
   return (
-    <section className="best-carousel">
+    <section
+      className="best-carousel"
+    >
       <h2 className="best-carousel__title">{title}</h2>
 
       <div className="best-carousel__prev">

@@ -16,7 +16,14 @@
   }
 
   &__item--selected {
-    border-top: 1px solid rgba(255, 255, 255, 0.904);
-    color: rgb(255, 255, 255, 0.6);
+    //border-top: 1px solid rgba(255, 255, 255, 0.904);
+    /* color: rgb(255, 255, 255, 0.6);
+    position: relative; */
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #19A4DF,
+              0 0 0.8rem #19A4DF,
+              0 0 2.8rem #19A4DF,
+              inset 0 0 1.3rem #19A4DF;
   }
 }

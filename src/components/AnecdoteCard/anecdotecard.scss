@@ -17,6 +17,8 @@
 
   &__date {
     margin-bottom: vars.$gutterSm;
+    font-style: italic;
+    opacity: 0.8;
   }
 
   &__description {
@@ -34,5 +36,14 @@
   @media (min-width: 600px) {
     height: 400px;
   }
+}
+
+.anecdote-card:hover {
+  box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #19A4DF,
+              0 0 0.8rem #19A4DF,
+              0 0 2.8rem #19A4DF,
+              inset 0 0 1.3rem #19A4DF;
 }
 
