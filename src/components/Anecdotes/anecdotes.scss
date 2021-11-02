@@ -3,9 +3,11 @@
 .anecdotes {
   display: flex;
   flex-direction: column;
+  padding: 0em vars.$gutterMd 0em;
   .anecdotes__title {
     font-size: vars.$fsH2Lg;
     margin-bottom: vars.$gutterLg;
+    text-align: center;
   }
   .anecdotes__list {
     list-style: none;

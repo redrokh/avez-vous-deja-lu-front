@@ -1,7 +1,7 @@
 // Import from libraries
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ArrowLeft, ArrowRight } from 'react-feather';
+import { ChevronLeft, ChevronRight } from 'react-feather';
 import classNames from 'classnames';
 
 // Import components
@@ -32,7 +32,7 @@ const LatestCarousel = ({
       <h2 className="latest-carousel__title">{title}</h2>
 
       <div className="latest-carousel__prev">
-        <ArrowLeft
+        <ChevronLeft
           onClick={() => {
             if (currentIndex === 0) {
               modifyIndex(anecdotes.length - 1);
@@ -52,7 +52,7 @@ const LatestCarousel = ({
       </div>
 
       <div className="latest-carousel__next">
-        <ArrowRight
+        <ChevronRight
           onClick={() => {
             modifyIndex((currentIndex + 1) % anecdotes.length);
           }}

@@ -5,8 +5,9 @@
   z-index: 10;
   width: 100%;
   background-color: black;
-  padding: vars.$gutterMd;
+  padding: vars.$gutterSm vars.$gutterSm 0;
   color: white;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.2);
   &__top {
     display: flex;
     justify-content: space-between;

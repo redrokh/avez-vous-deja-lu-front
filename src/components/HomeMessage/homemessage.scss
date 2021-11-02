@@ -3,7 +3,8 @@
 .home-message {
   margin: 0em auto vars.$gutterLg;
   max-width: 800px;
-  padding: 0em vars.$gutterLg 0em;
+  padding: 0em vars.$gutterLg vars.$gutterLg;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.5);
 
   &__title {
     font-size: vars.$fsH1Lg;

@@ -3,8 +3,22 @@
   flex-direction: column;
   
   .mobile-nav__links {
+    position: relative;
     .mobile-nav__item {
       margin-bottom: 0.5em;
+    }
+
+    .mobile-nav__item--selected {
+      color: rgb(255, 255, 255, 0.5);
+    }
+
+    .mobile-nav__item--selected::before {
+      content:"\A";
+      border-style: solid;
+      border-width: 5px 5px 5px 10px;
+      border-color: transparent transparent transparent rgba(255, 255, 255, 1);
+      position: absolute;
+      left: -2em;
     }
   }
 }

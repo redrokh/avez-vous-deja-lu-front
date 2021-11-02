@@ -8,9 +8,9 @@ import LatestCarousel from '../../components/LatestCarousel';
 import { setLatestIndex, loadLatests } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  title: state.latestsTitle,
-  anecdotes: state.latests,
-  currentIndex: state.latestIndex,
+  title: state.anecdotes.latestsTitle,
+  anecdotes: state.anecdotes.latests,
+  currentIndex: state.anecdotes.latestIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({
