@@ -19,7 +19,7 @@ const Anecdotes = ({ title, anecdotes, initialize }) => {
       <ul className="anecdotes__list">
         {
           anecdotes.map((anecdote) => (
-            <li key={anecdote.id}>
+            <li key={anecdote.id} className="anecdotes__item">
               <AnecdoteCard {...anecdote} />
             </li>
           ))
@@ -38,7 +38,7 @@ Anecdotes.propTypes = {
       pseudo: PropTypes.string.isRequired,
     }).isRequired,
     createdAt: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.shape({
+    category: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,

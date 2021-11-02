@@ -8,7 +8,7 @@ import Anecdotes from '../../components/Anecdotes';
 import { loadAnecdotes } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  anecdotes: state.anecdotes,
+  anecdotes: state.anecdotes.anecdotes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

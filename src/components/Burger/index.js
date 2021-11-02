@@ -5,15 +5,15 @@ import classNames from 'classnames';
 // Import styles
 import './burger.scss';
 
-const Burger = ({ isOpen, toggleOpen }) => {
+const Burger = ({ isOpened, toggleOpen }) => {
   const cssClass = classNames('burger', {
-    'burger--opened': isOpen,
+    'burger--opened': isOpened,
   });
   return (
     <div
       className={cssClass}
       onClick={() => {
-        toggleOpen(!isOpen);
+        toggleOpen(!isOpened);
       }}
     >
       <div className="burger__slice" />
@@ -24,7 +24,7 @@ const Burger = ({ isOpen, toggleOpen }) => {
 };
 
 Burger.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpened: PropTypes.bool.isRequired,
   toggleOpen: PropTypes.func.isRequired,
 };
 

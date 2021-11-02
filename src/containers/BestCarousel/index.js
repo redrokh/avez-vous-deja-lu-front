@@ -8,9 +8,9 @@ import BestCarousel from '../../components/BestCarousel';
 import { setBestIndex, loadBests } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  title: state.bestsTitle,
-  anecdotes: state.bests,
-  currentIndex: state.bestIndex,
+  title: state.anecdotes.bestsTitle,
+  anecdotes: state.anecdotes.bests,
+  currentIndex: state.anecdotes.bestIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({

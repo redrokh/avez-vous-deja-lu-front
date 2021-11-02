@@ -1,9 +1,29 @@
+@use '../../styles/vars';
+
 .content-nav {
   display: flex;
   justify-content: center;
   list-style: none;
 
-  .content-nav__item {
-    margin-left: 1em;
+  &__item {
+    margin-left: vars.$gutterSm;
+    padding: vars.$gutterSm / 2;
+    opacity: 1;
+  }
+
+  &__item:hover {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__item--selected {
+    //border-top: 1px solid rgba(255, 255, 255, 0.904);
+    /* color: rgb(255, 255, 255, 0.6);
+    position: relative; */
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #19A4DF,
+              0 0 0.8rem #19A4DF,
+              0 0 2.8rem #19A4DF,
+              inset 0 0 1.3rem #19A4DF;
   }
 }

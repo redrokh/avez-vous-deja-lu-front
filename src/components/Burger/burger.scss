@@ -5,10 +5,10 @@
   .burger__slice {
     position: absolute;
     width: 20px;
-    height: 4px;
+    height: 3px;
     margin-bottom: 5px;
     border-radius: 5px;
-    background-color: black;
+    background-color: white;
   }
 
   .burger__slice:nth-child(1) {
@@ -24,7 +24,7 @@
   }
 
   &--opened .burger__slice {
-    height: 3px;
+    height: 2px;
   }
   &--opened .burger__slice:nth-child(1) {
     transform: translate(0, 8px) rotate(45deg);

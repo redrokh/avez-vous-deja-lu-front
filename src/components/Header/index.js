@@ -1,7 +1,8 @@
 // Import from libraries
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
+import classNames from 'classnames';
 
 // Import components
 import AccessNav from '../AccessNav';
@@ -12,27 +13,50 @@ import MobileNav from '../MobileNav';
 // Import styles
 import './header.scss';
 
-const Header = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [isConnected, setIsConnected] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
+const Header = ({
+  contentMenus,
+  isConnected,
+  isOpened,
+  toggleMenu,
+  headerColor,
+}) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   return (
-    <header className="header">
+    <header
+      className={classNames('header', { 'header--mobile': isMobile })}
+      style={{ backgroundColor: headerColor }}
+    >
       <nav>
         <div className="header__top">
           <NavLink className="header__title" to="/">Avez-vous déjà lu..?</NavLink>
           { !isMobile && <AccessNav isConnected={isConnected} /> }
-          { isMobile && <Burger isOpen={isOpen} toggleOpen={setIsOpen} />}
+          { isMobile && <Burger isOpened={isOpened} toggleOpen={toggleMenu} />}
         </div>
 
         <div className="header__bottom">
-          { !isMobile && <ContentNav /> }
-          { isMobile && isOpen && <MobileNav isConnected={isConnected} /> }
+          { !isMobile && <ContentNav menus={contentMenus} /> }
+          {
+            isMobile
+            && isOpened
+            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} />
+          }
         </div>
       </nav>
     </header>
   );
+};
+
+Header.propTypes = {
+  contentMenus: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    route: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  isConnected: PropTypes.bool.isRequired,
+  isOpened: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+  headerColor: PropTypes.string.isRequired,
 };
 
 export default Header;

@@ -1,9 +1,19 @@
+@use 'src/styles/vars';
+
 .anecdotes {
-  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 0em vars.$gutterMd 0em;
   .anecdotes__title {
-    font-size: 1.5em;
+    font-size: vars.$fsH2Lg;
+    margin-bottom: vars.$gutterLg;
+    text-align: center;
   }
   .anecdotes__list {
     list-style: none;
+
+    .anecdotes__item {
+      margin-bottom: vars.$gutterSm;
+    }
   }
 }
