@@ -1,0 +1,78 @@
+.connection__form {
+  width: 50%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .connection__main--title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  .form__input {
+    color: #fff;
+    position: relative;
+    margin-top: 1em;
+    width:100%;
+    padding: 0.5em;
+    border-radius: 5px;
+    border-color: #fff;
+    background: none;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .form__input::placeholder {
+    color: #fff;
+    font-style: italic;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  }
+  .form__input:focus {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #19A4DF,
+                0 0 0.8rem #19A4DF,
+                0 0 2.8rem #19A4DF,
+                inset 0 0 1.3rem #19A4DF;
+  }
+    .link__inscription {
+      width: 80%;
+      text-align: center;
+      margin-top: 1em;
+      .link__inscription__form {
+        text-decoration: underline;
+      }
+      .link__inscription__form:hover {
+        box-shadow: 0 0 .2rem #fff,
+                    0 0 .2rem #fff,
+                    0 0 2rem #19A4DF,
+                    0 0 0.8rem #19A4DF,
+                    0 0 2.8rem #19A4DF,
+                    inset 0 0 1.3rem #19A4DF;
+      }
+    }
+
+  .button_submit {
+    width: 50%;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    .submit {
+      padding: 0.9em;
+      background: none;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      color: #fff;
+
+    }
+    .submit:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.8rem #19A4DF,
+                  0 0 2.8rem #19A4DF,
+                  inset 0 0 1.3rem #19A4DF;
+    }
+  }
+}
+

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // Import components
 import Header from '../../containers/Header';
 import Connection from '../Connection';
+import Registration from '../Registration';
 import Page from '../../containers/Page';
 import Anecdote from '../../containers/Anecdote';
 import Footer from '../../containers/Footer';
@@ -22,6 +23,9 @@ const App = () => (
     <Header />
     <Page>
       <Switch>
+        <Route path="/inscription" exact>
+          <Registration />
+        </Route>
         <Route path="/connexion" exact>
           <Connection />
         </Route>
