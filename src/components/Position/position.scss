@@ -1,0 +1,84 @@
+.position {
+  height: 100vh;
+  position: relative;
+  color: black;
+  &__inner-circle {
+    z-index: 4;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: yellow;
+    box-shadow: -2px -2px 4px #7f7f00;
+    border-radius: 20px;
+  }
+
+  &__outer-circle {
+    z-index: 3;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    height: 60px;
+    width: 60px;
+    background-color: yellow;
+    box-shadow: 0px 0px 4px #7f7f00;
+    border-radius: 30px;
+  }
+
+  &__left-ruban {
+    z-index: 2;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    height: 40px;
+    width: 20px;
+    background-color: yellow;
+    transform: rotate(15deg);
+  }
+
+  &__left-ruban::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 39px;
+    border-left: 10px solid yellow;
+    border-right: 10px solid yellow;
+    border-bottom: 15px solid transparent;
+  }
+
+  &__left-ruban::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    height: 50px;
+    width: 1px;
+    top: 5px;
+    border: 5px;
+    box-shadow: -1px -3px 2px #7f7f00;
+  }
+
+  &__right-ruban {
+    z-index: 1;
+    position: absolute;
+    top: 80px;
+    left: 60px;
+    height: 40px;
+    width: 20px;
+    background-color: yellow;
+    transform: rotate(-15deg);
+  }
+
+  &__right-ruban::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 39px;
+    border-left: 10px solid yellow;
+    border-right: 10px solid yellow;
+    border-bottom: 15px solid transparent;
+  }
+}
