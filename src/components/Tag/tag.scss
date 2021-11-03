@@ -1,7 +1,9 @@
+@use '../../styles/vars';
+
 .tag {
-  margin: 0.3em;
-  padding: 0.2em 0.5em 0.2em;
-  border-radius: 0.3em;
+  margin-right: vars.$gutterSm / 2;
+  padding: 0.5em 1em 0.5em;
+  border-radius: 0.4em;
   font-size: 0.7em;
   color: white;
 }

@@ -16,6 +16,7 @@ const BestCarousel = ({
   currentIndex,
   modifyIndex,
   initialize,
+  context,
 }) => {
   useEffect(() => {
     initialize();
@@ -50,6 +51,7 @@ const BestCarousel = ({
         <AnecdoteCard
           className="best-carousel__anecdote"
           {...anecdotes[currentIndex]}
+          context={context}
         />
       </div>
 
@@ -103,6 +105,7 @@ BestCarousel.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   modifyIndex: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default BestCarousel;
