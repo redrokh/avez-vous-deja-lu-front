@@ -1,12 +1,13 @@
+@use '../../styles/vars';
+
 .categorie__grid {
-max-width: 1300px;
-width: 80%;
-height: auto;
-margin: 30px auto;
-display: grid;
-flex-wrap: wrap;
-grid-template-columns: repeat(3, 150px);
-justify-content: center;
+  max-width: 1300px;
+  width: 80%;
+  height: auto;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 150px);
+  justify-content: center;
 }
 
 .title__card {
@@ -32,8 +33,6 @@ justify-content: center;
 .categorie__grid {
   max-width: 1300px;
   width: 80%;
-  height: auto;
-  margin: 30px auto;
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(2, 150px);
@@ -45,8 +44,6 @@ justify-content: center;
   .categorie__grid {
     max-width: 1300px;
     width: 80%;
-    height: auto;
-    margin: 30px auto;
     display: grid;
     flex-wrap: wrap;
     grid-template-columns: repeat(1, 150px);
