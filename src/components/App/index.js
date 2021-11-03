@@ -1,12 +1,11 @@
 // Import from libraries
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 // Import components
 import Header from '../../containers/Header';
 import Connection from '../Connection';
 import Page from '../../containers/Page';
-import Anecdote from '../Anecdote';
+import Anecdote from '../../containers/Anecdote';
 import Footer from '../../containers/Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
@@ -34,10 +33,20 @@ const App = () => (
         <Route path="/anecdotes" exact>
           <Anecdotes
             title="Toutes nos anecdotes"
+            context="/anecdotes"
           />
         </Route>
         <Route path="/categories" exact>
           <Categories />
+        </Route>
+        <Route path="/anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route path="/nos-meilleures-anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route path="/nos-dernieres-anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
         </Route>
       </Switch>
     </Page>

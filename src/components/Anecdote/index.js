@@ -1,47 +1,156 @@
 // import libraries
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
-import { Link } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
+
+// Import components
+import Tag from '../Tag';
 // import styles
 import './anecdote.scss';
 
-const Anecdote = () => (
-  <article className="anecdote">
+const Anecdote = ({
+  id,
+  title,
+  createdAt,
+  content,
+  writer,
+  category,
+  source,
+  nextAnecdote,
+  prevAnecdote,
+  upvote,
+  downvote,
+  knew,
+  didntKnow,
+  initialize,
+}) => {
+  const location = useLocation();
+  const history = useHistory();
+  const baseUrl = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
+  const { anecdoteId } = useParams();
+  useEffect(() => {
+    initialize(parseInt(anecdoteId, 10));
+  }, []);
 
-    <div className="anecdote__header">
-      <h1 className="main__title">Titre</h1>
-      <button className="categorie__name" type="button">Nom de la Catégorie</button>
-      <h6 className="author__info">Publier par Toto l'asticot, le 34/12/3492</h6>
-    </div>
+  useEffect(() => {
+    history.push(`${baseUrl}/${id}`);
+  }, [id]);
 
-    <div className="container__content">
-      <div className="container__vote">
-        <ArrowUpCircle className="anecdote__content__up-arrow" />
-        <aside className="vote__counter">Vote</aside>
-        <ArrowDownCircle className="anecdote__content__down-arrow" />
+  if (id === 0) {
+    return <></>;
+  }
+
+  return (
+    <article className="anecdote">
+      <h2 className="anecdote__title">{title}</h2>
+
+      <div className="anecdote__categories">
+        {
+          category.map(({ id: categoryId, name, color }) => (
+            <Tag key={categoryId} name={name} color={color} />
+          ))
+        }
       </div>
-      <p className="anecdote__content">O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica.
-      </p>
-    </div>
 
-    <div className="info__anecdote">
-      <button className="know" type="button">Je connaissais</button>
-      <button className="didnt__know" type="button">Je ne connaissais pas</button>
+      <div className="anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
 
-      <aside className="source__link">
-        <ul className="source__list">
-          <li className="source__title">Source(s) : </li>
-          <li className="source__item"><Link to="/la-source"> - Lien source</Link></li>
-          <li className="source__item"><Link to="/la-source"> - Lien source</Link></li>
+      <div className="anecdote__middle-part">
+        <div className="anecdote__voter">
+          <ArrowUpCircle className="anecdote__upvote" onClick={() => upvote(writer.id, id)} />
+          <div className="anecdote__vote-count">Vote</div>
+          <ArrowDownCircle className="anecdote__downvote" onClick={() => downvote(writer.id, id)} />
+        </div>
+
+        <p className="anecdote__content">{content}</p>
+      </div>
+
+      <div className="anecdote__info">
+        <button
+          className="anecdote__knew"
+          onClick={knew}
+          type="button"
+        >
+          Je connaissais
+        </button>
+
+        <button
+          className="anecdote__didnt-know"
+          onClick={didntKnow}
+          type="button"
+        >
+          Je ne connaissais pas
+        </button>
+      </div>
+
+      <aside className="anecdote__sources">
+        <h3 className="anecdote__sources-title">Source(s) :</h3>
+
+        <ul className="anecdote__source-list">
+          {
+            source.map(({ id: sourceId, url }) => (
+              <li key={sourceId} className="anecdote__source-item">
+                <a
+                  className="anecdote__source-link"
+                  target="_blank"
+                  href={url}
+                  rel="noreferrer"
+                >
+                  {url}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </aside>
-    </div>
 
-    <div className="btn__prev__next">
-      <button className="previous" type="button">Précédent</button>
-      <button className="next" type="button">Suivant</button>
-    </div>
+      <div className="anecdote__nav">
+        <button
+          className="anecdote__nav-link"
+          onClick={() => prevAnecdote(baseUrl, id)}
+          type="button"
+        >
+          Précédent
+        </button>
+        <button
+          className="anecdote__nav-link"
+          onClick={() => nextAnecdote(baseUrl, id)}
+          type="button"
+        >
+          Suivant
+        </button>
+      </div>
+    </article>
+  );
+};
 
-  </article>
-);
+Anecdote.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  writer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    pseudo: PropTypes.string.isRequired,
+  }).isRequired,
+  category: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+  })).isRequired,
+  source: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      url: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  prevAnecdote: PropTypes.func.isRequired,
+  nextAnecdote: PropTypes.func.isRequired,
+  upvote: PropTypes.func.isRequired,
+  downvote: PropTypes.func.isRequired,
+  knew: PropTypes.func.isRequired,
+  didntKnow: PropTypes.func.isRequired,
+  initialize: PropTypes.func.isRequired,
+};
 
 export default Anecdote;

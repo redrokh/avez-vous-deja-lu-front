@@ -12,7 +12,7 @@ export default [
       {
         id: 1,
         name: 'Nulla',
-        color: 'red',
+        color: '#755499',
       },
     ],
   },

@@ -25,12 +25,35 @@
     margin-bottom: vars.$gutterSm;
   }
 
-  @media (max-width: 360px) {
+  &__link {
+    font-style: italic;
+    color: rgb(255, 255, 255, 0.5);
+  }
+
+  &__link:hover {
+    color: #fff;
+    text-shadow:
+      0 0 1px #fff,
+      0 0 2px #fff,
+      0 0 4px #19A4DF,
+      0 0 5px #19A4DF,
+      0 0 6px #19A4DF;
+  }
+
+  @media (min-width: 200px) and (max-width: 300px) {
+    height: 1100px;
+  }
+
+  @media (min-width: 300px) and (max-width: 400px) {
     height: 800px;
   }
 
-  @media (min-width: 360px) {
-    height: 500px;
+  @media (min-width: 400px) and (max-width: 500px) {
+    height: 600px;
+  }
+
+  @media (min-width: 500px) and (max-width: 600px) {
+    height: 450px;
   }
 
   @media (min-width: 600px) {
@@ -39,11 +62,12 @@
 }
 
 .anecdote-card:hover {
-  box-shadow: 0 0 .2rem #fff,
-              0 0 .2rem #fff,
-              0 0 2rem #19A4DF,
-              0 0 0.8rem #19A4DF,
-              0 0 2.8rem #19A4DF,
-              inset 0 0 1.3rem #19A4DF;
+  box-shadow:
+    0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem #19A4DF,
+    0 0 0.8rem #19A4DF,
+    0 0 2.8rem #19A4DF,
+    inset 0 0 1.3rem #19A4DF;
 }
 
