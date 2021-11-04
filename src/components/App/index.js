@@ -11,11 +11,9 @@ import Footer from '../../containers/Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
-import Categories from '../Categories';
+import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
 import Error from '../Error';
-
-import categoriesData from '../../utils/categories';
 
 // Import styles
 import './styles.scss';
@@ -44,7 +42,7 @@ const App = () => (
           />
         </Route>
         <Route path="/categories" exact>
-          <Categories categoriesData={categoriesData} />
+          <Categories />
         </Route>
         <Route path="/anecdotes/anecdote/:anecdoteId" exact>
           <Anecdote />
