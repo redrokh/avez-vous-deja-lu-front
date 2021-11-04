@@ -1,5 +1,6 @@
 // Import from libraries
 import PropTypes from 'prop-types';
+import { NavLink, useLocation } from 'react-router-dom';
 
 // Import components
 import Tag from '../Tag';
@@ -14,6 +15,7 @@ const AnecdoteCard = ({
   createdAt,
   description,
   category,
+  context,
 }) => (
   <div className="anecdote-card">
     <h4 className="anecdote-card__title">{title}</h4>
@@ -30,9 +32,13 @@ const AnecdoteCard = ({
 
     <p className="anecdote-card__description">{description}</p>
 
-    <div>
+    <NavLink
+      className="anecdote-card__link"
+      to={`${context}/anecdote/${id}`}
+      exact
+    >
       En savoir plus...
-    </div>
+    </NavLink>
   </div>
 );
 
@@ -49,6 +55,7 @@ AnecdoteCard.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default AnecdoteCard;

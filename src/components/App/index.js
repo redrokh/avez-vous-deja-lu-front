@@ -1,17 +1,20 @@
 // Import from libraries
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
 
 // Import components
 import Header from '../../containers/Header';
+import Connection from '../Connection';
+import Registration from '../Registration';
 import Page from '../../containers/Page';
-import Anecdote from '../Anecdote';
+import Anecdote from '../../containers/Anecdote';
 import Footer from '../../containers/Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
-import Categories from '../../components/Categories';
+import Categories from '../Categories';
 import Anecdotes from '../../containers/Anecdotes';
+import Error from '../Error';
+
 import categoriesData from '../../utils/categories';
 
 // Import styles
@@ -23,6 +26,12 @@ const App = () => (
     <Header />
     <Page>
       <Switch>
+        <Route path="/inscription" exact>
+          <Registration />
+        </Route>
+        <Route path="/connexion" exact>
+          <Connection />
+        </Route>
         <Route path="/" exact>
           <HomeMessage />
           <BestCarousel />
@@ -31,10 +40,29 @@ const App = () => (
         <Route path="/anecdotes" exact>
           <Anecdotes
             title="Toutes nos anecdotes"
+            context="/anecdotes"
           />
         </Route>
         <Route path="/categories" exact>
           <Categories categoriesData={categoriesData} />
+        </Route>
+        <Route path="/anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route path="/nos-meilleures-anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route path="/nos-dernieres-anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route path="/nos-meilleures-anecdotes" exact>
+          <Anecdotes
+            title="Nos meilleures anecdotes"
+            context="/nos-meilleures-anecdotes"
+          />
+        </Route>
+        <Route>
+          <Error />
         </Route>
       </Switch>
     </Page>

@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
+import Position from '../Position';
 
 // Import styles
 import './anecdotes.scss';
 
-const Anecdotes = ({ title, anecdotes, initialize }) => {
+const Anecdotes = ({
+  title,
+  anecdotes,
+  initialize,
+  context,
+}) => {
   useEffect(() => {
     initialize();
   }, []);
@@ -20,7 +26,7 @@ const Anecdotes = ({ title, anecdotes, initialize }) => {
         {
           anecdotes.map((anecdote) => (
             <li key={anecdote.id} className="anecdotes__item">
-              <AnecdoteCard {...anecdote} />
+              <AnecdoteCard {...anecdote} context={context} />
             </li>
           ))
         }
@@ -45,6 +51,7 @@ Anecdotes.propTypes = {
     })).isRequired,
   })).isRequired,
   initialize: PropTypes.func.isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default Anecdotes;

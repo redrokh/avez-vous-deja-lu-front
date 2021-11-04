@@ -5,10 +5,10 @@ import { UPDATE_PAGE_COLOR, UPDATE_HEADER_COLOR, TOGGLE_HEADER_MENU } from '../a
 import { proportionalHexColor, darkenHexColor } from '../utils/functions';
 
 const initialState = {
-  darkColor: '#174352',
-  lightColor: '#2F86A6',
-  pageColor: '#174352',
-  headerColor: '#174352',
+  darkColor: '#283655', // #D0E1F9 #4D648D #1E1F26 #283655 (#174352)
+  lightColor: '#536878', // (#2F86A6)
+  pageColor: '#283655',
+  headerColor: '#283655',
   isConnected: true,
   isOpened: false,
   contentMenus: [

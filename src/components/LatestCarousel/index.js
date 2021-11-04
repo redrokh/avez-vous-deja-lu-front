@@ -49,6 +49,7 @@ const LatestCarousel = ({
         <AnecdoteCard
           className="latest-carousel__anecdote"
           {...anecdotes[currentIndex]}
+          context={context}
         />
       </div>
 
