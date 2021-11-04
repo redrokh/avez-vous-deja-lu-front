@@ -59,7 +59,7 @@ export const proportionalHexColor = (hexColor1, hexColor2) => {
   const rgbColor2 = hexToRgb(hexColor2);
 
   // Get scroll y max position
-  const scrollMaxY = document.body.offsetHeight - window.innerHeight;
+  const scrollMaxY = window.innerHeight;
   let { scrollY } = window;
   if (scrollY > scrollMaxY) {
     scrollY = scrollMaxY;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
+import Position from '../Position';
 
 // Import styles
 import './anecdotes.scss';
