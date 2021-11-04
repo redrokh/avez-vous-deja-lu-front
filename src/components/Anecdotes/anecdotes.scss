@@ -14,6 +14,7 @@
     list-style: none;
 
     .anecdotes__item {
+      position: relative;
       margin-bottom: vars.$gutterSm;
     }
   }
