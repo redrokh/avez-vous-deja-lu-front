@@ -1,0 +1,10 @@
+@use '../../styles/vars';
+
+.error {
+  margin-bottom: vars.$gutterLg;
+
+  .error__title {
+    font-size: vars.$fsH2Lg;
+    text-align: center;
+  }
+}
