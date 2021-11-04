@@ -1,40 +1,34 @@
 // import from libraries
+import PropTypes from 'prop-types';
 
 // import styles
 import './categories.scss';
 
-const Categories = () => (
+const Categories = ({ categoriesData }) => {
+  console.log(categoriesData);
+  return (
+    <section>
+      <h2 className="main__title">Toutes les Catégories</h2>
 
-  <div className="categorie__grid">
+      <ul className="categorie__grid">
+        {
+          categoriesData.map((category) => (
+            <li key={category.id} className="grid__card">
+              <h3 className="title__card">{category.title}</h3>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  );
+};
 
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-    <div className="grid__card">Image
-      <h1 className="title__card">Titre</h1>
-    </div>
-  </div>
-);
-
+Categories.propTypes = {
+  categoriesData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+};
 export default Categories;

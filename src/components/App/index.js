@@ -12,6 +12,7 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Categories from '../../components/Categories';
 import Anecdotes from '../../containers/Anecdotes';
+import categoriesData from '../../utils/categories';
 
 // Import styles
 import './styles.scss';
@@ -33,7 +34,7 @@ const App = () => (
           />
         </Route>
         <Route path="/categories" exact>
-          <Categories />
+          <Categories categoriesData={categoriesData} />
         </Route>
       </Switch>
     </Page>
