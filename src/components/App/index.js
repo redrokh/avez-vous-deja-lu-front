@@ -12,6 +12,7 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Categories from '../Categories';
 import Anecdotes from '../../containers/Anecdotes';
+import Error from '../Error';
 
 // Import styles
 import './styles.scss';
@@ -47,6 +48,15 @@ const App = () => (
         </Route>
         <Route path="/nos-dernieres-anecdotes/anecdote/:anecdoteId" exact>
           <Anecdote />
+        </Route>
+        <Route path="/nos-meilleures-anecdotes" exact>
+          <Anecdotes
+            title="Nos meilleures anecdotes"
+            context="/nos-meilleures-anecdotes"
+          />
+        </Route>
+        <Route>
+          <Error />
         </Route>
       </Switch>
     </Page>
