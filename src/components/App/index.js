@@ -15,6 +15,8 @@ import Categories from '../Categories';
 import Anecdotes from '../../containers/Anecdotes';
 import Error from '../Error';
 
+import categoriesData from '../../utils/categories';
+
 // Import styles
 import './styles.scss';
 
@@ -42,7 +44,7 @@ const App = () => (
           />
         </Route>
         <Route path="/categories" exact>
-          <Categories />
+          <Categories categoriesData={categoriesData} />
         </Route>
         <Route path="/anecdotes/anecdote/:anecdoteId" exact>
           <Anecdote />
