@@ -1,0 +1,59 @@
+@use '../../styles/vars';
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  .contact__title {
+    text-align: center;
+    font-size: vars.$fsH2Md;
+    margin-bottom: 1em;
+  }
+  .contact__input {
+    color: #fff;
+    position: relative;
+    margin-top: 1em;
+    width:100%;
+    padding: 0.5em;
+    border-radius: 5px;
+    border-color: #fff;
+    background: none;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+  }
+  .contact__input::placeholder {
+    color: #fff;
+    font-style: italic;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  }
+  .contact__input:focus {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #19A4DF,
+                0 0 0.8rem #19A4DF,
+                0 0 2.8rem #19A4DF,
+                inset 0 0 1.3rem #19A4DF;
+  }
+  .submit__button {
+    width: 100%;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    .submit{
+      font-size: 1em;
+      padding: 0.8em;
+      background: none;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      color: #fff;
+    }
+    .submit:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.8rem #19A4DF,
+                  0 0 2.8rem #19A4DF,
+                  inset 0 0 1.3rem #19A4DF;
+    }
+  }
+}
