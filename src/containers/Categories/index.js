@@ -5,9 +5,14 @@ import { connect } from 'react-redux';
 import Categories from '../../components/Categories';
 
 // import actions
+import { loadCategories } from '../../actions';
 
 const mapStateToProps = (state) => ({
   categoriesData: state.categories.categories,
 });
 
-export default connect(mapStateToProps, undefined)(Categories);
+const mapDispatchToProps = (dispatch) => ({
+  initialize: () => dispatch(loadCategories()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

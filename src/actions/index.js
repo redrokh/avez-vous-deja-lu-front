@@ -22,6 +22,9 @@ export const DIDNT_KNOW = 'DIDNT_KNOW';
 
 export const LOAD_ANECDOTES_BY_CATEGORY = 'LOAD_ANECDOTES_BY_CATEGORY';
 
+export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+
 // App actions
 export const UPDATE_PAGE_COLOR = 'UPDATE_PAGE_COLOR';
 export const UPDATE_HEADER_COLOR = 'UPDATE_HEADER_COLOR';
@@ -120,4 +123,13 @@ export const updateHeaderColor = () => ({
 
 export const toggleHeaderMenu = () => ({
   type: TOGGLE_HEADER_MENU,
+});
+
+export const loadCategories = () => ({
+  type: LOAD_CATEGORIES,
+});
+
+export const setCategories = (categories) => ({
+  type: SET_CATEGORIES,
+  categories,
 });

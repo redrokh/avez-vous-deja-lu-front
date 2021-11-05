@@ -11,10 +11,12 @@ import {
   KNEW,
   DIDNT_KNOW,
   LOAD_ANECDOTES_BY_CATEGORY,
+  LOAD_CATEGORIES,
   setLatests,
   setBests,
   setAnecdotes,
   setAnecdote,
+  setCategories,
 } from '../actions';
 import latests from '../utils/latests';
 import bests from '../utils/bests';
@@ -22,6 +24,7 @@ import anecdotes from '../utils/anecdotes';
 import latestsFull from '../utils/latestsFull';
 import bestsFull from '../utils/bestsFull';
 import anecdotesFull from '../utils/anecdotesFull';
+import categories from '../utils/categories';
 
 const anecdoteMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -83,6 +86,10 @@ const anecdoteMiddleware = (store) => (next) => (action) => {
       break;
     case LOAD_ANECDOTES_BY_CATEGORY: {
       //
+      break;
+    }
+    case LOAD_CATEGORIES: {
+      store.dispatch(setCategories(categories));
       break;
     }
     default:

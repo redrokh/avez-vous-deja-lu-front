@@ -1,11 +1,14 @@
-import categoriesData from '../utils/categories';
+import { SET_CATEGORIES } from '../actions';
 
 const initialState = {
-  categories: categoriesData,
+  categories: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_CATEGORIES: {
+      return { ...state, categories: action.categories };
+    }
     default:
       return state;
   }
