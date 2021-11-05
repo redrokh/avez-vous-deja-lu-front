@@ -3,11 +3,13 @@
 .main__title{
   font-size: vars.$fsH2Md;
   text-align: center;
+  padding-left: 0.4em;
+  margin-bottom: 1em;
 }
 
 .categorie__grid {
   max-width: 1300px;
-  width: 80%;
+  width: 104%;
   height: auto;
   display: grid;
   flex-wrap: wrap;
