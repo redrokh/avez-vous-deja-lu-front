@@ -5,6 +5,7 @@ export const LOAD_ANECDOTES = 'LOAD_ANECDOTES';
 export const LOAD_ANECDOTE = 'LOAD_ANECDOTE';
 export const LOAD_PREV_ANECDOTE = 'PREV_ANECDOTE';
 export const LOAD_NEXT_ANECDOTE = 'NEXT_ANECDOTE';
+export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_ANECDOTES_BY_CATEGORY = 'LOAD_ANECDOTES_BY_CATEGORY';
 export const LOAD_FAVORITES = 'LOAD_FAVORITES';
 
@@ -14,6 +15,7 @@ export const SET_ANECDOTES = 'SET_ANECDOTES';
 export const SET_ANECDOTE = 'SET_ANECDOTE';
 export const SET_LATEST_INDEX = 'SET_LATEST_INDEX';
 export const SET_BEST_INDEX = 'SET_BEST_INDEX';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 
 export const UPVOTE = 'UPVOTE';
@@ -77,6 +79,10 @@ export const loadNextAnecdote = (baseUrl, anecdoteId) => ({
   anecdoteId,
 });
 
+export const loadCategories = () => ({
+  type: LOAD_CATEGORIES,
+});
+
 export const loadAnecdotesByCategory = (categoryId) => ({
   type: LOAD_ANECDOTES_BY_CATEGORY,
   categoryId,
@@ -114,6 +120,11 @@ export const setLatestIndex = (newIndex) => ({
 export const setBestIndex = (newIndex) => ({
   type: SET_BEST_INDEX,
   newIndex,
+});
+
+export const setCategories = (categories) => ({
+  type: SET_CATEGORIES,
+  categories,
 });
 
 export const setFavorites = (favorites) => ({

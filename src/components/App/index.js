@@ -11,7 +11,7 @@ import Footer from '../../containers/Footer';
 import HomeMessage from '../HomeMessage';
 import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
-import Categories from '../Categories';
+import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
 import MyAccount from '../../containers/MyAccount';
 import Error from '../Error';
