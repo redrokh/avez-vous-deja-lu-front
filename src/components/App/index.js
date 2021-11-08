@@ -15,6 +15,7 @@ import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
 import MyAccount from '../../containers/MyAccount';
 import Error from '../Error';
+import Contact from '../Contact';
 
 // Import styles
 import './styles.scss';
