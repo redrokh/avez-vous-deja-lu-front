@@ -6,6 +6,7 @@ import {
   LOAD_ANECDOTE,
   LOAD_PREV_ANECDOTE,
   LOAD_NEXT_ANECDOTE,
+  LOAD_FAVORITES,
   UPVOTE,
   DOWNVOTE,
   KNEW,
@@ -15,6 +16,7 @@ import {
   setBests,
   setAnecdotes,
   setAnecdote,
+  setFavorites,
 } from '../actions';
 import latests from '../utils/latests';
 import bests from '../utils/bests';
@@ -22,6 +24,8 @@ import anecdotes from '../utils/anecdotes';
 import latestsFull from '../utils/latestsFull';
 import bestsFull from '../utils/bestsFull';
 import anecdotesFull from '../utils/anecdotesFull';
+import favorites from '../utils/favorites';
+import favoritesFull from '../utils/favoritesFull';
 
 const anecdoteMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -82,8 +86,12 @@ const anecdoteMiddleware = (store) => (next) => (action) => {
       console.log('didntKnow');
       break;
     case LOAD_ANECDOTES_BY_CATEGORY: {
-      //
+      store.dispatch(setAnecdotes(anecdotes));
       break;
+    }
+    case LOAD_FAVORITES: {
+      console.log('load favorites');
+      store.dispatch(setFavorites(favorites));
     }
     default:
   }

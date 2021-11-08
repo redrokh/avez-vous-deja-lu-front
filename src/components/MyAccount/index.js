@@ -1,5 +1,10 @@
-import { Route, NavLink, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import {
+  Route,
+  NavLink,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Profile from '../Profile';
@@ -7,14 +12,28 @@ import Favorites from '../Favorites';
 
 import './myaccount.scss';
 
-import anecdotes from '../../utils/anecdotes';
-
-const MyAccount = () => {
-  const [editingPseudo, setEditingPseudo] = useState(false);
-  const [editingEmail, setEditingEmail] = useState(false);
+const MyAccount = ({
+  id,
+  pseudo,
+  email,
+  avatar,
+  favorites,
+  editingPseudo,
+  editingEmail,
+  updatePseudo,
+  updateEmail,
+  updateAvatar,
+  initialize,
+}) => {
+  const location = useLocation();
   const history = useHistory();
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+  useEffect(() => {
+    console.log('initialize');
+    initialize(location.pathname);
+  }, []);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>
@@ -72,14 +91,18 @@ const MyAccount = () => {
 
         <Route path="/mon-compte" exact>
           <Profile
+            pseudo={pseudo}
+            email={email}
+            avatar={avatar}
             editingPseudo={editingPseudo}
             editingEmail={editingEmail}
-            setEditingPseudo={setEditingPseudo}
-            setEditingEmail={setEditingEmail}
+            updatePseudo={updatePseudo}
+            updateEmail={updateEmail}
+            updateAvatar={updateAvatar}
           />
         </Route>
         <Route path="/mon-compte/favoris" exact>
-          <Favorites favorites={anecdotes} />
+          <Favorites favorites={favorites} />
         </Route>
       </div>
     </section>

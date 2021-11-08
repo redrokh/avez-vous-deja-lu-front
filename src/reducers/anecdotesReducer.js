@@ -5,6 +5,7 @@ import {
   SET_ANECDOTE,
   SET_LATEST_INDEX,
   SET_BEST_INDEX,
+  SET_FAVORITES,
 } from '../actions';
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
     source: [],
     createdAt: '',
   },
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +52,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, latestIndex: action.newIndex };
     case SET_BEST_INDEX:
       return { ...state, bestIndex: action.newIndex };
+    case SET_FAVORITES:
+      return { ...state, favorites: action.favorites };
     default:
       return state;
   }

@@ -4,9 +4,22 @@ import { Edit, Check } from 'react-feather';
 import defaultAvatar from 'src/assets/img/avatar.svg';
 import './profile.scss';
 
-const Profile = ({ editingPseudo, editingEmail, setEditingPseudo, setEditingEmail }) => {
-  const [avatar, setAvatar] = useState(defaultAvatar);
-
+const Profile = ({
+  pseudo,
+  newPseudo,
+  email,
+  newEmail,
+  avatar,
+  editingPseudo,
+  editingEmail,
+  setEditingPseudo,
+  setEditingEmail,
+  updateNewPseudo,
+  updateNewEmail,
+  changePseudoRequest,
+  changeEmailRequest,
+  changeAvatar,
+}) => {
   useEffect(() => {
   }, [avatar]);
   return (
@@ -25,7 +38,7 @@ const Profile = ({ editingPseudo, editingEmail, setEditingPseudo, setEditingEmai
             htmlFor="avatar"
             onChange={(e) => {
               const reader = new FileReader();
-              reader.onload = () => setAvatar(reader.result);
+              reader.onload = () => changeAvatar(reader.result);
               reader.readAsDataURL(e.target.files[0]);
             }}
           />
@@ -36,15 +49,22 @@ const Profile = ({ editingPseudo, editingEmail, setEditingPseudo, setEditingEmai
         {
           editingPseudo && (
             <div className="Profile__pseudo">
-              <input />
-              <Check onClick={() => setEditingPseudo(false)} strokeWidth="2" color="green" />
+              <input value={newPseudo} onChange={(e) => updateNewPseudo(e.target.value)} />
+              <Check
+                onClick={() => {
+                  setEditingPseudo(false);
+                  changePseudoRequest();
+                }}
+                strokeWidth="2"
+                color="green"
+              />
             </div>
           )
         }
         {
           !editingPseudo && (
             <div className="Profile__pseudo">
-              <span className="Profile__value">redrokh</span>
+              <span className="Profile__value">{pseudo}</span>
               <Edit onClick={() => setEditingPseudo(true)} strokeWidth="1" />
             </div>
           )
@@ -53,15 +73,25 @@ const Profile = ({ editingPseudo, editingEmail, setEditingPseudo, setEditingEmai
         {
           editingEmail && (
             <div className="Profile__email">
-              <input />
-              <Check onClick={() => setEditingEmail(false)} strokeWidth="2" color="green" />
+              <input
+                value={newEmail}
+                onChange={(e) => updateNewEmail(e.target.value)}
+              />
+              <Check
+                onClick={() => {
+                  setEditingEmail(false);
+                  changeEmailRequest();
+                }}
+                strokeWidth="2"
+                color="green"
+              />
             </div>
           )
         }
         {
           !editingEmail && (
             <div className="Profile__email">
-              <span className="Profile__value">test@oclock.io</span>
+              <span className="Profile__value">{email}</span>
               <Edit onClick={() => setEditingEmail(true)} strokeWidth="1" />
             </div>
           )
