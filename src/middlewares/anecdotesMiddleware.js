@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from '../utils/api';
 import {
   LOAD_LATEST_ANECDOTES,
   LOAD_BEST_ANECDOTES,
@@ -33,13 +33,25 @@ import categories from '../utils/categories';
 const anecdotesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOAD_LATEST_ANECDOTES:
-      store.dispatch(setLatests(latests));
+      API.get('anecdote/latest')
+        .then((response) => {
+          store.dispatch(setLatests(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     case LOAD_BEST_ANECDOTES:
-      store.dispatch(setBests(bests));
+      API.get('anecdote/best')
+        .then((response) => {
+          store.dispatch(setBests(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     case LOAD_ANECDOTES:
-      store.dispatch(setAnecdotes(anecdotes));
+      API.get('anecdote')
+        .then((response) => {
+          store.dispatch(setAnecdotes(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     case LOAD_ANECDOTE: {
       const newAnecdote = anecdotesFull.find((anecdote) => anecdote.id === action.anecdoteId);
