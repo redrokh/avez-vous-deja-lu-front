@@ -6,6 +6,7 @@ import {
   LOAD_ANECDOTE,
   LOAD_PREV_ANECDOTE,
   LOAD_NEXT_ANECDOTE,
+  LOAD_FAVORITES,
   UPVOTE,
   DOWNVOTE,
   KNEW,
@@ -16,6 +17,7 @@ import {
   setBests,
   setAnecdotes,
   setAnecdote,
+  setFavorites,
   setCategories,
 } from '../actions';
 import latests from '../utils/latests';
@@ -24,6 +26,8 @@ import anecdotes from '../utils/anecdotes';
 import latestsFull from '../utils/latestsFull';
 import bestsFull from '../utils/bestsFull';
 import anecdotesFull from '../utils/anecdotesFull';
+import favorites from '../utils/favorites';
+import favoritesFull from '../utils/favoritesFull';
 import categories from '../utils/categories';
 
 const anecdoteMiddleware = (store) => (next) => (action) => {
@@ -85,7 +89,11 @@ const anecdoteMiddleware = (store) => (next) => (action) => {
       console.log('didntKnow');
       break;
     case LOAD_ANECDOTES_BY_CATEGORY: {
-      //
+      store.dispatch(setAnecdotes(anecdotes));
+      break;
+    }
+    case LOAD_FAVORITES: {
+      store.dispatch(setFavorites(favorites));
       break;
     }
     case LOAD_CATEGORIES: {

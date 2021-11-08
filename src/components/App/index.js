@@ -13,6 +13,7 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
+import MyAccount from '../../containers/MyAccount';
 import Error from '../Error';
 import Contact from '../Contact';
 
@@ -60,8 +61,8 @@ const App = () => (
             context="/nos-meilleures-anecdotes"
           />
         </Route>
-        <Route path="/contact" exact>
-          <Contact />
+        <Route path="/mon-compte">
+          <MyAccount />
         </Route>
         <Route>
           <Error />

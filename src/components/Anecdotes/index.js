@@ -16,7 +16,7 @@ const Anecdotes = ({
   context,
 }) => {
   useEffect(() => {
-    initialize();
+    initialize(context);
   }, []);
   return (
     <section className="anecdotes">

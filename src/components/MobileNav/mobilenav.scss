@@ -1,6 +1,8 @@
 .mobile-nav {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   
   .mobile-nav__links {
     position: relative;
