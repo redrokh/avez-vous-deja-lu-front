@@ -1,0 +1,31 @@
+@use '../../styles/vars';
+
+.Favorites {
+  margin: vars.$gutterSm 0 vars.$gutterLg 0;
+  .Favorites__table {
+    text-align: left;
+    .Favorites__header {
+      .Favorites__header-row {
+        border-bottom: 2px solid rgb(255, 255, 255, 0.5);
+        
+        .Favorites__header-cell {
+          padding: vars.$gutterSm 0;
+        }
+      }
+    }
+
+    .Favorites__body {
+      .Favorites__body-row {
+        border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+
+        .Favorites__body-cell {
+          padding: vars.$gutterSm vars.$gutterMd vars.$gutterSm 0;
+        }
+      }
+
+      .Favorites__body-row:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

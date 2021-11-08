@@ -13,8 +13,9 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
-import LegalesMentions from '../LegalesMentions';
+import MyAccount from '../../containers/MyAccount';
 import Error from '../Error';
+import Contact from '../Contact';
 
 // Import styles
 import './styles.scss';
@@ -60,8 +61,8 @@ const App = () => (
             context="/nos-meilleures-anecdotes"
           />
         </Route>
-        <Route path="/mentions-legales" exact>
-          <LegalesMentions />
+        <Route path="/mon-compte">
+          <MyAccount />
         </Route>
         <Route>
           <Error />

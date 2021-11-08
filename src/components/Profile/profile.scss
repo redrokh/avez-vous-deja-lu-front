@@ -1,0 +1,85 @@
+@use '../../styles/vars';
+
+.Profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: vars.$gutterLg;
+
+  &__avatar {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+
+    &-img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50px;
+    }
+
+    &-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .Profile__avatar-edit {
+        opacity: 0;
+      }
+
+      .Profile__avatar-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+      }
+    }
+  }
+
+  .Profile__avatar:hover {
+    border: 1px solid white;
+    box-shadow:
+      0 0 .2rem #fff,
+      0 0 .2rem #fff,
+      0 0 2rem #19A4DF,
+      0 0 0.8rem #19A4DF,
+      0 0 2.8rem #19A4DF,
+      inset 0 0 1.3rem #19A4DF;
+    .Profile__avatar-edit {
+      opacity: 1;
+    }
+  }
+  
+  .Profile__info {
+    flex-grow: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-weight: bold;
+
+    .Profile__pseudo {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: vars.$gutterSm;
+    }
+
+    .Profile__email {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: vars.$gutterSm;
+    }
+
+    .Profile__value {
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
