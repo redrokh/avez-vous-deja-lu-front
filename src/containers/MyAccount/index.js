@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import MyAccount from '../../components/MyAccount';
 
 import {
-  editPseudo,
-  editEmail,
+  togglePseudoEdition,
+  toggleEmailEdition,
   updatePseudo,
   updateEmail,
   changePseudoRequest,
@@ -29,13 +29,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setEditingPseudo: () => dispatch(editPseudo()),
-  setEditingEMail: () => dispatch(editEmail()),
-  updateNewPseudo: (newPseudo) => dispatch(updatePseudo(newPseudo)),
-  updateNewEmail: (newEmail) => dispatch(updateEmail(newEmail)),
+  togglePseudoEdition: () => dispatch(togglePseudoEdition()),
+  toggleEmailEdition: () => dispatch(toggleEmailEdition()),
+  onNewPseudoChange: (newPseudo) => dispatch(updatePseudo(newPseudo)),
+  onNewEmailChange: (newEmail) => dispatch(updateEmail(newEmail)),
   changePseudoRequest: () => dispatch(changePseudoRequest()),
   changeEmailRequest: () => dispatch(changeEmailRequest()),
-  changeAvatar: () => dispatch(changeAvatar()),
+  changeAvatar: (avatar) => dispatch(changeAvatar(avatar)),
   initialize: (url) => {
     switch (url) {
       case '/mon-compte':

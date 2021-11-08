@@ -6,9 +6,10 @@ import {
   CHANGE_AVATAR,
   LOAD_USER,
   logInSuccess,
-  changePseudoRequest,
-  changeEmailRequest,
+  setPseudo,
+  setEmail,
   setUser,
+  setAvatar,
 } from '../actions';
 
 import user from '../utils/user';
@@ -21,14 +22,16 @@ const userMiddleware = (store) => (next) => (action) => {
       break;
     case CHANGE_PSEUDO_REQUEST:
       console.log('change pseudo request');
-      store.dispatch(changePseudoRequest());
+      store.dispatch(setPseudo());
       break;
     case CHANGE_EMAIL_REQUEST:
       console.log('change email request');
-      store.dispatch(changeEmailRequest());
+      store.dispatch(setEmail());
       break;
     case CHANGE_AVATAR:
       console.log('change avatar');
+      console.log(action);
+      store.dispatch(setAvatar(action.avatar));
       break;
     case LOAD_USER:
       console.log('load user');

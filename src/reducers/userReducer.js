@@ -2,16 +2,21 @@ import {
   LOG_IN_SUCCESS,
   LOG_OUT,
   SET_PSEUDO,
-  EDIT_PSEUDO,
+  TOGGLE_PSEUDO_EDITION,
+  UPDATE_PSEUDO,
   SET_EMAIL,
-  EDIT_EMAIL,
+  TOGGLE_EMAIL_EDITION,
+  UPDATE_EMAIL,
   SET_USER,
+  SET_AVATAR,
 } from '../actions';
 
 const initialState = {
   id: '',
   pseudo: '',
+  newPseudo: '',
   email: '',
+  newEmail: '',
   avatar: '',
   isConnected: false,
   editingPseudo: false,
@@ -26,27 +31,29 @@ const reducer = (state = initialState, action) => {
     case LOG_OUT:
       console.log('log out');
       return state;
-    case SET_PSEUDO:
-      console.log('set pseudo');
-      return state;
-    case EDIT_PSEUDO:
-      console.log('edit pseudo');
-      return state;
+    case SET_PSEUDO: {
+      return { ...state, pseudo: state.newPseudo };
+    }
+    case TOGGLE_PSEUDO_EDITION:
+      return { ...state, editingPseudo: !state.editingPseudo };
     case SET_EMAIL:
-      console.log('set email');
-      return state;
-    case EDIT_EMAIL:
-      console.log('edit email');
-      return state;
+      return { ...state, email: state.newEmail };
+    case TOGGLE_EMAIL_EDITION:
+      return { ...state, editingEmail: !state.editingEmail };
+    case UPDATE_PSEUDO:
+      return { ...state, newPseudo: action.newPseudo };
+    case UPDATE_EMAIL:
+      return { ...state, newEmail: action.newEmail };
     case SET_USER:
-      console.log('set user');
       return {
         ...state,
         id: action.id,
         pseudo: action.pseudo,
         email: action.email,
-        avatar: action.avatar,
+        avatar: 'https://drive.google.com/uc?export=view&id=1iYWpjbucR26X7d0w0Pj0-vg6fJK72jQb',
       };
+    case SET_AVATAR:
+      return { ...state, avatar: action.avatar };
     default:
       return state;
   }

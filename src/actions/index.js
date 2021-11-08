@@ -32,17 +32,19 @@ export const LOG_OUT = 'LOG_OUT';
 export const UPDATE_PSEUDO = 'UPDATE_PSEUDO';
 export const CHANGE_PSEUDO_REQUEST = 'CHANGE_PSEUDO_REQUEST';
 export const SET_PSEUDO = 'SET_PSEUDO';
-export const EDIT_PSEUDO = 'EDIT_PSEUDO';
+export const TOGGLE_PSEUDO_EDITION = 'TOGGLE_PSEUDO_EDITION';
 
 export const UPDATE_EMAIL = 'UPDATE_EMAIL';
 export const CHANGE_EMAIL_REQUEST = 'CHANGE_EMAIL_REQUEST';
 export const SET_EMAIL = 'SET_EMAIL';
-export const EDIT_EMAIL = 'EDIT_EMAIL';
+export const TOGGLE_EMAIL_EDITION = 'TOGGLE_EMAIL_EDITION';
 
 export const CHANGE_AVATAR = 'CHANGE_AVATAR';
 
 export const LOAD_USER = 'LOAD_USER';
 export const SET_USER = 'SET_USER';
+
+export const SET_AVATAR = 'SET_AVATAR';
 
 // Anecdotes action creators
 export const loadLatests = () => ({
@@ -177,8 +179,8 @@ export const setPseudo = () => ({
   type: SET_PSEUDO,
 });
 
-export const editPseudo = () => ({
-  type: EDIT_PSEUDO,
+export const togglePseudoEdition = () => ({
+  type: TOGGLE_PSEUDO_EDITION,
 });
 
 export const updateEmail = (newEmail) => ({
@@ -194,12 +196,13 @@ export const setEmail = () => ({
   type: SET_EMAIL,
 });
 
-export const editEmail = () => ({
-  type: EDIT_EMAIL,
+export const toggleEmailEdition = () => ({
+  type: TOGGLE_EMAIL_EDITION,
 });
 
-export const changeAvatar = () => ({
+export const changeAvatar = (avatar) => ({
   type: CHANGE_AVATAR,
+  avatar,
 });
 
 export const loadUser = () => ({
@@ -211,5 +214,10 @@ export const setUser = (id, pseudo, email, avatar) => ({
   id,
   pseudo,
   email,
+  avatar,
+});
+
+export const setAvatar = (avatar) => ({
+  type: SET_AVATAR,
   avatar,
 });

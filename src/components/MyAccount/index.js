@@ -15,15 +15,24 @@ import './myaccount.scss';
 const MyAccount = ({
   id,
   pseudo,
+  newPseudo,
+  onNewPseudoChange,
+  onNewEmailChange,
   email,
+  newEmail,
   avatar,
   favorites,
   editingPseudo,
   editingEmail,
+  togglePseudoEdition,
+  toggleEmailEdition,
+  changePseudoRequest,
+  changeEmailRequest,
   updatePseudo,
   updateEmail,
   updateAvatar,
   initialize,
+  changeAvatar,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -31,9 +40,8 @@ const MyAccount = ({
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-    console.log('initialize');
     initialize(location.pathname);
-  }, []);
+  }, [location]);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>
@@ -92,13 +100,20 @@ const MyAccount = ({
         <Route path="/mon-compte" exact>
           <Profile
             pseudo={pseudo}
+            newPseudo={newPseudo}
             email={email}
+            newEmail={newEmail}
             avatar={avatar}
+            togglePseudoEdition={togglePseudoEdition}
+            toggleEmailEdition={toggleEmailEdition}
             editingPseudo={editingPseudo}
             editingEmail={editingEmail}
-            updatePseudo={updatePseudo}
-            updateEmail={updateEmail}
+            onNewPseudoChange={onNewPseudoChange}
+            changePseudoRequest={changePseudoRequest}
+            changeEmailRequest={changeEmailRequest}
+            onNewEmailChange={onNewEmailChange}
             updateAvatar={updateAvatar}
+            changeAvatar={changeAvatar}
           />
         </Route>
         <Route path="/mon-compte/favoris" exact>

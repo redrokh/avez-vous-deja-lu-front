@@ -90,8 +90,8 @@ const anecdoteMiddleware = (store) => (next) => (action) => {
       break;
     }
     case LOAD_FAVORITES: {
-      console.log('load favorites');
       store.dispatch(setFavorites(favorites));
+      break;
     }
     default:
   }
