@@ -19,6 +19,7 @@ const Header = ({
   isOpened,
   toggleMenu,
   headerColor,
+  logOut,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -30,7 +31,7 @@ const Header = ({
       <nav>
         <div className="header__top">
           <NavLink className="header__title" to="/">Avez-vous déjà lu..?</NavLink>
-          { !isMobile && <AccessNav isConnected={isConnected} /> }
+          { !isMobile && <AccessNav isConnected={isConnected} logOut={logOut} /> }
           { isMobile && <Burger isOpened={isOpened} toggleOpen={toggleMenu} />}
         </div>
 
@@ -39,7 +40,7 @@ const Header = ({
           {
             isMobile
             && isOpened
-            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} />
+            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} logOut={logOut} />
           }
         </div>
       </nav>

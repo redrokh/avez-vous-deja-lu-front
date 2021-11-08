@@ -7,6 +7,7 @@ import {
   SET_EMAIL,
   TOGGLE_EMAIL_EDITION,
   UPDATE_EMAIL,
+  UPDATE_PASSWORD,
   SET_USER,
   SET_AVATAR,
 } from '../actions';
@@ -14,36 +15,49 @@ import {
 const initialState = {
   id: '',
   pseudo: '',
-  newPseudo: '',
+  pseudoInput: '',
   email: '',
-  newEmail: '',
+  emailInput: '',
+  passwordInput: '',
   avatar: '',
   isConnected: false,
   editingPseudo: false,
   editingEmail: false,
+  token: '',
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN_SUCCESS:
-      console.log('log in success');
-      return state;
+      return {
+        ...state,
+        token: action.token,
+        isConnected: true,
+        emailInput: '',
+        passwordInput: '',
+      };
+    case UPDATE_PASSWORD:
+      return { ...state, passwordInput: action.password };
     case LOG_OUT:
-      console.log('log out');
-      return state;
+      return {
+        ...state,
+        isConnected: false,
+        pseudo: '',
+        email: '',
+      };
     case SET_PSEUDO: {
-      return { ...state, pseudo: state.newPseudo };
+      return { ...state, pseudo: state.pseudoInput };
     }
     case TOGGLE_PSEUDO_EDITION:
       return { ...state, editingPseudo: !state.editingPseudo };
     case SET_EMAIL:
-      return { ...state, email: state.newEmail };
+      return { ...state, email: state.emailInput };
     case TOGGLE_EMAIL_EDITION:
       return { ...state, editingEmail: !state.editingEmail };
     case UPDATE_PSEUDO:
-      return { ...state, newPseudo: action.newPseudo };
+      return { ...state, pseudoInput: action.pseudo };
     case UPDATE_EMAIL:
-      return { ...state, newEmail: action.newEmail };
+      return { ...state, emailInput: action.email };
     case SET_USER:
       return {
         ...state,

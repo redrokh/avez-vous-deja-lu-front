@@ -4,9 +4,9 @@ import './profile.scss';
 
 const Profile = ({
   pseudo,
-  newPseudo,
+  pseudoInput,
   email,
-  newEmail,
+  emailInput,
   avatar,
   editingPseudo,
   editingEmail,
@@ -45,7 +45,7 @@ const Profile = ({
         editingPseudo && (
           <div className="Profile__pseudo">
             <input
-              value={newPseudo}
+              value={pseudoInput}
               onChange={(e) => onNewPseudoChange(e.target.value)}
             />
             <Check
@@ -77,7 +77,7 @@ const Profile = ({
         editingEmail && (
           <div className="Profile__email">
             <input
-              value={newEmail}
+              value={emailInput}
               onChange={(e) => onNewEmailChange(e.target.value)}
             />
             <Check

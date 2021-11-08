@@ -1,4 +1,4 @@
-// Anecdotes actions
+// Actions
 export const LOAD_LATEST_ANECDOTES = 'LOAD_LATEST_ANECDOTES';
 export const LOAD_BEST_ANECDOTES = 'LOAD_BEST_ANECDOTES';
 export const LOAD_ANECDOTES = 'LOAD_ANECDOTES';
@@ -8,6 +8,7 @@ export const LOAD_NEXT_ANECDOTE = 'NEXT_ANECDOTE';
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_ANECDOTES_BY_CATEGORY = 'LOAD_ANECDOTES_BY_CATEGORY';
 export const LOAD_FAVORITES = 'LOAD_FAVORITES';
+export const LOAD_USER = 'LOAD_USER';
 
 export const SET_LATEST_ANECDOTES = 'SET_LATEST_ANECDOTES';
 export const SET_BEST_ANECDOTES = 'SET_BEST_ANECDOTES';
@@ -31,24 +32,26 @@ export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_OUT = 'LOG_OUT';
 
-export const UPDATE_PSEUDO = 'UPDATE_PSEUDO';
-export const CHANGE_PSEUDO_REQUEST = 'CHANGE_PSEUDO_REQUEST';
-export const SET_PSEUDO = 'SET_PSEUDO';
 export const TOGGLE_PSEUDO_EDITION = 'TOGGLE_PSEUDO_EDITION';
-
-export const UPDATE_EMAIL = 'UPDATE_EMAIL';
-export const CHANGE_EMAIL_REQUEST = 'CHANGE_EMAIL_REQUEST';
-export const SET_EMAIL = 'SET_EMAIL';
 export const TOGGLE_EMAIL_EDITION = 'TOGGLE_EMAIL_EDITION';
+export const TOGGLE_PASSWORD_EDITION = 'TOGGLE_PASSWORD_EDITION';
+
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const UPDATE_PSEUDO = 'UPDATE_PSEUDO';
+export const UPDATE_EMAIL = 'UPDATE_EMAIL';
+
+export const CHANGE_PSEUDO_REQUEST = 'CHANGE_PSEUDO_REQUEST';
+export const CHANGE_EMAIL_REQUEST = 'CHANGE_EMAIL_REQUEST';
+export const CHANGE_AVATAR_REQUEST = 'CHANGE_AVATAR_REQUEST';
 
 export const CHANGE_AVATAR = 'CHANGE_AVATAR';
 
-export const LOAD_USER = 'LOAD_USER';
+export const SET_PSEUDO = 'SET_PSEUDO';
+export const SET_EMAIL = 'SET_EMAIL';
 export const SET_USER = 'SET_USER';
-
 export const SET_AVATAR = 'SET_AVATAR';
 
-// Anecdotes action creators
+// Action creators
 export const loadLatests = () => ({
   type: LOAD_LATEST_ANECDOTES,
 });
@@ -160,26 +163,27 @@ export const toggleHeaderMenu = () => ({
   type: TOGGLE_HEADER_MENU,
 });
 
-export const logInRequest = (email, password) => ({
+export const logInRequest = () => ({
   type: LOG_IN_REQUEST,
-  email,
-  password,
 });
 
-export const logInSuccess = (id, email, password) => ({
+export const logInSuccess = (token) => ({
   type: LOG_IN_SUCCESS,
-  id,
-  email,
-  password,
+  token,
 });
 
 export const logOut = () => ({
   type: LOG_OUT,
 });
 
-export const updatePseudo = (newPseudo) => ({
+export const updatePassword = (password) => ({
+  type: UPDATE_PASSWORD,
+  password,
+});
+
+export const updatePseudo = (pseudo) => ({
   type: UPDATE_PSEUDO,
-  newPseudo,
+  pseudo,
 });
 
 export const changePseudoRequest = () => ({
@@ -194,9 +198,9 @@ export const togglePseudoEdition = () => ({
   type: TOGGLE_PSEUDO_EDITION,
 });
 
-export const updateEmail = (newEmail) => ({
+export const updateEmail = (email) => ({
   type: UPDATE_EMAIL,
-  newEmail,
+  email,
 });
 
 export const changeEmailRequest = () => ({

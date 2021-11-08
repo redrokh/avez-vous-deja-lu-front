@@ -30,7 +30,7 @@ import favorites from '../utils/favorites';
 import favoritesFull from '../utils/favoritesFull';
 import categories from '../utils/categories';
 
-const anecdoteMiddleware = (store) => (next) => (action) => {
+const anecdotesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOAD_LATEST_ANECDOTES:
       store.dispatch(setLatests(latests));
@@ -96,13 +96,9 @@ const anecdoteMiddleware = (store) => (next) => (action) => {
       store.dispatch(setFavorites(favorites));
       break;
     }
-    case LOAD_CATEGORIES: {
-      store.dispatch(setCategories(categories));
-      break;
-    }
     default:
   }
   next(action);
 };
 
-export default anecdoteMiddleware;
+export default anecdotesMiddleware;

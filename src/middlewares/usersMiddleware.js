@@ -14,12 +14,8 @@ import {
 
 import user from '../utils/user';
 
-const userMiddleware = (store) => (next) => (action) => {
+const usersMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case LOG_IN_REQUEST:
-      console.log('log in request');
-      store.dispatch(logInSuccess(action.id, action.email, action.pseudo));
-      break;
     case CHANGE_PSEUDO_REQUEST:
       console.log('change pseudo request');
       store.dispatch(setPseudo());
@@ -42,4 +38,4 @@ const userMiddleware = (store) => (next) => (action) => {
   next(action);
 };
 
-export default userMiddleware;
+export default usersMiddleware;
