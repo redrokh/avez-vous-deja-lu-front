@@ -14,6 +14,7 @@ import LatestCarousel from '../../containers/LatestCarousel';
 import Categories from '../../containers/Categories';
 import Anecdotes from '../../containers/Anecdotes';
 import MyAccount from '../../containers/MyAccount';
+import LegalesMentions from '../LegalesMentions';
 import Error from '../Error';
 import Contact from '../Contact';
 
@@ -63,6 +64,9 @@ const App = () => (
         </Route>
         <Route path="/mon-compte">
           <MyAccount />
+        </Route>
+        <Route path="/mentions-legales">
+          <LegalesMentions />
         </Route>
         <Route>
           <Error />
