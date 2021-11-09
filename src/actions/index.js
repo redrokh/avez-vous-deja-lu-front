@@ -9,6 +9,7 @@ export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_ANECDOTES_BY_CATEGORY = 'LOAD_ANECDOTES_BY_CATEGORY';
 export const LOAD_FAVORITES = 'LOAD_FAVORITES';
 export const LOAD_USER = 'LOAD_USER';
+export const RELOAD_USER = 'RELOAD_USER';
 
 export const SET_LATEST_ANECDOTES = 'SET_LATEST_ANECDOTES';
 export const SET_BEST_ANECDOTES = 'SET_BEST_ANECDOTES';
@@ -18,6 +19,8 @@ export const SET_LATEST_INDEX = 'SET_LATEST_INDEX';
 export const SET_BEST_INDEX = 'SET_BEST_INDEX';
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_FAVORITES = 'SET_FAVORITES';
+export const SET_TOKEN = 'SET_TOKEN';
+export const IS_CONNECTED_TO_TRUE = 'IS_CONNECTED_TO_TRUE';
 
 export const UPVOTE = 'UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
@@ -31,6 +34,7 @@ export const TOGGLE_HEADER_MENU = 'TOGGLE_HEADER_MENU';
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_OUT = 'LOG_OUT';
+export const RECONNECTION_REQUEST = 'RECONNECTION_REQUEST';
 
 export const TOGGLE_PSEUDO_EDITION = 'TOGGLE_PSEUDO_EDITION';
 export const TOGGLE_EMAIL_EDITION = 'TOGGLE_EMAIL_EDITION';
@@ -95,6 +99,10 @@ export const loadFavorites = () => ({
   type: LOAD_FAVORITES,
 });
 
+export const reloadUser = () => ({
+  type: RELOAD_USER,
+});
+
 export const setLatests = (anecdotes) => ({
   type: SET_LATEST_ANECDOTES,
   anecdotes,
@@ -133,6 +141,14 @@ export const setCategories = (categories) => ({
 export const setFavorites = (favorites) => ({
   type: SET_FAVORITES,
   favorites,
+});
+
+export const setToken = () => ({
+  type: SET_TOKEN,
+});
+
+export const isConnectedToTrue = () => ({
+  type: IS_CONNECTED_TO_TRUE,
 });
 
 export const upvote = () => ({
@@ -174,6 +190,10 @@ export const logInSuccess = (token) => ({
 
 export const logOut = () => ({
   type: LOG_OUT,
+});
+
+export const reconnectionRequest = () => ({
+  type: RECONNECTION_REQUEST,
 });
 
 export const updatePassword = (password) => ({

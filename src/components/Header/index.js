@@ -1,4 +1,5 @@
 // Import from libraries
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
@@ -20,8 +21,16 @@ const Header = ({
   toggleMenu,
   headerColor,
   logOut,
+  reconnectionAttempt,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      reconnectionAttempt();
+    }
+  }, []);
 
   return (
     <header

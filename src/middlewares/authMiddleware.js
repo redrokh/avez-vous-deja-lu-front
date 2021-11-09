@@ -18,6 +18,11 @@ const authMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(logInSuccess(response.data.token));
           store.dispatch(loadUser());
+          const user = {
+            token: response.data.token,
+            email: store.getState().user.emailInput,
+          };
+          localStorage.setItem('user', user);
         });
       break;
     default:

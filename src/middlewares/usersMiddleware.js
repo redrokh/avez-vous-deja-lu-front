@@ -4,14 +4,13 @@ import {
   CHANGE_EMAIL_REQUEST,
   CHANGE_AVATAR,
   LOAD_USER,
+  RELOAD_USER,
   setPseudo,
   setEmail,
   setUser,
   setAvatar,
+  isConnectedToTrue,
 } from '../actions';
-
-import userData from '../utils/user';
-import axios from 'axios';
 
 const usersMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -28,11 +27,9 @@ const usersMiddleware = (store) => (next) => (action) => {
       break;
     case LOAD_USER:
       API.post(
-        'user/',
+        'user',
         {
-          data: {
-            email: store.getState().user.emailInput,
-          },
+          email: store.getState().user.emailInput,
         },
         {
           headers: {
@@ -41,16 +38,36 @@ const usersMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          const user = response.data;
-          console.log(response);
-          store.dispatch(setUser(user.id, user.pseudo, user.email, user.avatar));
-          return response.data;
-        })
-        .then((data) => {
-          console.log(data);
+          if (response.data.length > 0) {
+            const user = response.data[0];
+            store.dispatch(setUser(user.id, user.pseudo, user.email, user.avatar));
+          }
         })
         .catch((error) => console.log(error));
       break;
+    case RELOAD_USER: {
+      const { token, email } = localStorage.getItem('user');
+      API.post(
+        'user',
+        {
+          email: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+        .then((response) => {
+          if (response.data.length > 0) {
+            const user = response.data[0];
+            store.dispatch(setUser(user.id, user.pseudo, user.email, user.avatar));
+            store.dispatch(isConnectedToTrue());
+          }
+        })
+        .catch((error) => console.log(error));
+      break;
+    }
     default:
   }
   next(action);

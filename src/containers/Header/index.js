@@ -5,7 +5,13 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header';
 
 // Import action creators
-import { toggleHeaderMenu, updateHeaderColor, logOut } from '../../actions';
+import {
+  toggleHeaderMenu,
+  updateHeaderColor,
+  logOut,
+  setToken,
+  reloadUser,
+} from '../../actions';
 
 // Import from utils
 import { darkenHexColor } from '../../utils/functions';
@@ -21,5 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
   toggleMenu: () => dispatch(toggleHeaderMenu()),
   updateHeaderColor: () => dispatch(updateHeaderColor()),
   logOut: () => dispatch(logOut()),
+  reconnectionRequest: () => {
+    dispatch(setToken());
+    dispatch(reloadUser());
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

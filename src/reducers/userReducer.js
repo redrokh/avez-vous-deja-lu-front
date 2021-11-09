@@ -10,6 +10,8 @@ import {
   UPDATE_PASSWORD,
   SET_USER,
   SET_AVATAR,
+  SET_TOKEN,
+  IS_CONNECTED_TO_TRUE,
 } from '../actions';
 
 const initialState = {
@@ -63,10 +65,16 @@ const reducer = (state = initialState, action) => {
         id: action.id,
         pseudo: action.pseudo,
         email: action.email,
-        avatar: 'https://drive.google.com/uc?export=view&id=1iYWpjbucR26X7d0w0Pj0-vg6fJK72jQb',
+        avatar: !action.avatar ? 'https://drive.google.com/uc?export=view&id=1iYWpjbucR26X7d0w0Pj0-vg6fJK72jQb' : action.avatar,
       };
     case SET_AVATAR:
       return { ...state, avatar: action.avatar };
+    case SET_TOKEN: {
+      const { token } = localStorage.getItem('user');
+      return { ...state, token };
+    }
+    case IS_CONNECTED_TO_TRUE:
+      return { ...state, isConnected: true };
     default:
       return state;
   }
