@@ -15,11 +15,11 @@ import './myaccount.scss';
 const MyAccount = ({
   id,
   pseudo,
-  newPseudo,
+  pseudoInput,
   onNewPseudoChange,
   onNewEmailChange,
   email,
-  newEmail,
+  emailInput,
   avatar,
   favorites,
   editingPseudo,
@@ -100,9 +100,9 @@ const MyAccount = ({
         <Route path="/mon-compte" exact>
           <Profile
             pseudo={pseudo}
-            newPseudo={newPseudo}
+            pseudoInput={pseudoInput}
             email={email}
-            newEmail={newEmail}
+            emailInput={emailInput}
             avatar={avatar}
             togglePseudoEdition={togglePseudoEdition}
             toggleEmailEdition={toggleEmailEdition}

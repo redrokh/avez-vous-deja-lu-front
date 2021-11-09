@@ -1,4 +1,5 @@
 // Import from libraries
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
@@ -19,8 +20,17 @@ const Header = ({
   isOpened,
   toggleMenu,
   headerColor,
+  logOut,
+  reconnectionAttempt,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      reconnectionAttempt();
+    }
+  }, []);
 
   return (
     <header
@@ -30,7 +40,7 @@ const Header = ({
       <nav>
         <div className="header__top">
           <NavLink className="header__title" to="/">Avez-vous déjà lu..?</NavLink>
-          { !isMobile && <AccessNav isConnected={isConnected} /> }
+          { !isMobile && <AccessNav isConnected={isConnected} logOut={logOut} /> }
           { isMobile && <Burger isOpened={isOpened} toggleOpen={toggleMenu} />}
         </div>
 
@@ -39,7 +49,7 @@ const Header = ({
           {
             isMobile
             && isOpened
-            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} />
+            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} logOut={logOut} />
           }
         </div>
       </nav>

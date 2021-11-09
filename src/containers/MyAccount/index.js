@@ -19,9 +19,9 @@ import {
 const mapStateToProps = (state) => ({
   id: state.user.id,
   pseudo: state.user.pseudo,
-  newPseudo: state.user.newPseudo,
+  pseudoInput: state.user.pseudoInput,
   email: state.user.email,
-  newEmail: state.user.newEmail,
+  emailInput: state.user.emailInput,
   avatar: state.user.avatar,
   favorites: state.anecdotes.favorites,
   editingPseudo: state.user.editingPseudo,
@@ -31,8 +31,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   togglePseudoEdition: () => dispatch(togglePseudoEdition()),
   toggleEmailEdition: () => dispatch(toggleEmailEdition()),
-  onNewPseudoChange: (newPseudo) => dispatch(updatePseudo(newPseudo)),
-  onNewEmailChange: (newEmail) => dispatch(updateEmail(newEmail)),
+  onNewPseudoChange: (pseudo) => dispatch(updatePseudo(pseudo)),
+  onNewEmailChange: (email) => dispatch(updateEmail(email)),
   changePseudoRequest: () => dispatch(changePseudoRequest()),
   changeEmailRequest: () => dispatch(changeEmailRequest()),
   changeAvatar: (avatar) => dispatch(changeAvatar(avatar)),

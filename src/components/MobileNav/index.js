@@ -9,11 +9,11 @@ import AccessNav from '../AccessNav';
 // Import styles
 import './mobilenav.scss';
 
-const MobileNav = ({ contentMenus, isConnected }) => {
+const MobileNav = ({ contentMenus, isConnected, logOut }) => {
   const location = useLocation();
   return (
     <div className="mobile-nav">
-      <AccessNav isConnected={isConnected} />
+      <AccessNav isConnected={isConnected} logOut={logOut} />
 
       <ul className="mobile-nav__links">
         {

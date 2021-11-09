@@ -9,7 +9,6 @@ const initialState = {
   lightColor: '#536878', // (#2F86A6)
   pageColor: '#283655',
   headerColor: '#283655',
-  isConnected: true,
   isOpened: false,
   contentMenus: [
     {
