@@ -220,8 +220,9 @@ export const changeAvatar = (avatar) => ({
   avatar,
 });
 
-export const loadUser = () => ({
+export const loadUser = (email) => ({
   type: LOAD_USER,
+  email,
 });
 
 export const setUser = (id, pseudo, email, avatar) => ({

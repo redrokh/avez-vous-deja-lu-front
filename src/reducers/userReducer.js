@@ -33,7 +33,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         isConnected: true,
-        emailInput: '',
         passwordInput: '',
       };
     case UPDATE_PASSWORD:

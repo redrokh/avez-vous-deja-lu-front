@@ -2,6 +2,7 @@ import API from '../utils/api';
 import {
   LOG_IN_REQUEST,
   logInSuccess,
+  loadUser,
 } from '../actions';
 
 const authMiddleware = (store) => (next) => (action) => {
@@ -16,6 +17,7 @@ const authMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           store.dispatch(logInSuccess(response.data.token));
+          store.dispatch(loadUser());
         });
       break;
     default:

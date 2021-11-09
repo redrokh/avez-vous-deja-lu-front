@@ -1,18 +1,17 @@
-import axios from 'axios';
+import API from '../utils/api';
 import {
-  LOG_IN_REQUEST,
   CHANGE_PSEUDO_REQUEST,
   CHANGE_EMAIL_REQUEST,
   CHANGE_AVATAR,
   LOAD_USER,
-  logInSuccess,
   setPseudo,
   setEmail,
   setUser,
   setAvatar,
 } from '../actions';
 
-import user from '../utils/user';
+import userData from '../utils/user';
+import axios from 'axios';
 
 const usersMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -25,13 +24,32 @@ const usersMiddleware = (store) => (next) => (action) => {
       store.dispatch(setEmail());
       break;
     case CHANGE_AVATAR:
-      console.log('change avatar');
-      console.log(action);
       store.dispatch(setAvatar(action.avatar));
       break;
     case LOAD_USER:
-      console.log('load user');
-      store.dispatch(setUser(user.id, user.pseudo, user.email, user.avatar));
+      API.post(
+        'user/',
+        {
+          data: {
+            email: store.getState().user.emailInput,
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          const user = response.data;
+          console.log(response);
+          store.dispatch(setUser(user.id, user.pseudo, user.email, user.avatar));
+          return response.data;
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.log(error));
       break;
     default:
   }
