@@ -34,10 +34,10 @@ const Anecdote = ({
   }, []);
 
   useEffect(() => {
-    history.push(`${baseUrl}/${id}`);
+    history.push(`${baseUrl}/${anecdoteId}`);
   }, [id]);
 
-  if (id === 0) {
+  if (!id) {
     return <></>;
   }
 
@@ -84,37 +84,28 @@ const Anecdote = ({
       </div>
 
       <aside className="anecdote__sources">
-        <h3 className="anecdote__sources-title">Source(s) :</h3>
-
-        <ul className="anecdote__source-list">
-          {
-            source.map(({ id: sourceId, url }) => (
-              <li key={sourceId} className="anecdote__source-item">
-                <a
-                  className="anecdote__source-link"
-                  target="_blank"
-                  href={url}
-                  rel="noreferrer"
-                >
-                  {url}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <h3 className="anecdote__sources-title">Source :</h3>
+        <a
+          className="anecdote__source-link"
+          target="_blank"
+          href={source}
+          rel="noreferrer"
+        >
+          {source}
+        </a>
       </aside>
 
       <div className="anecdote__nav">
         <button
           className="anecdote__nav-link"
-          onClick={() => prevAnecdote(baseUrl, id)}
+          onClick={() => prevAnecdote(id)}
           type="button"
         >
           Précédent
         </button>
         <button
           className="anecdote__nav-link"
-          onClick={() => nextAnecdote(baseUrl, id)}
+          onClick={() => nextAnecdote(id)}
           type="button"
         >
           Suivant
@@ -133,17 +124,12 @@ Anecdote.propTypes = {
     id: PropTypes.number.isRequired,
     pseudo: PropTypes.string.isRequired,
   }).isRequired,
+  source: PropTypes.string.isRequired,
   category: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
-  source: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   prevAnecdote: PropTypes.func.isRequired,
   nextAnecdote: PropTypes.func.isRequired,
   upvote: PropTypes.func.isRequired,

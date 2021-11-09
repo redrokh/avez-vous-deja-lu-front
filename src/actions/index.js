@@ -74,15 +74,13 @@ export const loadAnecdote = (anecdoteId) => ({
   anecdoteId,
 });
 
-export const loadPrevAnecdote = (baseUrl, anecdoteId) => ({
+export const loadPrevAnecdote = (anecdoteId) => ({
   type: LOAD_PREV_ANECDOTE,
-  baseUrl,
   anecdoteId,
 });
 
-export const loadNextAnecdote = (baseUrl, anecdoteId) => ({
+export const loadNextAnecdote = (anecdoteId) => ({
   type: LOAD_NEXT_ANECDOTE,
-  baseUrl,
   anecdoteId,
 });
 

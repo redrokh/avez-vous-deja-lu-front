@@ -31,7 +31,7 @@ const initialState = {
       pseudo: '',
     },
     category: [],
-    source: [],
+    source: '',
     createdAt: '',
   },
   favorites: [],

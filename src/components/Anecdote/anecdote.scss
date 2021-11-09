@@ -86,7 +86,7 @@
       margin-bottom: vars.$gutterMd;
     }
 
-    .anecdote__source-list {
+    /* .anecdote__source-list {
       list-style: inside;
 
       .anecdote__source-item {
@@ -97,7 +97,17 @@
       .anecdote__source-item:hover {
         opacity: 0.5;
       }
+    } */
+    
+    .anecdote__source-link {
+      margin-bottom: vars.$gutterSm;
+      color: rgb(255, 255, 255, 0.6);
     }
+
+    .anecdote__source-link:hover {
+      opacity: 0.5;
+    }
+
   }
 
   .anecdote__nav {

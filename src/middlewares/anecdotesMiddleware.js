@@ -54,38 +54,52 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.log(error));
       break;
     case LOAD_ANECDOTE: {
-      const newAnecdote = anecdotesFull.find((anecdote) => anecdote.id === action.anecdoteId);
-      store.dispatch(setAnecdote(newAnecdote));
+      console.log('load anecdote');
+      API.get(
+        `anecdote/${action.anecdoteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(setAnecdote(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     }
     case LOAD_PREV_ANECDOTE: {
-      /*
-      when connecting to api:
-      const url = `${url}/prev`;
-      */
-      const currentAnecdote = anecdotesFull.find((anecdote) => anecdote.id === action.anecdoteId);
-      const currentIndex = anecdotesFull.indexOf(currentAnecdote);
-      let prevIndex = currentIndex - 1;
-      if (prevIndex < 0) {
-        prevIndex = anecdotesFull.length - 1;
-      }
-      const prevAnecdote = anecdotesFull[prevIndex];
-      store.dispatch(setAnecdote(prevAnecdote));
+      const { anecdoteId } = action;
+      API.get(
+        `anecdote/${anecdoteId}/prev`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdote(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     }
     case LOAD_NEXT_ANECDOTE: {
-      /*
-      when connecting to api:
-      const url = `${url}/next`;
-      */
-      const currentAnecdote = anecdotesFull.find((anecdote) => anecdote.id === action.anecdoteId);
-      const currentIndex = anecdotesFull.indexOf(currentAnecdote);
-      let nextIndex = currentIndex + 1;
-      if (nextIndex >= anecdotesFull.length) {
-        nextIndex = 0;
-      }
-      const nextAnecdote = anecdotesFull[nextIndex];
-      store.dispatch(setAnecdote(nextAnecdote));
+      const { anecdoteId } = action;
+      API.get(
+        `anecdote/${anecdoteId}/next`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdote(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     }
     case UPVOTE:

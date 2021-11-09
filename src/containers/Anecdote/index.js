@@ -27,8 +27,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   initialize: (anecdoteId) => dispatch(loadAnecdote(anecdoteId)),
-  prevAnecdote: (url, anecdoteId) => dispatch(loadPrevAnecdote(url, anecdoteId)),
-  nextAnecdote: (url, anecdoteId) => dispatch(loadNextAnecdote(url, anecdoteId)),
+  prevAnecdote: (anecdoteId) => dispatch(loadPrevAnecdote(anecdoteId)),
+  nextAnecdote: (anecdoteId) => dispatch(loadNextAnecdote(anecdoteId)),
   upvote: () => dispatch(upvote()),
   downvote: () => dispatch(downvote()),
   knew: () => dispatch(knew()),

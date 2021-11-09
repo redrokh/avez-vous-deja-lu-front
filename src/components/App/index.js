@@ -65,8 +65,11 @@ const App = () => (
         <Route path="/mon-compte">
           <MyAccount />
         </Route>
-        <Route path="/mentions-legales">
+        <Route path="/mentions-legales" exact>
           <LegalesMentions />
+        </Route>
+        <Route path="/contact" exact>
+          <Contact />
         </Route>
         <Route>
           <Error />
