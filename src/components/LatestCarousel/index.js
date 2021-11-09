@@ -29,7 +29,9 @@ const LatestCarousel = ({
   }
 
   return (
-    <section className="latest-carousel">
+    <section
+      className="latest-carousel"
+    >
       <h2 className="latest-carousel__title">{title}</h2>
 
       <div className="latest-carousel__prev">
