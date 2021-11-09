@@ -22,7 +22,7 @@ const authMiddleware = (store) => (next) => (action) => {
             token: response.data.token,
             email: store.getState().user.emailInput,
           };
-          localStorage.setItem('user', user);
+          localStorage.setItem('user', JSON.stringify(user));
         });
       break;
     default:

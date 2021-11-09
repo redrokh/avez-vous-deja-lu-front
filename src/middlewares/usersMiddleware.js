@@ -46,7 +46,7 @@ const usersMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.log(error));
       break;
     case RELOAD_USER: {
-      const { token, email } = localStorage.getItem('user');
+      const { token, email } = JSON.parse(localStorage.getItem('user'));
       API.post(
         'user',
         {

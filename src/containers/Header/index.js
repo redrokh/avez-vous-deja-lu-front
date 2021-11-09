@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleMenu: () => dispatch(toggleHeaderMenu()),
   updateHeaderColor: () => dispatch(updateHeaderColor()),
   logOut: () => dispatch(logOut()),
-  reconnectionRequest: () => {
+  reconnectionAttempt: () => {
     dispatch(setToken());
     dispatch(reloadUser());
   },

@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
     case SET_AVATAR:
       return { ...state, avatar: action.avatar };
     case SET_TOKEN: {
-      const { token } = localStorage.getItem('user');
+      const { token } = JSON.parse(localStorage.getItem('user'));
       return { ...state, token };
     }
     case IS_CONNECTED_TO_TRUE:
