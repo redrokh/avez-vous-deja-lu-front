@@ -26,6 +26,7 @@ const mapStateToProps = (state) => ({
   favorites: state.anecdotes.favorites,
   editingPseudo: state.user.editingPseudo,
   editingEmail: state.user.editingEmail,
+  isConnected: state.user.isConnected,
 });
 
 const mapDispatchToProps = (dispatch) => ({

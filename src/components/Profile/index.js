@@ -50,8 +50,10 @@ const Profile = ({
             />
             <Check
               onClick={() => {
+                if (pseudoInput.length > 1) {
+                  changePseudoRequest();
+                }
                 togglePseudoEdition();
-                changePseudoRequest();
               }}
               strokeWidth="2"
               color="green"
@@ -82,8 +84,10 @@ const Profile = ({
             />
             <Check
               onClick={() => {
+                if (emailInput.length > 1) {
+                  changeEmailRequest();
+                }
                 toggleEmailEdition();
-                changeEmailRequest();
               }}
               strokeWidth="2"
               color="green"

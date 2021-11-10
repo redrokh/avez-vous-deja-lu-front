@@ -34,7 +34,7 @@ const Anecdote = ({
   }, []);
 
   useEffect(() => {
-    history.push(`${baseUrl}/${anecdoteId}`);
+    history.push(`${baseUrl}/${id}`);
   }, [id]);
 
   if (!id) {

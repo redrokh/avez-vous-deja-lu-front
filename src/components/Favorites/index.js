@@ -1,8 +1,12 @@
+import { useHistory } from 'react-router-dom';
 import Tag from '../Tag';
 
 import './favorites.scss';
 
-const Favorites = ({ favorites }) => (
+const Favorites = ({ favorites }) => {
+  const history = useHistory();
+
+  return (
     <section className="Favorites">
       <table className="Favorites__table">
         <thead className="Favorites__header">
@@ -21,7 +25,9 @@ const Favorites = ({ favorites }) => (
               writer,
               category,
             }) => (
-              <tr key={id} className="Favorites__body-row">
+              <tr key={id} className="Favorites__body-row" onClick={() => {
+                history.push(`/mes-favoris/${id}`);
+              }}>
                 <td className="Favorites__body-cell">{title}</td>
                 <td className="Favorites__body-cell">{writer.pseudo}</td>
                 <td className="Favorites__body-cell">
@@ -37,6 +43,7 @@ const Favorites = ({ favorites }) => (
         </tbody>
       </table>
     </section>
-);
+  );
+};
 
 export default Favorites;

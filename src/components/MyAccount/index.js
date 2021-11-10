@@ -33,6 +33,7 @@ const MyAccount = ({
   updateAvatar,
   initialize,
   changeAvatar,
+  isConnected,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -42,6 +43,12 @@ const MyAccount = ({
   useEffect(() => {
     initialize(location.pathname);
   }, [location]);
+
+  useEffect(() => {
+    if (!isConnected) {
+      history.push('/connexion');
+    }
+  }, [isConnected]);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>

@@ -62,6 +62,9 @@ const App = () => (
             context="/nos-meilleures-anecdotes"
           />
         </Route>
+        <Route path="/mes-favoris/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
         <Route path="/mon-compte">
           <MyAccount />
         </Route>

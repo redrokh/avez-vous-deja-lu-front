@@ -10,26 +10,62 @@ import {
   setUser,
   setAvatar,
   isConnectedToTrue,
+  loadUser,
+  logOut,
 } from '../actions';
 
 const usersMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case CHANGE_PSEUDO_REQUEST:
-      console.log('change pseudo request');
-      store.dispatch(setPseudo());
+      API.patch(
+        `user/${store.getState().user.id}/edit`,
+        {
+          pseudo: store.getState().user.pseudoInput,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          if (response.status === 201) {
+            store.dispatch(setPseudo());
+            store.dispatch(loadUser());
+          }
+        })
+        .catch((error) => console.log(error));
       break;
     case CHANGE_EMAIL_REQUEST:
-      console.log('change email request');
-      store.dispatch(setEmail());
+      API.patch(
+        `user/${store.getState().user.id}/edit`,
+        {
+          email: store.getState().user.emailInput,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          if (response.status === 201) {
+            store.dispatch(setEmail());
+            store.dispatch(logOut());
+          }
+        })
+        .catch((error) => console.log(error));
       break;
     case CHANGE_AVATAR:
       store.dispatch(setAvatar(action.avatar));
       break;
     case LOAD_USER:
+      console.log(store.getState().user.email);
+      console.log(store.getState().user.token);
       API.post(
         'user',
         {
-          email: store.getState().user.emailInput,
+          email: store.getState().user.email,
         },
         {
           headers: {

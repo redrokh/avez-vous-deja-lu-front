@@ -33,6 +33,7 @@ const reducer = (state = initialState, action) => {
     case LOG_IN_SUCCESS:
       return {
         ...state,
+        email: state.emailInput,
         token: action.token,
         isConnected: true,
         passwordInput: '',
@@ -51,8 +52,15 @@ const reducer = (state = initialState, action) => {
     }
     case TOGGLE_PSEUDO_EDITION:
       return { ...state, editingPseudo: !state.editingPseudo };
-    case SET_EMAIL:
+    case SET_EMAIL: {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      console.log(token);
+      localStorage.setItem('user', JSON.stringify({
+        email: state.emailInput,
+        token,
+      }));
       return { ...state, email: state.emailInput };
+    }
     case TOGGLE_EMAIL_EDITION:
       return { ...state, editingEmail: !state.editingEmail };
     case UPDATE_PSEUDO:
@@ -60,6 +68,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_EMAIL:
       return { ...state, emailInput: action.email };
     case SET_USER:
+      console.log('set user');
       return {
         ...state,
         id: action.id,
