@@ -12,6 +12,7 @@ import {
   SET_AVATAR,
   SET_TOKEN,
   IS_CONNECTED_TO_TRUE,
+  TOGGLE_IS_FAVORITE,
 } from '../actions';
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   editingPseudo: false,
   editingEmail: false,
   token: '',
+  isFavorite: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,7 +56,6 @@ const reducer = (state = initialState, action) => {
       return { ...state, editingPseudo: !state.editingPseudo };
     case SET_EMAIL: {
       const { token } = JSON.parse(localStorage.getItem('user'));
-      console.log(token);
       localStorage.setItem('user', JSON.stringify({
         email: state.emailInput,
         token,
@@ -68,7 +69,6 @@ const reducer = (state = initialState, action) => {
     case UPDATE_EMAIL:
       return { ...state, emailInput: action.email };
     case SET_USER:
-      console.log('set user');
       return {
         ...state,
         id: action.id,
@@ -84,6 +84,8 @@ const reducer = (state = initialState, action) => {
     }
     case IS_CONNECTED_TO_TRUE:
       return { ...state, isConnected: true };
+    case TOGGLE_IS_FAVORITE:
+      return { ...state, isFavorite: !state.isFavorite };
     default:
       return state;
   }

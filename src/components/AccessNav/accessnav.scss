@@ -31,20 +31,6 @@
       transition-duration: 0.4s;
     }
 
-    .access-nav__deconnection-link:before {
-      background-color: initial;
-      background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
-      border-radius: 125px;
-      content: "";
-      height: 50%;
-      left: 4%;
-      opacity: .5;
-      position: absolute;
-      top: 0;
-      transition: all .3s;
-      width: 92%;
-    }
-
     .access-nav__deconnection-button:hover {
       background-color: #67bfff;
     }

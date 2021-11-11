@@ -17,12 +17,15 @@ const BestCarousel = ({
   modifyIndex,
   initialize,
   context,
+  isLoading,
 }) => {
   useEffect(() => {
+    console.log('useEffect');
     initialize();
   }, []);
 
-  if (anecdotes.length === 0) {
+  console.log('outside useEffect');
+  if (isLoading) {
     return (
       <></>
     );
@@ -107,6 +110,7 @@ BestCarousel.propTypes = {
   modifyIndex: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default BestCarousel;

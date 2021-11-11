@@ -1,6 +1,6 @@
 // Import from libraries
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Import components
@@ -13,11 +13,13 @@ const Anecdotes = ({
   title,
   anecdotes,
   initialize,
-  context,
+  anecdoteGroup,
   slug,
+  isLoading,
 }) => {
+  const context = useLocation().pathname;
   useEffect(() => {
-    initialize(context, slug);
+    initialize(anecdoteGroup, slug);
   }, []);
 
   return (
@@ -57,8 +59,9 @@ Anecdotes.propTypes = {
     })).isRequired,
   })).isRequired,
   initialize: PropTypes.func.isRequired,
-  context: PropTypes.string.isRequired,
+  anecdoteGroup: PropTypes.string.isRequired,
   slug: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Anecdotes;

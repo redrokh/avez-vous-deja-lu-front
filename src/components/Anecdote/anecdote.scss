@@ -16,12 +16,18 @@
     margin-bottom: vars.$gutterMd;
   }
 
-  &__publication {
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    font-size: vars.$fsBody;
-    text-align: left;
+  &__top-part {
+    display: flex;
+    align-items: flex-end;
     margin-bottom: vars.$gutterMd;
+
+    .anecdote__publication {
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+      font-size: vars.$fsBody;
+      text-align: left;
+      margin-right: vars.$gutterSm;
+    }
   }
 
   &__middle-part {

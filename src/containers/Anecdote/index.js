@@ -13,6 +13,8 @@ import {
   downvote,
   knew,
   didntKnow,
+  addToFavorites,
+  removeFromFavorites,
 } from '../../actions';
 
 const mapStateToProps = (state) => ({
@@ -23,9 +25,12 @@ const mapStateToProps = (state) => ({
   writer: state.anecdotes.anecdote.writer,
   category: state.anecdotes.anecdote.category,
   source: state.anecdotes.anecdote.source,
+  isFavorite: state.user.isFavorite,
+  isConnected: state.user.isConnected,
+  isLoading: state.app.isLoadingAnecdote,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   initialize: (anecdoteId) => dispatch(loadAnecdote(anecdoteId)),
   prevAnecdote: (anecdoteId) => dispatch(loadPrevAnecdote(anecdoteId)),
   nextAnecdote: (anecdoteId) => dispatch(loadNextAnecdote(anecdoteId)),
@@ -33,6 +38,14 @@ const mapDispatchToProps = (dispatch) => ({
   downvote: () => dispatch(downvote()),
   knew: () => dispatch(knew()),
   didntKnow: () => dispatch(didntKnow()),
+  toggleIsFavorite: () => {
+    if (ownProps.isFavorite) {
+      dispatch(removeFromFavorites());
+    }
+    else {
+      dispatch(addToFavorites());
+    }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Anecdote);

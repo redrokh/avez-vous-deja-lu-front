@@ -12,49 +12,55 @@ import {
   KNEW,
   DIDNT_KNOW,
   LOAD_ANECDOTES_BY_CATEGORY,
-  LOAD_CATEGORIES,
   setLatests,
   setBests,
   setAnecdotes,
   setAnecdote,
   setFavorites,
-  setCategories,
+  setIsLoadingLatests,
+  setIsLoadingBests,
+  setIsLoadingAnecdote,
+  setIsLoadingAnecdotes,
+  setIsLoadingFavorites,
 } from '../actions';
-import latests from '../utils/latests';
-import bests from '../utils/bests';
-import anecdotes from '../utils/anecdotes';
-import latestsFull from '../utils/latestsFull';
-import bestsFull from '../utils/bestsFull';
-import anecdotesFull from '../utils/anecdotesFull';
-import favorites from '../utils/favorites';
-import favoritesFull from '../utils/favoritesFull';
-import categories from '../utils/categories';
 
 const anecdotesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOAD_LATEST_ANECDOTES:
+      store.dispatch(setIsLoadingLatests(true));
       API.get('anecdote/latest')
         .then((response) => {
           store.dispatch(setLatests(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingLatests(false));
+        });
       break;
     case LOAD_BEST_ANECDOTES:
+      store.dispatch(setIsLoadingBests(true));
       API.get('anecdote/best')
         .then((response) => {
           store.dispatch(setBests(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingBests(false));
+        });
       break;
     case LOAD_ANECDOTES:
+      store.dispatch(setIsLoadingAnecdotes(true));
       API.get('anecdote')
         .then((response) => {
           store.dispatch(setAnecdotes(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingAnecdotes(false));
+        });
       break;
     case LOAD_ANECDOTE: {
-      console.log('load anecdote');
+      store.dispatch(setIsLoadingAnecdote(true));
       API.get(
         `anecdote/${action.anecdoteId}`,
         {
@@ -64,13 +70,16 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response.data);
           store.dispatch(setAnecdote(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingAnecdote(false));
+        });
       break;
     }
     case LOAD_PREV_ANECDOTE: {
+      store.dispatch(setIsLoadingAnecdote(true));
       const { anecdoteId } = action;
       API.get(
         `anecdote/${anecdoteId}/prev`,
@@ -83,10 +92,14 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingAnecdote(false));
+        });
       break;
     }
     case LOAD_NEXT_ANECDOTE: {
+      store.dispatch(setIsLoadingAnecdote(true));
       const { anecdoteId } = action;
       API.get(
         `anecdote/${anecdoteId}/next`,
@@ -99,7 +112,10 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingAnecdote(false));
+        });
       break;
     }
     case UPVOTE:
@@ -115,6 +131,7 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
       console.log('didntKnow');
       break;
     case LOAD_ANECDOTES_BY_CATEGORY: {
+      store.dispatch(setIsLoadingAnecdotes(true));
       API.get(
         `category/${action.slug}/anecdote`,
         {
@@ -126,11 +143,29 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(setAnecdotes(response.data));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingAnecdotes(false));
+        });
       break;
     }
     case LOAD_FAVORITES: {
-      //
+      store.dispatch(setIsLoadingFavorites(true));
+      API.get(
+        `user/${store.getState().user.id}/favorite`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setFavorites(response.data));
+        })
+        .catch((error) => console.log(error))
+        .finally(() => {
+          store.dispatch(setIsLoadingFavorites(false));
+        });
       break;
     }
     default:

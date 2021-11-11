@@ -9,6 +9,7 @@ import { loadAnecdotes, loadAnecdotesByCategory, loadBests } from '../../actions
 
 const mapStateToProps = (state) => ({
   anecdotes: state.anecdotes.anecdotes,
+  isLoading: state.app.isLoadingAnecdotes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

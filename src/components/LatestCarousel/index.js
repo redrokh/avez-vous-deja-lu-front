@@ -17,12 +17,13 @@ const LatestCarousel = ({
   modifyIndex,
   initialize,
   context,
+  isLoading,
 }) => {
   useEffect(() => {
     initialize();
   }, []);
 
-  if (anecdotes.length === 0) {
+  if (isLoading) {
     return (
       <></>
     );
@@ -107,6 +108,7 @@ LatestCarousel.propTypes = {
   modifyIndex: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default LatestCarousel;

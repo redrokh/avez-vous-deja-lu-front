@@ -14,6 +14,7 @@ import {
   changeAvatar,
   loadUser,
   loadFavorites,
+  removeFromFavorites,
 } from '../../actions';
 
 const mapStateToProps = (state) => ({
@@ -27,6 +28,8 @@ const mapStateToProps = (state) => ({
   editingPseudo: state.user.editingPseudo,
   editingEmail: state.user.editingEmail,
   isConnected: state.user.isConnected,
+  isLoadingUser: state.app.isLoadingUser,
+  isLoadingFavorites: state.app.isLoadingFavorites,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -37,17 +40,18 @@ const mapDispatchToProps = (dispatch) => ({
   changePseudoRequest: () => dispatch(changePseudoRequest()),
   changeEmailRequest: () => dispatch(changeEmailRequest()),
   changeAvatar: (avatar) => dispatch(changeAvatar(avatar)),
-  initialize: (url) => {
+  initialize: (url, userId) => {
     switch (url) {
       case '/mon-compte':
         dispatch(loadUser());
         break;
       case '/mon-compte/favoris':
-        dispatch(loadFavorites());
+        dispatch(loadFavorites(userId));
         break;
       default:
     }
   },
+  deleteFavorite: (userId, anecdoteId) => dispatch(removeFromFavorites(userId, anecdoteId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyAccount);

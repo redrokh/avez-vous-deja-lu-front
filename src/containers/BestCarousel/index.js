@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   anecdotes: state.anecdotes.bests,
   currentIndex: state.anecdotes.bestIndex,
   context: state.anecdotes.bestsContext,
+  isLoading: state.app.isLoadingBests,
 });
 
 const mapDispatchToProps = (dispatch) => ({

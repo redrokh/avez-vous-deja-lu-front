@@ -4,6 +4,12 @@ import {
   UPDATE_HEADER_COLOR,
   TOGGLE_HEADER_MENU,
   SET_PAGE_TITLE,
+  SET_IS_LOADING_LATESTS,
+  SET_IS_LOADING_BESTS,
+  SET_IS_LOADING_ANECDOTES,
+  SET_IS_LOADING_ANECDOTE,
+  SET_IS_LOADING_FAVORITES,
+  SET_IS_LOADING_USER,
 } from '../actions';
 
 // Import from utils
@@ -15,6 +21,12 @@ const initialState = {
   pageColor: '#283655',
   headerColor: '#283655',
   isOpened: false,
+  isLoadingBests: true,
+  isLoadingLatests: true,
+  isLoadingAnecdotes: true,
+  isLoadingAnecdote: true,
+  isLoadingUser: true,
+  isLoadingFavorites: true,
   contentMenus: [
     {
       id: 1,
@@ -78,6 +90,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, isOpened: !state.isOpened };
     case SET_PAGE_TITLE:
       return { ...state, pageTitle: action.title };
+    case SET_IS_LOADING_LATESTS:
+      return { ...state, isLoadingLatests: action.value };
+    case SET_IS_LOADING_BESTS:
+      return { ...state, isLoadingBests: action.value };
+    case SET_IS_LOADING_ANECDOTES:
+      return { ...state, isLoadingAnecdotes: action.value };
+    case SET_IS_LOADING_ANECDOTE:
+      return { ...state, isLoadingAnecdote: action.value };
+    case SET_IS_LOADING_FAVORITES:
+      return { ...state, isLoadingFavorites: action.value };
+    case SET_IS_LOADING_USER:
+      return { ...state, isLoadingUser: action.value };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 // import libraries
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
+import { ArrowUpCircle, ArrowDownCircle, Star } from 'react-feather';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 
 // Import components
@@ -17,13 +17,17 @@ const Anecdote = ({
   writer,
   category,
   source,
+  isFavorite,
   nextAnecdote,
   prevAnecdote,
   upvote,
   downvote,
+  toggleIsFavorite,
   knew,
   didntKnow,
   initialize,
+  isConnected,
+  isLoading,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -34,11 +38,16 @@ const Anecdote = ({
   }, []);
 
   useEffect(() => {
-    history.push(`${baseUrl}/${id}`);
+    if (anecdoteId !== id && isLoading) {
+      history.push(`${baseUrl}/${id}`);
+    }
   }, [id]);
 
-  if (!id) {
+  if (isLoading) {
     return <></>;
+  }
+  if (!isConnected) {
+    history.push('/connexion');
   }
 
   return (
@@ -47,20 +56,27 @@ const Anecdote = ({
 
       <div className="anecdote__categories">
         {
-          category.map(({ id: categoryId, name, color }) => (
-            <Tag key={categoryId} name={name} color={color} />
+          category.map((item) => (
+            <Tag key={item.id} {...item} />
           ))
         }
       </div>
 
-      <div className="anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
+      <div className="anecdote__top-part">
+        <div className="anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
+        { isConnected && <Star stroke="yellow" fill={isFavorite ? 'yellow' : 'none'} onClick={toggleIsFavorite} /> }
+      </div>
 
       <div className="anecdote__middle-part">
-        <div className="anecdote__voter">
-          <ArrowUpCircle className="anecdote__upvote" onClick={() => upvote(writer.id, id)} />
-          <div className="anecdote__vote-count">Vote</div>
-          <ArrowDownCircle className="anecdote__downvote" onClick={() => downvote(writer.id, id)} />
-        </div>
+        {
+          isConnected && (
+            <div className="anecdote__voter">
+              <ArrowUpCircle className="anecdote__upvote" onClick={() => upvote(writer.id, id)} />
+              <div className="anecdote__vote-count">Vote</div>
+              <ArrowDownCircle className="anecdote__downvote" onClick={() => downvote(writer.id, id)} />
+            </div>
+          )
+        }
 
         <p className="anecdote__content">{content}</p>
       </div>
@@ -125,6 +141,7 @@ Anecdote.propTypes = {
     pseudo: PropTypes.string.isRequired,
   }).isRequired,
   source: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   category: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -137,6 +154,9 @@ Anecdote.propTypes = {
   knew: PropTypes.func.isRequired,
   didntKnow: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
+  toggleIsFavorite: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default Anecdote;
