@@ -5,10 +5,14 @@ import { NavLink } from 'react-router-dom';
 // Import styles
 import './tag.scss';
 
-const Tag = ({ id, name, color }) => (
+const Tag = ({
+  name,
+  color,
+  slug,
+}) => (
   <NavLink
     className="tag"
-    to={`/categories/${id}`}
+    to={`/categories/${slug}`}
     style={{
       backgroundColor: color,
     }}
@@ -20,6 +24,7 @@ const Tag = ({ id, name, color }) => (
 Tag.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default Tag;

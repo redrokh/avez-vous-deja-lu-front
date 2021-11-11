@@ -54,6 +54,7 @@ AnecdoteCard.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   })).isRequired,
   context: PropTypes.string.isRequired,
 };

@@ -40,10 +40,23 @@ const App = () => (
         </Route>
         <Route path="/anecdotes" exact>
           <Anecdotes
-            title="Toutes nos anecdotes"
-            context="/anecdotes"
+            context="anecdotes"
           />
         </Route>
+        <Route path="/nos-meilleures-anecdotes" exact>
+          <Anecdotes
+            context="bests"
+          />
+        </Route>
+        <Route
+          path="/categories/:slug"
+          render={({ match }) => (
+            <Anecdotes
+              context="categories"
+              slug={match.params.slug}
+            />
+          )}
+        />
         <Route path="/categories" exact>
           <Categories />
         </Route>
@@ -55,12 +68,6 @@ const App = () => (
         </Route>
         <Route path="/nos-dernieres-anecdotes/anecdote/:anecdoteId" exact>
           <Anecdote />
-        </Route>
-        <Route path="/nos-meilleures-anecdotes" exact>
-          <Anecdotes
-            title="Nos meilleures anecdotes"
-            context="/nos-meilleures-anecdotes"
-          />
         </Route>
         <Route path="/mes-favoris/:anecdoteId" exact>
           <Anecdote />

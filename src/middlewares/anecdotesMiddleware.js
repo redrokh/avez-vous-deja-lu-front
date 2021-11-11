@@ -115,11 +115,22 @@ const anecdotesMiddleware = (store) => (next) => (action) => {
       console.log('didntKnow');
       break;
     case LOAD_ANECDOTES_BY_CATEGORY: {
-      store.dispatch(setAnecdotes(anecdotes));
+      API.get(
+        `category/${action.slug}/anecdote`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdotes(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     }
     case LOAD_FAVORITES: {
-      store.dispatch(setFavorites(favorites));
+      //
       break;
     }
     default:

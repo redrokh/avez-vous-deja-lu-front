@@ -21,6 +21,7 @@ export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const SET_TOKEN = 'SET_TOKEN';
 export const IS_CONNECTED_TO_TRUE = 'IS_CONNECTED_TO_TRUE';
+export const SET_PAGE_TITLE = 'SET_PAGE_TITLE';
 
 export const UPVOTE = 'UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
@@ -88,9 +89,9 @@ export const loadCategories = () => ({
   type: LOAD_CATEGORIES,
 });
 
-export const loadAnecdotesByCategory = (categoryId) => ({
+export const loadAnecdotesByCategory = (slug) => ({
   type: LOAD_ANECDOTES_BY_CATEGORY,
-  categoryId,
+  slug,
 });
 
 export const loadFavorites = () => ({
@@ -143,6 +144,11 @@ export const setFavorites = (favorites) => ({
 
 export const setToken = () => ({
   type: SET_TOKEN,
+});
+
+export const setPageTitle = (title) => ({
+  type: SET_PAGE_TITLE,
+  title,
 });
 
 export const isConnectedToTrue = () => ({

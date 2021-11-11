@@ -1,10 +1,10 @@
 // Import from libraries
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
-import Position from '../Position';
 
 // Import styles
 import './anecdotes.scss';
@@ -14,10 +14,12 @@ const Anecdotes = ({
   anecdotes,
   initialize,
   context,
+  slug,
 }) => {
   useEffect(() => {
-    initialize(context);
+    initialize(context, slug);
   }, []);
+
   return (
     <section className="anecdotes">
       <h2 className="anecdotes__title">{title}</h2>
@@ -35,8 +37,11 @@ const Anecdotes = ({
   );
 };
 
+Anecdotes.defaultProps = {
+  slug: '',
+};
+
 Anecdotes.propTypes = {
-  title: PropTypes.string.isRequired,
   anecdotes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -48,10 +53,12 @@ Anecdotes.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
   initialize: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
+  slug: PropTypes.string,
 };
 
 export default Anecdotes;

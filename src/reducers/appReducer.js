@@ -1,5 +1,10 @@
 // Import actions
-import { UPDATE_PAGE_COLOR, UPDATE_HEADER_COLOR, TOGGLE_HEADER_MENU } from '../actions';
+import {
+  UPDATE_PAGE_COLOR,
+  UPDATE_HEADER_COLOR,
+  TOGGLE_HEADER_MENU,
+  SET_PAGE_TITLE,
+} from '../actions';
 
 // Import from utils
 import { proportionalHexColor, darkenHexColor } from '../utils/functions';
@@ -54,6 +59,7 @@ const initialState = {
       title: 'Mentions légales',
     },
   ],
+  pageTitle: '',
 };
 
 initialState.headerColor = darkenHexColor(initialState.lightColor);
@@ -70,6 +76,8 @@ const reducer = (state = initialState, action) => {
     }
     case TOGGLE_HEADER_MENU:
       return { ...state, isOpened: !state.isOpened };
+    case SET_PAGE_TITLE:
+      return { ...state, pageTitle: action.title };
     default:
       return state;
   }

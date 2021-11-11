@@ -100,6 +100,7 @@ BestCarousel.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
   currentIndex: PropTypes.number.isRequired,
