@@ -14,7 +14,6 @@ const Connection = ({
   <form
     className="connection__form"
     onSubmit={(e) => {
-      console.log('submitting form...');
       e.preventDefault();
       logInRequest();
     }}

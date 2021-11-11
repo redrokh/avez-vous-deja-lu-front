@@ -12,6 +12,7 @@ import {
   SET_AVATAR,
   SET_TOKEN,
   IS_CONNECTED_TO_TRUE,
+  TOGGLE_IS_FAVORITE,
 } from '../actions';
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   editingPseudo: false,
   editingEmail: false,
   token: '',
+  isFavorite: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +35,7 @@ const reducer = (state = initialState, action) => {
     case LOG_IN_SUCCESS:
       return {
         ...state,
+        email: state.emailInput,
         token: action.token,
         isConnected: true,
         passwordInput: '',
@@ -51,8 +54,14 @@ const reducer = (state = initialState, action) => {
     }
     case TOGGLE_PSEUDO_EDITION:
       return { ...state, editingPseudo: !state.editingPseudo };
-    case SET_EMAIL:
+    case SET_EMAIL: {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      localStorage.setItem('user', JSON.stringify({
+        email: state.emailInput,
+        token,
+      }));
       return { ...state, email: state.emailInput };
+    }
     case TOGGLE_EMAIL_EDITION:
       return { ...state, editingEmail: !state.editingEmail };
     case UPDATE_PSEUDO:
@@ -75,6 +84,8 @@ const reducer = (state = initialState, action) => {
     }
     case IS_CONNECTED_TO_TRUE:
       return { ...state, isConnected: true };
+    case TOGGLE_IS_FAVORITE:
+      return { ...state, isFavorite: !state.isFavorite };
     default:
       return state;
   }

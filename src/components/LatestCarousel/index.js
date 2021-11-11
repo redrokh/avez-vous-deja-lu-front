@@ -17,19 +17,22 @@ const LatestCarousel = ({
   modifyIndex,
   initialize,
   context,
+  isLoading,
 }) => {
   useEffect(() => {
     initialize();
   }, []);
 
-  if (anecdotes.length === 0) {
+  if (isLoading) {
     return (
       <></>
     );
   }
 
   return (
-    <section className="latest-carousel">
+    <section
+      className="latest-carousel"
+    >
       <h2 className="latest-carousel__title">{title}</h2>
 
       <div className="latest-carousel__prev">
@@ -98,12 +101,14 @@ LatestCarousel.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
   currentIndex: PropTypes.number.isRequired,
   modifyIndex: PropTypes.func.isRequired,
   initialize: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default LatestCarousel;

@@ -21,7 +21,11 @@ export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const SET_TOKEN = 'SET_TOKEN';
 export const IS_CONNECTED_TO_TRUE = 'IS_CONNECTED_TO_TRUE';
+export const SET_PAGE_TITLE = 'SET_PAGE_TITLE';
 
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
+export const TOGGLE_IS_FAVORITE = 'TOGGLE_IS_FAVORITE';
 export const UPVOTE = 'UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
 export const KNEW = 'KNEW';
@@ -55,6 +59,13 @@ export const SET_EMAIL = 'SET_EMAIL';
 export const SET_USER = 'SET_USER';
 export const SET_AVATAR = 'SET_AVATAR';
 
+export const SET_IS_LOADING_LATESTS = 'SET_IS_LOADING_LATESTS';
+export const SET_IS_LOADING_BESTS = 'SET_IS_LOADING_BESTS';
+export const SET_IS_LOADING_ANECDOTES = 'SET_IS_LOADING_ANECDOTES';
+export const SET_IS_LOADING_ANECDOTE = 'SET_IS_LOADING_ANECDOTE';
+export const SET_IS_LOADING_FAVORITES = 'SET_IS_LOADING_FAVORITES';
+export const SET_IS_LOADING_USER = 'SET_IS_LOADING_USER';
+
 // Action creators
 export const loadLatests = () => ({
   type: LOAD_LATEST_ANECDOTES,
@@ -74,15 +85,13 @@ export const loadAnecdote = (anecdoteId) => ({
   anecdoteId,
 });
 
-export const loadPrevAnecdote = (baseUrl, anecdoteId) => ({
+export const loadPrevAnecdote = (anecdoteId) => ({
   type: LOAD_PREV_ANECDOTE,
-  baseUrl,
   anecdoteId,
 });
 
-export const loadNextAnecdote = (baseUrl, anecdoteId) => ({
+export const loadNextAnecdote = (anecdoteId) => ({
   type: LOAD_NEXT_ANECDOTE,
-  baseUrl,
   anecdoteId,
 });
 
@@ -90,9 +99,9 @@ export const loadCategories = () => ({
   type: LOAD_CATEGORIES,
 });
 
-export const loadAnecdotesByCategory = (categoryId) => ({
+export const loadAnecdotesByCategory = (slug) => ({
   type: LOAD_ANECDOTES_BY_CATEGORY,
-  categoryId,
+  slug,
 });
 
 export const loadFavorites = () => ({
@@ -147,8 +156,27 @@ export const setToken = () => ({
   type: SET_TOKEN,
 });
 
+export const setPageTitle = (title) => ({
+  type: SET_PAGE_TITLE,
+  title,
+});
+
 export const isConnectedToTrue = () => ({
   type: IS_CONNECTED_TO_TRUE,
+});
+
+export const addToFavorites = () => ({
+  type: ADD_TO_FAVORITES,
+});
+
+export const removeFromFavorites = (userId, anecdoteId) => ({
+  type: REMOVE_FROM_FAVORITES,
+  userId,
+  anecdoteId,
+});
+
+export const toggleIsFavorite = () => ({
+  type: TOGGLE_IS_FAVORITE,
 });
 
 export const upvote = () => ({
@@ -256,4 +284,34 @@ export const setUser = (id, pseudo, email, avatar) => ({
 export const setAvatar = (avatar) => ({
   type: SET_AVATAR,
   avatar,
+});
+
+export const setIsLoadingLatests = (value) => ({
+  type: SET_IS_LOADING_LATESTS,
+  value,
+});
+
+export const setIsLoadingBests = (value) => ({
+  type: SET_IS_LOADING_BESTS,
+  value,
+});
+
+export const setIsLoadingAnecdotes = (value) => ({
+  type: SET_IS_LOADING_ANECDOTES,
+  value,
+});
+
+export const setIsLoadingAnecdote = (value) => ({
+  type: SET_IS_LOADING_ANECDOTE,
+  value,
+});
+
+export const setIsLoadingFavorites = (value) => ({
+  type: SET_IS_LOADING_FAVORITES,
+  value,
+});
+
+export const setIsLoadingUser = (value) => ({
+  type: SET_IS_LOADING_USER,
+  value,
 });

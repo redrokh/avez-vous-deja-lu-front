@@ -1,10 +1,10 @@
 // Import from libraries
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
-import Position from '../Position';
 
 // Import styles
 import './anecdotes.scss';
@@ -13,11 +13,15 @@ const Anecdotes = ({
   title,
   anecdotes,
   initialize,
-  context,
+  anecdoteGroup,
+  slug,
+  isLoading,
 }) => {
+  const context = useLocation().pathname;
   useEffect(() => {
-    initialize(context);
+    initialize(anecdoteGroup, slug);
   }, []);
+
   return (
     <section className="anecdotes">
       <h2 className="anecdotes__title">{title}</h2>
@@ -35,8 +39,11 @@ const Anecdotes = ({
   );
 };
 
+Anecdotes.defaultProps = {
+  slug: '',
+};
+
 Anecdotes.propTypes = {
-  title: PropTypes.string.isRequired,
   anecdotes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -48,10 +55,13 @@ Anecdotes.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
   initialize: PropTypes.func.isRequired,
-  context: PropTypes.string.isRequired,
+  anecdoteGroup: PropTypes.string.isRequired,
+  slug: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Anecdotes;

@@ -1,6 +1,7 @@
 // Import from libraries
 import PropTypes from 'prop-types';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 
 // Import components
 import Tag from '../Tag';
@@ -54,6 +55,7 @@ AnecdoteCard.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   })).isRequired,
   context: PropTypes.string.isRequired,
 };

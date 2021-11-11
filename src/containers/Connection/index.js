@@ -13,10 +13,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onEmailChange: (email) => dispatch(updateEmail(email)),
-  onPasswordChange: (password) => {
-    console.log('on password change');
-    dispatch(updatePassword(password));
-  },
+  onPasswordChange: (password) => dispatch(updatePassword(password)),
   logInRequest: () => dispatch(logInRequest()),
 });
 

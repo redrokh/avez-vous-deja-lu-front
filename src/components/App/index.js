@@ -40,14 +40,34 @@ const App = () => (
         </Route>
         <Route path="/anecdotes" exact>
           <Anecdotes
-            title="Toutes nos anecdotes"
-            context="/anecdotes"
+            anecdoteGroup="anecdotes"
           />
         </Route>
+        <Route path="/nos-meilleures-anecdotes" exact>
+          <Anecdotes
+            anecdoteGroup="bests"
+          />
+        </Route>
+        <Route
+          path="/categories/:slug"
+          render={({ match }) => (
+            <Anecdotes
+              anecdoteGroup="categories"
+              slug={match.params.slug}
+            />
+          )}
+          exact
+        />
         <Route path="/categories" exact>
           <Categories />
         </Route>
         <Route path="/anecdotes/anecdote/:anecdoteId" exact>
+          <Anecdote />
+        </Route>
+        <Route
+          path="/categories/:categorySlug/anecdote/:anecdoteId"
+          exact
+        >
           <Anecdote />
         </Route>
         <Route path="/nos-meilleures-anecdotes/anecdote/:anecdoteId" exact>
@@ -56,17 +76,17 @@ const App = () => (
         <Route path="/nos-dernieres-anecdotes/anecdote/:anecdoteId" exact>
           <Anecdote />
         </Route>
-        <Route path="/nos-meilleures-anecdotes" exact>
-          <Anecdotes
-            title="Nos meilleures anecdotes"
-            context="/nos-meilleures-anecdotes"
-          />
+        <Route path="/mes-favoris/:anecdoteId" exact>
+          <Anecdote />
         </Route>
         <Route path="/mon-compte">
           <MyAccount />
         </Route>
-        <Route path="/mentions-legales">
+        <Route path="/mentions-legales" exact>
           <LegalesMentions />
+        </Route>
+        <Route path="/contact" exact>
+          <Contact />
         </Route>
         <Route>
           <Error />

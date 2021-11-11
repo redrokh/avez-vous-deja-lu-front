@@ -39,7 +39,7 @@ const AccessNav = ({ isConnected, logOut }) => {
               <NavLink to="/mon-compte">Mon compte</NavLink>
             </li>
             <li className="access-nav__item">
-              <button type="button" onClick={logOut}>Déconnexion</button>
+              <NavLink className="access-nav__deconnection-button" to="/" onClick={logOut}>Déconnexion</NavLink>
             </li>
           </>
         )

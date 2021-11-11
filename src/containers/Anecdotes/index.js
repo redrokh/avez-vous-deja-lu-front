@@ -5,23 +5,25 @@ import { connect } from 'react-redux';
 import Anecdotes from '../../components/Anecdotes';
 
 // Import actions
-import { loadAnecdotes, loadAnecdotesByCategory, loadFavorites } from '../../actions';
+import { loadAnecdotes, loadAnecdotesByCategory, loadBests } from '../../actions';
 
 const mapStateToProps = (state) => ({
   anecdotes: state.anecdotes.anecdotes,
+  isLoading: state.app.isLoadingAnecdotes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  initialize: (context, params) => {
+  initialize: (context, slug) => {
     switch (context) {
       case 'anecdotes':
         dispatch(loadAnecdotes());
         break;
-      case 'categories':
-        dispatch(loadAnecdotesByCategory(...params));
+      case 'bests':
+        dispatch(loadBests());
         break;
-      case 'favorites':
-        dispatch(loadFavorites());
+      case 'categories':
+        console.log('...');
+        dispatch(loadAnecdotesByCategory(slug));
         break;
       default:
         break;

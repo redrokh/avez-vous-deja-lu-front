@@ -27,6 +27,7 @@
   }
 
   &__content {
+    padding-left: vars.$gutterLg;
     width: 80%;
     .MyAccount__content-header {
       display: flex;

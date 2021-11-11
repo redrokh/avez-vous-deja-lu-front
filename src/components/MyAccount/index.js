@@ -7,6 +7,7 @@ import {
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { Star } from 'react-feather';
 import Profile from '../Profile';
 import Favorites from '../Favorites';
 
@@ -33,6 +34,10 @@ const MyAccount = ({
   updateAvatar,
   initialize,
   changeAvatar,
+  isConnected,
+  isLoadingUser,
+  isLoadingFavorites,
+  deleteFavorite,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -40,8 +45,15 @@ const MyAccount = ({
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-    initialize(location.pathname);
+    initialize(location.pathname, id);
   }, [location]);
+
+  useEffect(() => {
+    console.log(!isConnected);
+    if (!isConnected) {
+      history.push('/connexion');
+    }
+  }, [isConnected]);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>
@@ -98,26 +110,34 @@ const MyAccount = ({
         </div>
 
         <Route path="/mon-compte" exact>
-          <Profile
-            pseudo={pseudo}
-            pseudoInput={pseudoInput}
-            email={email}
-            emailInput={emailInput}
-            avatar={avatar}
-            togglePseudoEdition={togglePseudoEdition}
-            toggleEmailEdition={toggleEmailEdition}
-            editingPseudo={editingPseudo}
-            editingEmail={editingEmail}
-            onNewPseudoChange={onNewPseudoChange}
-            changePseudoRequest={changePseudoRequest}
-            changeEmailRequest={changeEmailRequest}
-            onNewEmailChange={onNewEmailChange}
-            updateAvatar={updateAvatar}
-            changeAvatar={changeAvatar}
-          />
+          {
+            !isLoadingUser && (
+              <Profile
+                pseudo={pseudo}
+                pseudoInput={pseudoInput}
+                email={email}
+                emailInput={emailInput}
+                avatar={avatar}
+                togglePseudoEdition={togglePseudoEdition}
+                toggleEmailEdition={toggleEmailEdition}
+                editingPseudo={editingPseudo}
+                editingEmail={editingEmail}
+                onNewPseudoChange={onNewPseudoChange}
+                changePseudoRequest={changePseudoRequest}
+                changeEmailRequest={changeEmailRequest}
+                onNewEmailChange={onNewEmailChange}
+                updateAvatar={updateAvatar}
+                changeAvatar={changeAvatar}
+              />
+            )
+          }
         </Route>
         <Route path="/mon-compte/favoris" exact>
-          <Favorites favorites={favorites} />
+          {
+            !isLoadingFavorites && (
+              <Favorites favorites={favorites} userId={id} deleteFavorite={deleteFavorite} />
+            )
+          }
         </Route>
       </div>
     </section>

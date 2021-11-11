@@ -1,15 +1,17 @@
-import axios from 'axios';
+import API from '../utils/api';
 import {
   LOAD_CATEGORIES,
   setCategories,
 } from '../actions';
 
-import categories from '../utils/categories';
-
 const categoriesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOAD_CATEGORIES: {
-      store.dispatch(setCategories(categories));
+      API.get('category')
+        .then((response) => {
+          store.dispatch(setCategories(response.data));
+        })
+        .catch((error) => console.log(error));
       break;
     }
     default:
