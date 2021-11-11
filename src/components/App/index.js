@@ -65,7 +65,7 @@ const App = () => (
           <Anecdote />
         </Route>
         <Route
-          path="/categories/:categorySlug/:anecdoteId"
+          path="/categories/:categorySlug/anecdote/:anecdoteId"
           exact
         >
           <Anecdote />

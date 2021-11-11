@@ -8,7 +8,7 @@ import Categories from '../../components/Categories';
 import { loadCategories } from '../../actions';
 
 const mapStateToProps = (state) => ({
-  categoriesData: state.categories.categories,
+  categories: state.categories.categories,
 });
 
 const mapDispatchToProps = (dispatch) => ({

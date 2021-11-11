@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 // import styles
 import './categories.scss';
 
-const Categories = ({ categoriesData, initialize }) => {
+const Categories = ({ categories, initialize }) => {
   useEffect(() => {
     initialize();
   }, []);
@@ -18,11 +18,13 @@ const Categories = ({ categoriesData, initialize }) => {
 
       <ul className="categorie__grid">
         {
-          categoriesData.map((category) => (
-            <li key={category.id} className="grid__card" onClick={function() {
-              history.push(`/categories/${category.id}`);
-            }}>
-              <h3 className="title__card">{category.title}</h3>
+          categories.map((category) => (
+            <li
+              key={category.id}
+              className="grid__card"
+              onClick={() => history.push(`/categories/${category.slug}`)}
+            >
+              <h3 className="title__card">{category.name}</h3>
             </li>
           ))
         }
@@ -32,10 +34,12 @@ const Categories = ({ categoriesData, initialize }) => {
 };
 
 Categories.propTypes = {
-  categoriesData: PropTypes.arrayOf(
+  categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
   initialize: PropTypes.func.isRequired,
