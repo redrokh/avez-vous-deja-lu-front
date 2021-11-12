@@ -1,7 +1,6 @@
 // Import from libraries
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
 
 // Import components
 import Tag from '../Tag';
