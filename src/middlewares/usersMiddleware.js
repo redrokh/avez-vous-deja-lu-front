@@ -1,19 +1,11 @@
 import API from '../utils/api';
 import {
-  CHANGE_PSEUDO_REQUEST,
-  CHANGE_EMAIL_REQUEST,
-  CHANGE_AVATAR,
   LOAD_USER,
   RELOAD_USER,
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
-  setPseudo,
-  setEmail,
   setUser,
-  setAvatar,
   isConnectedToTrue,
-  loadUser,
-  logOut,
   toggleIsFavorite,
   loadFavorites,
   setIsLoadingUser,
@@ -21,55 +13,12 @@ import {
 
 const usersMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case CHANGE_PSEUDO_REQUEST:
-      API.patch(
-        `user/${store.getState().user.id}/edit`,
-        {
-          pseudo: store.getState().user.pseudoInput,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
-          },
-        },
-      )
-        .then((response) => {
-          if (response.status === 201) {
-            store.dispatch(setPseudo());
-            store.dispatch(loadUser());
-          }
-        })
-        .catch((error) => console.log(error));
-      break;
-    case CHANGE_EMAIL_REQUEST:
-      API.patch(
-        `user/${store.getState().user.id}/edit`,
-        {
-          email: store.getState().user.emailInput,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
-          },
-        },
-      )
-        .then((response) => {
-          if (response.status === 201) {
-            store.dispatch(setEmail());
-            store.dispatch(logOut());
-          }
-        })
-        .catch((error) => console.log(error));
-      break;
-    case CHANGE_AVATAR:
-      store.dispatch(setAvatar(action.avatar));
-      break;
     case LOAD_USER:
       store.dispatch(setIsLoadingUser(true));
       API.post(
         'user',
         {
-          email: store.getState().user.email,
+          email: store.getState().connection.emailInput,
         },
         {
           headers: {

@@ -5,28 +5,42 @@ import { connect } from 'react-redux';
 import MyAccount from '../../components/MyAccount';
 
 import {
-  togglePseudoEdition,
-  toggleEmailEdition,
-  updatePseudo,
-  updateEmail,
-  changePseudoRequest,
-  changeEmailRequest,
-  changeAvatar,
   loadUser,
   loadFavorites,
   removeFromFavorites,
 } from '../../actions';
 
+import {
+  updateEditionPseudoInput,
+  updateEditionEmailInput,
+  updateEditionPasswordInput,
+  changeAvatar,
+  editionPseudoInputValidation,
+  editionEmailInputValidation,
+  editionPasswordInputValidation,
+  togglePseudoEdition,
+  toggleEmailEdition,
+  togglePasswordEdition,
+} from '../../actions/userEditionActions';
+
 const mapStateToProps = (state) => ({
   id: state.user.id,
   pseudo: state.user.pseudo,
-  pseudoInput: state.user.pseudoInput,
   email: state.user.email,
-  emailInput: state.user.emailInput,
   avatar: state.user.avatar,
   favorites: state.anecdotes.favorites,
-  editingPseudo: state.user.editingPseudo,
-  editingEmail: state.user.editingEmail,
+  pseudoInput: state.userEdition.pseudoInput,
+  emailInput: state.userEdition.emailInput,
+  passwordInput: state.userEdition.passwordInput,
+  editingPseudo: state.userEdition.editingPseudo,
+  editingEmail: state.userEdition.editingEmail,
+  editingPassword: state.userEdition.editingPassword,
+  pseudoIsInvalid: state.userEdition.pseudoIsInvalid,
+  emailIsInvalid: state.userEdition.emailIsInvalid,
+  passwordIsInvalid: state.userEdition.passwordIsInvalid,
+  pseudoError: state.userEdition.pseudoError,
+  emailError: state.userEdition.emailError,
+  passwordError: state.userEdition.passwordError,
   isConnected: state.user.isConnected,
   isLoadingUser: state.app.isLoadingUser,
   isLoadingFavorites: state.app.isLoadingFavorites,
@@ -35,10 +49,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   togglePseudoEdition: () => dispatch(togglePseudoEdition()),
   toggleEmailEdition: () => dispatch(toggleEmailEdition()),
-  onNewPseudoChange: (pseudo) => dispatch(updatePseudo(pseudo)),
-  onNewEmailChange: (email) => dispatch(updateEmail(email)),
-  changePseudoRequest: () => dispatch(changePseudoRequest()),
-  changeEmailRequest: () => dispatch(changeEmailRequest()),
+  togglePasswordEdition: () => dispatch(togglePasswordEdition()),
+  onPseudoInputChange: (pseudo) => dispatch(updateEditionPseudoInput(pseudo)),
+  onEmailInputChange: (email) => dispatch(updateEditionEmailInput(email)),
+  onPasswordInputChange: (password) => dispatch(updateEditionPasswordInput(password)),
+  pseudoValidation: () => dispatch(editionPseudoInputValidation()),
+  emailValidation: () => dispatch(editionEmailInputValidation()),
+  passwordValidation: () => dispatch(editionPasswordInputValidation()),
   changeAvatar: (avatar) => dispatch(changeAvatar(avatar)),
   initialize: (url, userId) => {
     switch (url) {

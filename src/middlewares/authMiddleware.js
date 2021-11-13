@@ -1,15 +1,20 @@
 import API from '../utils/api';
 import {
   LOG_IN_REQUEST,
-  CONNECTION_FORM_VALIDATION,
   logInSuccess,
   loadUser,
-  invalidateEmailInput,
-  invalidatePasswordInput,
-  validateEmailInput,
-  validatePasswordInput,
   logInRequest,
 } from '../actions';
+
+import {
+  CONNECTION_FORM_VALIDATION,
+  invalidateConnectionEmailInput,
+  invalidateConnectionPasswordInput,
+  invalidateConnectionForm,
+  validateConnectionEmailInput,
+  validateConnectionPasswordInput,
+  validateConnectionForm,
+} from '../actions/connectionActions';
 
 const authMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -17,35 +22,40 @@ const authMiddleware = (store) => (next) => (action) => {
       API.post(
         'login_check',
         {
-          username: store.getState().user.emailInput,
-          password: store.getState().user.passwordInput,
+          username: store.getState().connection.emailInput,
+          password: store.getState().connection.passwordInput,
         },
       )
         .then((response) => {
+          console.log('?');
           store.dispatch(logInSuccess(response.data.token));
+          store.dispatch(validateConnectionForm());
           store.dispatch(loadUser());
           const user = {
             token: response.data.token,
             email: store.getState().user.emailInput,
           };
           localStorage.setItem('user', JSON.stringify(user));
-        });
+        })
+        .catch((error) => store.dispatch(invalidateConnectionForm()));
       break;
     case CONNECTION_FORM_VALIDATION: {
       const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      const emailIsValid = emailRegex.test(String(store.getState().user.emailInput.toLowerCase()));
-      const passwordIsValid = store.getState().user.passwordInput.length >= 4;
+      const emailIsValid = emailRegex.test(
+        String(store.getState().connection.emailInput.toLowerCase()),
+      );
+      const passwordIsValid = store.getState().connection.passwordInput.length >= 6;
       if (!emailIsValid) {
-        store.dispatch(invalidateEmailInput());
+        store.dispatch(invalidateConnectionEmailInput());
       }
       else {
-        store.dispatch(validateEmailInput());
+        store.dispatch(validateConnectionEmailInput());
       }
       if (!passwordIsValid) {
-        store.dispatch(invalidatePasswordInput());
+        store.dispatch(invalidateConnectionPasswordInput());
       }
       else {
-        store.dispatch(validatePasswordInput());
+        store.dispatch(validateConnectionPasswordInput());
       }
       if (emailIsValid && passwordIsValid) {
         store.dispatch(logInRequest());

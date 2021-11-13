@@ -6,15 +6,14 @@ import './connection.scss';
 const Connection = ({
   emailInput,
   passwordInput,
-  onEmailChange,
-  onPasswordChange,
-  logInRequest,
-  formValidation,
-  emailIsValid,
+  onEmailInputChange,
+  onPasswordInputChange,
+  emailIsInvalid,
+  passwordIsInvalid,
   emailError,
-  passwordIsValid,
   passwordError,
-  logInFailed,
+  connectionFailed,
+  formValidation,
 }) => (
   <form
     className="Connection"
@@ -26,8 +25,8 @@ const Connection = ({
     <h2 className="Connection__title">Se connecter</h2>
 
     {
-      logInFailed && (
-        <div>
+      connectionFailed && (
+        <div className="Connection__error-msg">
           Adresse email ou mot de passe incorrect
         </div>
       )
@@ -38,7 +37,7 @@ const Connection = ({
         className="Connection__field-input"
         id="emailInput"
         value={emailInput}
-        onChange={(e) => onEmailChange(e.target.value)}
+        onChange={(e) => onEmailInputChange(e.target.value)}
         type="text"
         label="Nom d'utilisateur"
         placeholder="Adresse email"
@@ -54,7 +53,7 @@ const Connection = ({
       </label> */}
 
       {
-        !emailIsValid && (
+        emailIsInvalid && (
           <span className="Connection__field-error">
             { emailError }
           </span>
@@ -68,7 +67,7 @@ const Connection = ({
         id="passwordInput"
         value={passwordInput}
         onChange={(e) => {
-          onPasswordChange(e.target.value);
+          onPasswordInputChange(e.target.value);
         }}
         type="text"
         label="Mot de passe"
@@ -85,7 +84,7 @@ const Connection = ({
       </label> */}
 
       {
-        !passwordIsValid && (
+        passwordIsInvalid && (
           <span className="Connection__field-error">
             { passwordError }
           </span>

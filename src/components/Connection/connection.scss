@@ -9,10 +9,15 @@
   justify-content: center;
   width: 600px;
 
-  .Connection__title {
+  &__title {
     font-size: vars.$fsH2Lg;
     margin-bottom: vars.$gutterSm;
     text-align: center;
+  }
+
+  &__error-msg {
+    color: rgb(231, 84, 84);
+    font-style: italic;
   }
 
   .Connection__field {

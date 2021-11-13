@@ -63,18 +63,24 @@
     justify-content: flex-end;
     font-weight: bold;
 
-    .Profile__pseudo {
+    .Profile__pseudo, .Profile__email, .Profile__password {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: space-between;
       margin-bottom: vars.$gutterSm;
-    }
 
-    .Profile__email {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: vars.$gutterSm;
+      .Profile__field {
+        display: flex;
+        flex-direction: column;
+        .Profile__field-input {
+          margin-bottom: vars.$gutterSm;
+        }
+
+        .Profile__field-error {
+          color: rgb(231, 84, 84);
+          font-style: italic;
+        }
+      }
     }
 
     .Profile__value {

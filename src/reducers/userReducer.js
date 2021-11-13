@@ -12,11 +12,6 @@ import {
   SET_AVATAR,
   SET_TOKEN,
   IS_CONNECTED_TO_TRUE,
-  TOGGLE_IS_FAVORITE,
-  INVALIDATE_EMAIL_INPUT,
-  INVALIDATE_PASSWORD_INPUT,
-  VALIDATE_EMAIL_INPUT,
-  VALIDATE_PASSWORD_INPUT,
 } from '../actions';
 
 const initialState = {
@@ -31,11 +26,6 @@ const initialState = {
   editingPseudo: false,
   editingEmail: false,
   token: '',
-  isFavorite: false,
-  emailIsValid: true,
-  passwordIsValid: true,
-  emailError: 'L\'adresse email valide',
-  passwordError: 'Le mot de passe n\'est pas valide',
 };
 
 const reducer = (state = initialState, action) => {
@@ -64,6 +54,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, editingPseudo: !state.editingPseudo };
     case SET_EMAIL: {
       const { token } = JSON.parse(localStorage.getItem('user'));
+      console.log(token);
       localStorage.setItem('user', JSON.stringify({
         email: state.emailInput,
         token,
@@ -77,6 +68,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_EMAIL:
       return { ...state, emailInput: action.email };
     case SET_USER:
+      console.log('set user');
       return {
         ...state,
         id: action.id,
@@ -92,16 +84,6 @@ const reducer = (state = initialState, action) => {
     }
     case IS_CONNECTED_TO_TRUE:
       return { ...state, isConnected: true };
-    case TOGGLE_IS_FAVORITE:
-      return { ...state, isFavorite: !state.isFavorite };
-    case INVALIDATE_EMAIL_INPUT:
-      return { ...state, emailIsValid: false };
-    case INVALIDATE_PASSWORD_INPUT:
-      return { ...state, passwordIsValid: false };
-    case VALIDATE_EMAIL_INPUT:
-      return { ...state, emailIsValid: true };
-    case VALIDATE_PASSWORD_INPUT:
-      return { ...state, passwordIsValid: true };
     default:
       return state;
   }
