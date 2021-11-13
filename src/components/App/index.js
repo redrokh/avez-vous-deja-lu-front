@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // Import components
 import Header from '../../containers/Header';
 import Connection from '../../containers/Connection';
-import Registration from '../Registration';
+import Registration from '../../containers/Registration';
 import Page from '../../containers/Page';
 import Anecdote from '../../containers/Anecdote';
 import Footer from '../../containers/Footer';

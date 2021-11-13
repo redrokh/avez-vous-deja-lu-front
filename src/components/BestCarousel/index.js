@@ -20,11 +20,9 @@ const BestCarousel = ({
   isLoading,
 }) => {
   useEffect(() => {
-    console.log('useEffect');
     initialize();
   }, []);
 
-  console.log('outside useEffect');
   if (isLoading) {
     return (
       <></>

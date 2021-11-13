@@ -66,6 +66,12 @@ export const SET_IS_LOADING_ANECDOTE = 'SET_IS_LOADING_ANECDOTE';
 export const SET_IS_LOADING_FAVORITES = 'SET_IS_LOADING_FAVORITES';
 export const SET_IS_LOADING_USER = 'SET_IS_LOADING_USER';
 
+export const CONNECTION_FORM_VALIDATION = 'CONNECTION_FORM_VALIDATION';
+export const INVALIDATE_EMAIL_INPUT = 'INVALIDATE_EMAIL_INPUT';
+export const INVALIDATE_PASSWORD_INPUT = 'INVALIDATE_PASSWORD_INPUT';
+export const VALIDATE_EMAIL_INPUT = 'VALIDATE_EMAIL_INPUT';
+export const VALIDATE_PASSWORD_INPUT = 'VALIDATE_PASSWORD_INPUT';
+
 // Action creators
 export const loadLatests = () => ({
   type: LOAD_LATEST_ANECDOTES,
@@ -314,4 +320,24 @@ export const setIsLoadingFavorites = (value) => ({
 export const setIsLoadingUser = (value) => ({
   type: SET_IS_LOADING_USER,
   value,
+});
+
+export const validateConnectionForm = () => ({
+  type: CONNECTION_FORM_VALIDATION,
+});
+
+export const invalidateEmailInput = () => ({
+  type: INVALIDATE_EMAIL_INPUT,
+});
+
+export const invalidatePasswordInput = () => ({
+  type: INVALIDATE_PASSWORD_INPUT,
+});
+
+export const validateEmailInput = () => ({
+  type: VALIDATE_EMAIL_INPUT,
+});
+
+export const validatePasswordInput = () => ({
+  type: VALIDATE_PASSWORD_INPUT,
 });

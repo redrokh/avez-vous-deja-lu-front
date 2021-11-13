@@ -7,7 +7,6 @@ import {
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import { Star } from 'react-feather';
 import Profile from '../Profile';
 import Favorites from '../Favorites';
 
@@ -16,22 +15,33 @@ import './myaccount.scss';
 const MyAccount = ({
   id,
   pseudo,
-  pseudoInput,
-  onNewPseudoChange,
-  onNewEmailChange,
   email,
-  emailInput,
   avatar,
   favorites,
+  pseudoInput,
+  emailInput,
+  passwordInput,
+  onPseudoInputChange,
+  onEmailInputChange,
+  onPasswordInputChange,
   editingPseudo,
   editingEmail,
+  editingPassword,
+  pseudoIsInvalid,
+  emailIsInvalid,
+  passwordIsInvalid,
+  pseudoError,
+  emailError,
+  passwordError,
   togglePseudoEdition,
   toggleEmailEdition,
-  changePseudoRequest,
-  changeEmailRequest,
+  togglePasswordEdition,
   updatePseudo,
   updateEmail,
-  updateAvatar,
+  updatePassword,
+  pseudoValidation,
+  emailValidation,
+  passwordValidation,
   initialize,
   changeAvatar,
   isConnected,
@@ -113,20 +123,35 @@ const MyAccount = ({
           {
             !isLoadingUser && (
               <Profile
+                id={id}
                 pseudo={pseudo}
-                pseudoInput={pseudoInput}
                 email={email}
-                emailInput={emailInput}
                 avatar={avatar}
-                togglePseudoEdition={togglePseudoEdition}
-                toggleEmailEdition={toggleEmailEdition}
+                pseudoInput={pseudoInput}
+                emailInput={emailInput}
+                passwordInput={passwordInput}
+                onPseudoInputChange={onPseudoInputChange}
+                onEmailInputChange={onEmailInputChange}
+                onPasswordInputChange={onPasswordInputChange}
                 editingPseudo={editingPseudo}
                 editingEmail={editingEmail}
-                onNewPseudoChange={onNewPseudoChange}
-                changePseudoRequest={changePseudoRequest}
-                changeEmailRequest={changeEmailRequest}
-                onNewEmailChange={onNewEmailChange}
-                updateAvatar={updateAvatar}
+                editingPassword={editingPassword}
+                pseudoIsInvalid={pseudoIsInvalid}
+                emailIsInvalid={emailIsInvalid}
+                passwordIsInvalid={passwordIsInvalid}
+                pseudoError={pseudoError}
+                emailError={emailError}
+                passwordError={passwordError}
+                togglePseudoEdition={togglePseudoEdition}
+                toggleEmailEdition={toggleEmailEdition}
+                togglePasswordEdition={togglePasswordEdition}
+                updatePseudo={updatePseudo}
+                updateEmail={updateEmail}
+                updatePassword={updatePassword}
+                pseudoValidation={pseudoValidation}
+                emailValidation={emailValidation}
+                passwordValidation={passwordValidation}
+                initialize={initialize}
                 changeAvatar={changeAvatar}
               />
             )
