@@ -7,63 +7,23 @@ import {
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import Profile from '../Profile';
-import Favorites from '../Favorites';
+import Profile from '../../containers/Profile';
+import Favorites from '../../containers/Favorites';
 
 import './myaccount.scss';
 
 const MyAccount = ({
-  id,
-  pseudo,
-  email,
-  avatar,
-  favorites,
-  pseudoInput,
-  emailInput,
-  passwordInput,
-  onPseudoInputChange,
-  onEmailInputChange,
-  onPasswordInputChange,
-  editingPseudo,
-  editingEmail,
-  editingPassword,
-  pseudoIsInvalid,
-  emailIsInvalid,
-  passwordIsInvalid,
-  pseudoError,
-  emailError,
-  passwordError,
-  togglePseudoEdition,
-  toggleEmailEdition,
-  togglePasswordEdition,
-  updatePseudo,
-  updateEmail,
-  updatePassword,
-  pseudoValidation,
-  emailValidation,
-  passwordValidation,
-  initialize,
-  changeAvatar,
   isConnected,
-  isLoadingUser,
-  isLoadingFavorites,
-  deleteFavorite,
 }) => {
-  const location = useLocation();
   const history = useHistory();
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-    initialize(location.pathname, id);
-  }, [location]);
-
-  useEffect(() => {
-    console.log(!isConnected);
     if (!isConnected) {
       history.push('/connexion');
     }
-  }, [isConnected]);
+  }, []);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>
@@ -120,49 +80,10 @@ const MyAccount = ({
         </div>
 
         <Route path="/mon-compte" exact>
-          {
-            !isLoadingUser && (
-              <Profile
-                id={id}
-                pseudo={pseudo}
-                email={email}
-                avatar={avatar}
-                pseudoInput={pseudoInput}
-                emailInput={emailInput}
-                passwordInput={passwordInput}
-                onPseudoInputChange={onPseudoInputChange}
-                onEmailInputChange={onEmailInputChange}
-                onPasswordInputChange={onPasswordInputChange}
-                editingPseudo={editingPseudo}
-                editingEmail={editingEmail}
-                editingPassword={editingPassword}
-                pseudoIsInvalid={pseudoIsInvalid}
-                emailIsInvalid={emailIsInvalid}
-                passwordIsInvalid={passwordIsInvalid}
-                pseudoError={pseudoError}
-                emailError={emailError}
-                passwordError={passwordError}
-                togglePseudoEdition={togglePseudoEdition}
-                toggleEmailEdition={toggleEmailEdition}
-                togglePasswordEdition={togglePasswordEdition}
-                updatePseudo={updatePseudo}
-                updateEmail={updateEmail}
-                updatePassword={updatePassword}
-                pseudoValidation={pseudoValidation}
-                emailValidation={emailValidation}
-                passwordValidation={passwordValidation}
-                initialize={initialize}
-                changeAvatar={changeAvatar}
-              />
-            )
-          }
+            <Profile />
         </Route>
         <Route path="/mon-compte/favoris" exact>
-          {
-            !isLoadingFavorites && (
-              <Favorites favorites={favorites} userId={id} deleteFavorite={deleteFavorite} />
-            )
-          }
+          <Favorites />
         </Route>
       </div>
     </section>

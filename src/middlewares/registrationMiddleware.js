@@ -1,73 +1,93 @@
+// Import axios preconfigured object
 import API from '../utils/api';
+
+// Import actions and action creators
 import {
-  REGISTRATION_REQUEST,
-  VALIDATE_REGISTRATION_FORM,
+  REGISTRATION_FORM_VALIDATION,
+  REGISTER,
   invalidateRegistrationPseudoInput,
   invalidateRegistrationEmailInput,
   invalidateRegistrationPasswordInput,
   validateRegistrationPseudoInput,
   validateRegistrationEmailInput,
   validateRegistrationPasswordInput,
-  registrationRequest,
-  registrationSuccess,
-  registrationFailure,
+  register,
+  registrationFailed,
+  registrationSucceeded,
+  clearRegistrationForm,
 } from '../actions/registrationActions';
 
-const authMiddleware = (store) => (next) => (action) => {
+// Trigger treatment according to action type
+const middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case REGISTRATION_REQUEST:
-      API.post(
-        'register',
-        {
-          pseudo: store.getState().registration.pseudoInput,
-          email: store.getState().registration.emailInput,
-          password: store.getState().registration.passwordInput,
-        },
-      )
-        .then((response) => {
-          store.dispatch(registrationSuccess());
-        })
-        .catch((error) => {
-          store.dispatch(registrationFailure());
-        });
-      break;
-    case VALIDATE_REGISTRATION_FORM: {
+    case REGISTRATION_FORM_VALIDATION: {
+      // Check pseudo
       const pseudoIsValid = store.getState().registration.pseudoInput.length >= 2;
+
+      // Check email
       const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       const emailIsValid = emailRegex.test(
         String(store.getState().registration.emailInput.toLowerCase()),
       );
+
+      // Check password
       const passwordIsValid = store.getState().registration.passwordInput.length >= 6;
 
+      // Set pseudo validation status
       if (!pseudoIsValid) {
+        console.log('?');
         store.dispatch(invalidateRegistrationPseudoInput());
       }
       else {
         store.dispatch(validateRegistrationPseudoInput());
       }
 
+      // Set email validation status
       if (!emailIsValid) {
+        console.log('??');
         store.dispatch(invalidateRegistrationEmailInput());
       }
       else {
         store.dispatch(validateRegistrationEmailInput());
       }
 
+      // Set password validation status
       if (!passwordIsValid) {
+        console.log('??');
         store.dispatch(invalidateRegistrationPasswordInput());
       }
       else {
         store.dispatch(validateRegistrationPasswordInput());
       }
 
+      console.log(pseudoIsValid, emailIsValid, passwordIsValid);
+
+      // Ask API for token
       if (pseudoIsValid && emailIsValid && passwordIsValid) {
-        store.dispatch(registrationRequest());
+        store.dispatch(register());
       }
       break;
     }
+    case REGISTER:
+      const { pseudoInput, emailInput, passwordInput } = store.getState().registration;
+      API.post(
+        'register',
+        {
+          pseudo: pseudoInput,
+          email: emailInput,
+          password: passwordInput,
+        }
+      )
+        .then((response) => {
+          store.dispatch(registrationSucceeded());
+          store.dispatch(clearRegistrationForm());
+        })
+        .catch(() => store.dispatch(registrationFailed()));
+      break;
     default:
   }
   next(action);
 };
 
-export default authMiddleware;
+// Export middleware
+export default middleware;

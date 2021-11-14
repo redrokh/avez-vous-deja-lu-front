@@ -1,19 +1,19 @@
 @use 'src/styles/vars';
 
-.home-message {
-  margin: 0em auto vars.$gutterLg;
+.HomeMessage {
+  margin: 0em auto 3em;
   max-width: 800px;
-  padding: 0em vars.$gutterLg vars.$gutterLg;
+  padding: 0em 3em 3em;
   border-bottom: 1px solid rgb(255, 255, 255, 0.5);
 
   &__title {
-    font-size: vars.$fsH1Lg;
-    margin-bottom: vars.$gutterMd;
+    font-size: 48px;
+    margin-bottom: 2em;
   }
 
   &__content {
-    font-size: vars.$fsBody;
+    font-size: 16px;
     text-align: left;
-    line-height: vars.$lhBodyLg;
+    line-height: 1.05em;
   }
 }

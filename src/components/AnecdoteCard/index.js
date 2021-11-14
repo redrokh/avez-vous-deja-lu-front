@@ -17,10 +17,10 @@ const AnecdoteCard = ({
   category,
   context,
 }) => (
-  <div className="anecdote-card">
-    <h4 className="anecdote-card__title">{title}</h4>
+  <div className="AnecdoteCard">
+    <h4 className="AnecdoteCard__title">{title}</h4>
 
-    <div className="anecdote-card__tags">
+    <div className="AnecdoteCard__tags">
       {
         category.map((item) => (
           <Tag key={item.id} {...item} />
@@ -28,12 +28,12 @@ const AnecdoteCard = ({
         }
     </div>
 
-    <div className="anecdote-card__date">Publié par {writer.pseudo} le {createdAt}</div>
+    <div className="AnecdoteCard__date">Publié par {writer.pseudo} le {createdAt}</div>
 
-    <p className="anecdote-card__description">{description}</p>
+    <p className="AnecdoteCard__description">{description}</p>
 
     <NavLink
-      className="anecdote-card__link"
+      className="AnecdoteCard__link"
       to={`${context}/anecdote/${id}`}
       exact
     >

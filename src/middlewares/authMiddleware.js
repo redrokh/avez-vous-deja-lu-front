@@ -1,65 +1,94 @@
+// Import axios preconfigured object
 import API from '../utils/api';
-import {
-  LOG_IN_REQUEST,
-  logInSuccess,
-  loadUser,
-  logInRequest,
-} from '../actions';
 
+// Import actions and action creators
 import {
   CONNECTION_FORM_VALIDATION,
+  LOG_IN,
+  LOG_OUT,
   invalidateConnectionEmailInput,
   invalidateConnectionPasswordInput,
-  invalidateConnectionForm,
   validateConnectionEmailInput,
   validateConnectionPasswordInput,
-  validateConnectionForm,
-} from '../actions/connectionActions';
+  logIn,
+  connectionFailed,
+  connectionSucceeded,
+  clearConnectionForm,
+  resetAuthState,
+} from '../actions/authActions';
 
-const authMiddleware = (store) => (next) => (action) => {
+import {
+  loadUser,
+  resetUserState,
+} from '../actions/userActions';
+
+// Trigger treatment according to action type
+const middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case LOG_IN_REQUEST:
-      API.post(
-        'login_check',
-        {
-          username: store.getState().connection.emailInput,
-          password: store.getState().connection.passwordInput,
-        },
-      )
-        .then((response) => {
-          console.log('?');
-          store.dispatch(logInSuccess(response.data.token));
-          store.dispatch(validateConnectionForm());
-          store.dispatch(loadUser());
-          const user = {
-            token: response.data.token,
-            email: store.getState().user.emailInput,
-          };
-          localStorage.setItem('user', JSON.stringify(user));
-        })
-        .catch((error) => store.dispatch(invalidateConnectionForm()));
-      break;
     case CONNECTION_FORM_VALIDATION: {
+      // Check email
       const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       const emailIsValid = emailRegex.test(
-        String(store.getState().connection.emailInput.toLowerCase()),
+        String(store.getState().auth.emailInput.toLowerCase()),
       );
-      const passwordIsValid = store.getState().connection.passwordInput.length >= 6;
+
+      // Check password
+      const passwordIsValid = store.getState().auth.passwordInput.length >= 6;
+
+      // Set email validation status
       if (!emailIsValid) {
         store.dispatch(invalidateConnectionEmailInput());
       }
       else {
         store.dispatch(validateConnectionEmailInput());
       }
+
+      // Set password validation status
       if (!passwordIsValid) {
         store.dispatch(invalidateConnectionPasswordInput());
       }
       else {
         store.dispatch(validateConnectionPasswordInput());
       }
+
+      // Ask API for token
       if (emailIsValid && passwordIsValid) {
-        store.dispatch(logInRequest());
+        store.dispatch(logIn());
       }
+      break;
+    }
+    case LOG_IN: {
+      API.post(
+        'login_check',
+        {
+          username: store.getState().auth.emailInput,
+          password: store.getState().auth.passwordInput,
+        },
+      )
+        .then((response) => {
+          // Store token and email in local storage in case page is reloaded
+          const user = {
+            token: response.data.token,
+            email: store.getState().auth.emailInput,
+          };
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // Connection succeeded
+          store.dispatch(connectionSucceeded(response.data.token));
+
+          // Get user data
+          store.dispatch(loadUser());
+
+          // Reset authReducer data
+          store.dispatch(clearConnectionForm());
+        })
+        .catch(() => store.dispatch(connectionFailed()));
+      break;
+    }
+    case LOG_OUT: {
+      localStorage.removeItem('user');
+      store.dispatch(resetUserState());
+      store.dispatch(resetAuthState());
       break;
     }
     default:
@@ -67,4 +96,5 @@ const authMiddleware = (store) => (next) => (action) => {
   next(action);
 };
 
-export default authMiddleware;
+// Export middleware
+export default middleware;

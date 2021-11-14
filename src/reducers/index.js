@@ -2,23 +2,32 @@
 import { combineReducers } from 'redux';
 
 // Import reducers
-import anecdotesReducer from './anecdotesReducer';
 import appReducer from './appReducer';
-import userReducer from './userReducer';
-import userEditionReducer from './userEditionReducer';
-import categoriesReducer from './categoriesReducer';
+import authReducer from './authReducer';
 import registrationReducer from './registrationReducer';
-import connectionReducer from './connectionReducer';
+import userEditionReducer from './userEditionReducer';
+import userReducer from './userReducer';
+import favoritesReducer from './favoritesReducer';
+import bestsReducer from './bestsReducer';
+import latestsReducer from './latestsReducer';
+import anecdotesReducer from './anecdotesReducer';
+import anecdoteReducer from './anecdoteReducer';
+import categoriesReducer from './categoriesReducer';
 
 // Combine reducers
 const reducer = combineReducers({
-  anecdotes: anecdotesReducer,
   app: appReducer,
-  user: userReducer,
-  userEdition: userEditionReducer,
-  categories: categoriesReducer,
+  auth: authReducer,
   registration: registrationReducer,
-  connection: connectionReducer,
+  userEdition: userEditionReducer,
+  user: userReducer,
+  favorites: favoritesReducer,
+  bests: bestsReducer,
+  latests: latestsReducer,
+  anecdotes: anecdotesReducer,
+  anecdote: anecdoteReducer,
+  categories: categoriesReducer,
 });
 
+// Export reducer
 export default reducer;

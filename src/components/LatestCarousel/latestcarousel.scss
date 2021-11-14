@@ -1,20 +1,21 @@
 @use 'src/styles/vars';
 
-.latest-carousel {
+.LatestCarousel {
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
-  padding: 0em vars.$gutterLg vars.$gutterLg;
-  margin-bottom: vars.$gutterLg;
+  padding: 0em 3em 3em;
+  margin-bottom: 3em;
   max-width: 800px;
   width: 100%;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.5);
 
   &__title {
-    font-size: vars.$fsH2Lg;
+    font-size: 36px;
     width: 100%;
-    margin-bottom: vars.$gutterMd;
+    margin-bottom: 2em;
     text-align: center;
   }
 
@@ -43,19 +44,19 @@
   }
 
   &__shortcuts {
-    margin-top: vars.$gutterSm;
+    margin-top: 1em;
     display: flex;
     justify-content: center;
     gap: 1em;
     width: 100%;
 
-    .latest-carousel__shortcut-ext {
+    .LatestCarousel__shortcut-ext {
       height: 20px;
       width: 20px;
       border-radius: 10px;
       background-color: transparent;
 
-      .latest-carousel__shortcut-int {
+      .LatestCarousel__shortcut-int {
         height: 50%;
         width: 50%;
         margin-left: 5px;
@@ -66,15 +67,15 @@
       }
     }
 
-    .latest-carousel__shortcut-ext--selected {
+    .LatestCarousel__shortcut-ext--selected {
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    .latest-carousel__shortcut-int:hover {
+    .LatestCarousel__shortcut-int:hover {
       opacity: 1;
     }
 
-    .latest-carousel__shortcut-ext:hover {
+    .LatestCarousel__shortcut-ext:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
 

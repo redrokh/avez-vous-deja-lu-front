@@ -10,8 +10,8 @@
   width: 600px;
 
   .Registration__title {
-    font-size: vars.$fsH2Lg;
-    margin-bottom: vars.$gutterSm;
+    font-size: 36px;
+    margin-bottom: 1em;
     text-align: center;
   }
 
@@ -70,7 +70,7 @@
   }
 
   &__registration-msg {
-    margin-top: vars.$gutterSm;
+    margin-top: 1em;
     width: 400px;
 
     .Registration__registration-link {
@@ -88,7 +88,7 @@
   }
 
   &__submit-container {
-    margin-top: vars.$gutterSm;
+    margin-top: 1em;
 
     .Registration__submit-button {
       padding: 0.5em;

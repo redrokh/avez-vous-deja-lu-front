@@ -1,7 +1,7 @@
 @use 'src/styles/vars';
 
-.anecdote-card {
-  padding: vars.$gutterMd;
+.AnecdoteCard {
+  padding: 2em;
   text-align: left;
   max-width: 800px;
   width: 700px;
@@ -9,21 +9,21 @@
 
   &__title {
     font-size: 1.3em;
-    margin-bottom: vars.$gutterSm;
+    margin-bottom: 1em;
   }
 
   &__tags {
-    margin-bottom: vars.$gutterSm;
+    margin-bottom: 1em;
   }
 
   &__date {
-    margin-bottom: vars.$gutterSm;
+    margin-bottom: 1em;
     font-style: italic;
     opacity: 0.8;
   }
 
   &__description {
-    margin-bottom: vars.$gutterSm;
+    margin-bottom: 1em;
   }
 
   &__link {
@@ -62,7 +62,7 @@
   }
 }
 
-.anecdote-card:hover {
+.AnecdoteCard:hover {
   box-shadow:
     0 0 .2rem #fff,
     0 0 .2rem #fff,

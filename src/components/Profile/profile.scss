@@ -3,7 +3,7 @@
 .Profile {
   display: flex;
   flex-wrap: wrap;
-  gap: vars.$gutterLg;
+  gap: 3em;
 
   &__avatar {
     position: relative;
@@ -67,13 +67,13 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: vars.$gutterSm;
+      margin-bottom: 1em;
 
       .Profile__field {
         display: flex;
         flex-direction: column;
         .Profile__field-input {
-          margin-bottom: vars.$gutterSm;
+          margin-bottom: 1em;
         }
 
         .Profile__field-error {

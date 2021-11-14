@@ -1,13 +1,13 @@
 @use '../../styles/vars';
 
-.content-nav {
+.ContentNav {
   display: flex;
   justify-content: center;
   list-style: none;
 
   &__item {
-    margin-left: vars.$gutterSm;
-    padding: vars.$gutterSm / 2;
+    margin-left: 1em;
+    padding: 0.5em;
     opacity: 1;
   }
 
@@ -16,9 +16,6 @@
   }
 
   &__item--selected {
-    //border-top: 1px solid rgba(255, 255, 255, 0.904);
-    /* color: rgb(255, 255, 255, 0.6);
-    position: relative; */
     box-shadow: 0 0 .2rem #fff,
               0 0 .2rem #fff,
               0 0 2rem #19A4DF,

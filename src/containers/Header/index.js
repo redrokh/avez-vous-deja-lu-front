@@ -1,35 +1,14 @@
 // Import from libraries
 import { connect } from 'react-redux';
 
-// Import components
+// Import from app components
 import Header from '../../components/Header';
 
-// Import action creators
-import {
-  toggleHeaderMenu,
-  updateHeaderColor,
-  logOut,
-  setToken,
-  reloadUser,
-} from '../../actions';
-
-// Import from utils
-import { darkenHexColor } from '../../utils/functions';
-
+// Link component props to state
 const mapStateToProps = (state) => ({
-  contentMenus: state.app.contentMenus,
-  isOpened: state.app.isOpened,
-  isConnected: state.user.isConnected,
-  headerColor: darkenHexColor(state.app.pageColor),
+  burgerIsOpened: state.app.burgerIsOpened,
+  headerBgColor: state.app.headerBgColor,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleMenu: () => dispatch(toggleHeaderMenu()),
-  updateHeaderColor: () => dispatch(updateHeaderColor()),
-  logOut: () => dispatch(logOut()),
-  reconnectionAttempt: () => {
-    dispatch(setToken());
-    dispatch(reloadUser());
-  },
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+// Export container
+export default connect(mapStateToProps, undefined)(Header);

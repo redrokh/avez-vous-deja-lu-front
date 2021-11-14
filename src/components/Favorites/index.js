@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Tag from '../Tag';
@@ -5,15 +6,36 @@ import { Trash2 } from 'react-feather';
 
 import './favorites.scss';
 
-const Favorites = ({ favorites, userId, deleteFavorite }) => {
+const Favorites = ({
+  anecdotes,
+  deleteFavorite,
+  loadData,
+  loadingData,
+  loadDataFailed,
+  dataLoaded,
+}) => {
   const history = useHistory();
-  if (favorites.length === 0) {
+
+  useEffect(() => {
+    loadData();
+  }, [])
+
+  if (loadingData) {
+    return <></>;
+  }
+
+  if (loadDataFailed || !dataLoaded) {
+    return <></>
+  }
+  
+  if (anecdotes.length === 0) {
     return (
       <section className="Favorites">
         <div>Vous n'avez pas de favoris</div>
       </section>
     );
   }
+
   return (
     <section className="Favorites">
       <table className="Favorites__table">
@@ -27,7 +49,7 @@ const Favorites = ({ favorites, userId, deleteFavorite }) => {
 
         <tbody className="Favorites__body">
           {
-            favorites.map(({
+            anecdotes.map(({
               id,
               title,
               writer,
@@ -71,7 +93,7 @@ const Favorites = ({ favorites, userId, deleteFavorite }) => {
                   <button
                     className="Favorites__delete-button"
                     type="button"
-                    onClick={() => deleteFavorite(userId, id)}
+                    onClick={() => deleteFavorite(id)}
                   >
                     <Trash2 stroke="white" strokeWidth="1" />
                   </button>
@@ -86,7 +108,7 @@ const Favorites = ({ favorites, userId, deleteFavorite }) => {
 };
 
 Favorites.propTypes = {
-  favorites: PropTypes.arrayOf(PropTypes.shape({
+  anecdotes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     writer: PropTypes.shape({
@@ -100,7 +122,6 @@ Favorites.propTypes = {
       slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
-  userId: PropTypes.number.isRequired,
   deleteFavorite: PropTypes.func.isRequired,
 };
 

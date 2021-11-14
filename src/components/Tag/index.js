@@ -11,7 +11,7 @@ const Tag = ({
   slug,
 }) => (
   <NavLink
-    className="tag"
+    className="Tag"
     to={`/categories/${slug}`}
     style={{
       backgroundColor: color,

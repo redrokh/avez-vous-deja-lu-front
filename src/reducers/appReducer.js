@@ -1,32 +1,24 @@
 // Import actions
 import {
-  UPDATE_PAGE_COLOR,
-  UPDATE_HEADER_COLOR,
-  TOGGLE_HEADER_MENU,
-  SET_PAGE_TITLE,
-  SET_IS_LOADING_LATESTS,
-  SET_IS_LOADING_BESTS,
-  SET_IS_LOADING_ANECDOTES,
-  SET_IS_LOADING_ANECDOTE,
-  SET_IS_LOADING_FAVORITES,
-  SET_IS_LOADING_USER,
-} from '../actions';
+  TOGGLE_BURGER_IS_OPENED,
+  SET_PAGE_BACKGROUND_COLOR,
+  SET_HEADER_BACKGROUND_COLOR
+} from '../actions/appActions';
 
 // Import from utils
-import { proportionalHexColor, darkenHexColor } from '../utils/functions';
+import {
+  darkenHexColor,
+  proportionalHexColor
+} from '../utils/functions';
 
+// Define initial state
 const initialState = {
-  darkColor: '#283655', // #D0E1F9 #4D648D #1E1F26 #283655 (#174352)
-  lightColor: '#536878', // (#2F86A6)
-  pageColor: '#283655',
-  headerColor: '#283655',
-  isOpened: false,
-  isLoadingBests: true,
-  isLoadingLatests: true,
-  isLoadingAnecdotes: true,
-  isLoadingAnecdote: true,
-  isLoadingUser: true,
-  isLoadingFavorites: true,
+  baseSrc: 'http://localhost:8000/uploads/',
+  burgerIsOpened: false,
+  headerBgColor: '#000',
+  pageBgColor: '#283655',
+  color1: '#283655',
+  color2: '#536878',
   contentMenus: [
     {
       id: 1,
@@ -71,40 +63,27 @@ const initialState = {
       title: 'Mentions légales',
     },
   ],
-  pageTitle: '',
 };
 
-initialState.headerColor = darkenHexColor(initialState.lightColor);
+initialState.headerBgColor = darkenHexColor(initialState.color1);
 
+// Set new state based on action dispatched
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_PAGE_COLOR: {
-      const pageColor = proportionalHexColor(state.darkColor, state.lightColor);
-      return { ...state, pageColor };
+    case TOGGLE_BURGER_IS_OPENED:
+      return { ...state, burgerIsOpened: !state.burgerIsOpened };
+    case SET_PAGE_BACKGROUND_COLOR: {
+      const newColor = proportionalHexColor(state.color1, state.color2);
+      return { ...state, pageBgColor: newColor };
     }
-    case UPDATE_HEADER_COLOR: {
-      const headerColor = darkenHexColor(state.pageColor);
-      return { ...state, headerColor };
+    case SET_HEADER_BACKGROUND_COLOR: {
+      const newColor = darkenHexColor(state.pageBgColor);
+      return { ...state, headerBgColor: newColor };
     }
-    case TOGGLE_HEADER_MENU:
-      return { ...state, isOpened: !state.isOpened };
-    case SET_PAGE_TITLE:
-      return { ...state, pageTitle: action.title };
-    case SET_IS_LOADING_LATESTS:
-      return { ...state, isLoadingLatests: action.value };
-    case SET_IS_LOADING_BESTS:
-      return { ...state, isLoadingBests: action.value };
-    case SET_IS_LOADING_ANECDOTES:
-      return { ...state, isLoadingAnecdotes: action.value };
-    case SET_IS_LOADING_ANECDOTE:
-      return { ...state, isLoadingAnecdote: action.value };
-    case SET_IS_LOADING_FAVORITES:
-      return { ...state, isLoadingFavorites: action.value };
-    case SET_IS_LOADING_USER:
-      return { ...state, isLoadingUser: action.value };
     default:
       return state;
   }
 };
 
+// Export reducer
 export default reducer;

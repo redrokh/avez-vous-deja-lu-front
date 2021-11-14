@@ -13,23 +13,25 @@ const Page = (props) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
-    window.addEventListener('scroll', props.updatePageColor);
+    window.addEventListener('scroll', props.onScrollChange);
   }, []);
 
   useEffect(() => {
+    // Scroll to top on url change
     window.scrollTo(0, 0);
   }, [location]);
+
   return (
     <main
       className={
         classNames(
-          'page',
+          'Page',
           {
-            'page--mobile': isMobile,
+            'Page--mobile': isMobile,
           }
         )
       }
-      style={{ backgroundColor: props.pageColor }}
+      style={{ backgroundColor: props.pageBgColor }}
     >
       { props.children }
     </main>
@@ -41,8 +43,8 @@ Page.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  pageColor: PropTypes.string.isRequired,
-  updatePageColor: PropTypes.func.isRequired,
+  pageBgColor: PropTypes.string.isRequired,
+  onScrollChange: PropTypes.func.isRequired,
 };
 
 export default Page;

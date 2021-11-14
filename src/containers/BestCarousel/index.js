@@ -1,23 +1,27 @@
 // Import from libraries
 import { connect } from 'react-redux';
 
-// Import components
+// Import from app components
 import BestCarousel from '../../components/BestCarousel';
 
-// Import actions
-import { setBestIndex, loadBests } from '../../actions';
+// Import actions and action creators
+import { loadBests, setBestsIndex } from '../../actions/bestActions';
 
+// Link component props to state
 const mapStateToProps = (state) => ({
-  title: state.anecdotes.bestsTitle,
-  anecdotes: state.anecdotes.bests,
-  currentIndex: state.anecdotes.bestIndex,
-  context: state.anecdotes.bestsContext,
-  isLoading: state.app.isLoadingBests,
+  title: state.bests.title,
+  anecdotes: state.bests.anecdotes,
+  currentIndex: state.bests.currentIndex,
+  loadingData: state.bests.loadingData,
+  dataLoaded: state.bests.dataLoaded,
+  context: state.bests.context,
 });
 
+// Link component props to actions
 const mapDispatchToProps = (dispatch) => ({
-  modifyIndex: (newIndex) => dispatch(setBestIndex(newIndex)),
-  initialize: () => dispatch(loadBests()),
+  loadData: () => dispatch(loadBests()),
+  setCurrentIndex: (index) => dispatch(setBestsIndex(index)),
 });
 
+// Export container
 export default connect(mapStateToProps, mapDispatchToProps)(BestCarousel);

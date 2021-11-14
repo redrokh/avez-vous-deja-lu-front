@@ -1,59 +1,75 @@
+// Import actions
 import {
-  UPDATE_REGISTRATION_PSEUDO_INPUT,
-  UPDATE_REGISTRATION_EMAIL_INPUT,
-  UPDATE_REGISTRATION_PASSWORD_INPUT,
-  VALIDATE_REGISTRATION_PSEUDO_INPUT,
-  VALIDATE_REGISTRATION_EMAIL_INPUT,
-  VALIDATE_REGISTRATION_PASSWORD_INPUT,
+  SET_REGISTRATION_PSEUDO_INPUT,
+  SET_REGISTRATION_EMAIL_INPUT,
+  SET_REGISTRATION_PASSWORD_INPUT,
   INVALIDATE_REGISTRATION_PSEUDO_INPUT,
   INVALIDATE_REGISTRATION_EMAIL_INPUT,
   INVALIDATE_REGISTRATION_PASSWORD_INPUT,
-  REGISTRATION_SUCCESS,
-  REGISTRATION_FAILURE,
+  VALIDATE_REGISTRATION_PSEUDO_INPUT,
+  VALIDATE_REGISTRATION_EMAIL_INPUT,
+  VALIDATE_REGISTRATION_PASSWORD_INPUT,
+  REGISTRATION_FAILED,
+  REGISTRATION_SUCCEEDED,
+  CLEAR_REGISTRATION_FORM,
+  RESET_REGISTRATION_STATE,
 } from '../actions/registrationActions';
 
+// Define initial state
 const initialState = {
   pseudoInput: '',
   emailInput: '',
   passwordInput: '',
-  pseudoIsInvalid: false,
-  emailIsInvalid: false,
-  passwordIsInvalid: false,
-  registrationError: 'Une erreur est survenue lors de l\'envoi de la requête',
-  pseudoError: 'Le pseudo n\'est pas valide.',
-  emailError: 'L\'adresse email n\'est pas valide',
-  passwordError: 'Le mot de passe n\'est pas valide',
+  pseudoInputIsInvalid: false,
+  emailInputIsInvalid: false,
+  passwordInputIsInvalid: false,
+  pseudoInputError: 'Votre pseudo doit contenir au moins 2 caractères',
+  emailInputError: "Le format de l'adresse email n'est pas valide",
+  passwordInputError: 'Votre mot de passe doit contenir au moins 6 caractères',
   registrationFailed: false,
   registrationSucceeded: false,
 };
 
+// Set new state based on action dispatched
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_REGISTRATION_PSEUDO_INPUT:
+    case SET_REGISTRATION_PSEUDO_INPUT:
       return { ...state, pseudoInput: action.pseudo };
-    case UPDATE_REGISTRATION_EMAIL_INPUT:
+    case SET_REGISTRATION_EMAIL_INPUT:
       return { ...state, emailInput: action.email };
-    case UPDATE_REGISTRATION_PASSWORD_INPUT:
+    case SET_REGISTRATION_PASSWORD_INPUT:
       return { ...state, passwordInput: action.password };
-    case VALIDATE_REGISTRATION_PSEUDO_INPUT:
-      return { ...state, pseudoIsInvalid: false };
-    case VALIDATE_REGISTRATION_EMAIL_INPUT:
-      return { ...state, emailIsInvalid: false };
-    case VALIDATE_REGISTRATION_PASSWORD_INPUT:
-      return { ...state, passwordIsInvalid: false };
     case INVALIDATE_REGISTRATION_PSEUDO_INPUT:
-      return { ...state, pseudoIsInvalid: true };
+      return { ...state, pseudoInputIsInvalid: true };
     case INVALIDATE_REGISTRATION_EMAIL_INPUT:
-      return { ...state, emailIsInvalid: true };
+      return { ...state, emailInputIsInvalid: true };
     case INVALIDATE_REGISTRATION_PASSWORD_INPUT:
-      return { ...state, passwordIsInvalid: true };
-    case REGISTRATION_SUCCESS:
-      return { ...state, registrationSucceeded: true };
-    case REGISTRATION_FAILURE:
+      return { ...state, passwordInputIsInvalid: true };
+    case VALIDATE_REGISTRATION_PSEUDO_INPUT:
+      return { ...state, pseudoInputIsInvalid: false };
+    case VALIDATE_REGISTRATION_EMAIL_INPUT:
+      return { ...state, emailInputIsInvalid: false };
+    case VALIDATE_REGISTRATION_PASSWORD_INPUT:
+      return { ...state, passwordInputIsInvalid: false };
+    case REGISTRATION_FAILED: {
       return { ...state, registrationFailed: true };
+    }
+    case REGISTRATION_SUCCEEDED: {
+      return { ...state, registrationSucceeded: true };
+    }
+    case CLEAR_REGISTRATION_FORM: {
+      const cleared = {...initialState};
+      cleared.registrationSucceeded = state.registrationSucceeded;
+      cleared.registrationFailed = state.registrationFailed;
+      return cleared;
+    }
+    case RESET_REGISTRATION_STATE: {
+      return initialState;
+    }
     default:
       return state;
   }
 };
 
+// Export reducer
 export default reducer;

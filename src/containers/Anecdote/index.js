@@ -1,53 +1,65 @@
 // Import from libraries
 import { connect } from 'react-redux';
 
-// Import components
+// Import from app components
 import Anecdote from '../../components/Anecdote';
 
-// Import action creators
+// Import actions and action creators
 import {
   loadAnecdote,
   loadPrevAnecdote,
   loadNextAnecdote,
-  upvote,
-  downvote,
-  knew,
-  didntKnow,
-  addToFavorites,
-  removeFromFavorites,
-} from '../../actions';
+  loadIsFavorite,
+  addFavorite,
+  deleteFavorite,
+  iKnew,
+  iDidntKnow,
+  upVote,
+  downVote,
+} from '../../actions/anecdoteActions';
 
+// Link component props to state
 const mapStateToProps = (state) => ({
-  id: state.anecdotes.anecdote.id,
-  title: state.anecdotes.anecdote.title,
-  content: state.anecdotes.anecdote.content,
-  createdAt: state.anecdotes.anecdote.createdAt,
-  writer: state.anecdotes.anecdote.writer,
-  category: state.anecdotes.anecdote.category,
-  source: state.anecdotes.anecdote.source,
-  isFavorite: state.user.isFavorite,
-  isConnected: state.user.isConnected,
-  isLoading: state.app.isLoadingAnecdote,
+  id: state.anecdote.id,
+  title: state.anecdote.title,
+  createdAt: state.anecdote.createdAt,
+  content: state.anecdote.content,
+  writer: state.anecdote.writer,
+  category: state.anecdote.category,
+  source: state.anecdote.source,
+  voteCount: state.anecdote.upVoteUsers.length - state.anecdote.downVoteUsers.length,
+  iKnewCount: state.anecdote.knownUsers.length,
+  iDidntKnowCount: state.anecdote.unknownUsers.length,
+  isFavorite: state.anecdote.isFavorite,
+  loadingAnecdote: state.anecdote.loadingAnecdote,
+  loadAnecdoteFailed: state.anecdote.loadAnecdoteFailed,
+  anecdoteLoaded: state.anecdote.anecdoteLoaded,
+  loadingIsFavorite: state.anecdote.loadingIsFavorite,
+  loadIsFavoriteFailed: state.anecdote.loadIsFavoriteFailed,
+  isFavoriteLoaded: state.anecdote.isFavoriteLoaded,
+  isConnected: state.auth.isConnected,
 });
 
+// Link component props to actions
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  initialize: (anecdoteId, userId) => {
-    dispatch(loadAnecdote(anecdoteId));
-  },
-  prevAnecdote: (anecdoteId) => dispatch(loadPrevAnecdote(anecdoteId)),
-  nextAnecdote: (anecdoteId) => dispatch(loadNextAnecdote(anecdoteId)),
-  upvote: () => dispatch(upvote()),
-  downvote: () => dispatch(downvote()),
-  knew: () => dispatch(knew()),
-  didntKnow: () => dispatch(didntKnow()),
-  toggleIsFavorite: () => {
-    if (ownProps.isFavorite) {
-      dispatch(removeFromFavorites());
+  loadAnecdote: (context, anecdoteId) => dispatch(loadAnecdote(context, anecdoteId)),
+  loadIsFavorite: (anecdoteId) => dispatch(loadIsFavorite(anecdoteId)),
+  prevAnecdote: (anecdoteId) => dispatch(loadPrevAnecdote(ownProps.context, anecdoteId)),
+  nextAnecdote: (anecdoteId) => dispatch(loadNextAnecdote(ownProps.context, anecdoteId)),
+  upVote: (context) => dispatch(upVote(context)),
+  downVote: (context) => dispatch(downVote(context)),
+  iKnew: (context) => dispatch(iKnew(context)),
+  iDidntKnow: (context) => dispatch(iDidntKnow(context)),
+  toggleIsFavorite: (isFavorite) => {
+    console.log(isFavorite);
+    if (!isFavorite) {
+      dispatch(addFavorite());
     }
     else {
-      dispatch(addToFavorites());
+      dispatch(deleteFavorite());
     }
   },
 });
 
+// Export container
 export default connect(mapStateToProps, mapDispatchToProps)(Anecdote);

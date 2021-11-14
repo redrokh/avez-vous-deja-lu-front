@@ -12,15 +12,17 @@ import './anecdotes.scss';
 const Anecdotes = ({
   title,
   anecdotes,
-  initialize,
-  anecdoteGroup,
   slug,
-  isLoading,
+  loadData,
+  loadingData,
+  loadDataFailed,
+  dataLoaded,
+  anecdoteGroup,
 }) => {
   const context = useLocation().pathname;
   useEffect(() => {
-    initialize(anecdoteGroup, slug);
-  }, []);
+    loadData(anecdoteGroup, slug);
+  }, [context]);
 
   return (
     <section className="anecdotes">
@@ -44,6 +46,7 @@ Anecdotes.defaultProps = {
 };
 
 Anecdotes.propTypes = {
+  title: PropTypes.string.isRequired,
   anecdotes: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -58,10 +61,12 @@ Anecdotes.propTypes = {
       slug: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
-  initialize: PropTypes.func.isRequired,
+  loadData: PropTypes.func.isRequired,
+  loadingData: PropTypes.bool.isRequired,
+  loadDataFailed: PropTypes.bool.isRequired,
+  dataLoaded: PropTypes.bool.isRequired,
   anecdoteGroup: PropTypes.string.isRequired,
   slug: PropTypes.string,
-  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Anecdotes;

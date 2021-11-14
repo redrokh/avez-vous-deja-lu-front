@@ -1,17 +1,54 @@
+// Import axios preconfigured object
 import API from '../utils/api';
+
+// Import actions and action creators
 import {
   LOAD_CATEGORIES,
+  LOAD_CATEGORY_NAME,
+  loadingCategories,
   setCategories,
-} from '../actions';
+  loadCategoriesFailed,
+  categoriesLoaded,
+  loadingCategoryName,
+  loadCategoryNameFailed,
+  categoryNameLoaded,
+} from '../actions/categoryActions';
 
-const categoriesMiddleware = (store) => (next) => (action) => {
+// Trigger treatment according to action type
+const middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOAD_CATEGORIES: {
-      API.get('category')
+      store.dispatch(loadingCategories());
+      API.get(
+        'category',
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
         .then((response) => {
           store.dispatch(setCategories(response.data));
+          store.dispatch(categoriesLoaded());
         })
-        .catch((error) => console.log(error));
+        .catch(() => store.dispatch(loadCategoriesFailed()))
+      break;
+    }
+    case LOAD_CATEGORY_NAME: {
+      store.dispatch(loadingCategoryName());
+      API.get(
+        'category',
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdotesTitle(response.data.name));
+          store.dispatch(categoryNameLoaded());
+        })
+        .catch(() => store.dispatch(loadCategoryNameFailed()))
       break;
     }
     default:
@@ -19,4 +56,5 @@ const categoriesMiddleware = (store) => (next) => (action) => {
   next(action);
 };
 
-export default categoriesMiddleware;
+// Export middleware
+export default middleware;
