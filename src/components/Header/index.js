@@ -1,55 +1,43 @@
 // Import from libraries
-import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 import classNames from 'classnames';
 
-// Import components
-import AccessNav from '../AccessNav';
-import Burger from '../Burger';
-import ContentNav from '../ContentNav';
-import MobileNav from '../MobileNav';
+// Import from app components
+import AccessNav from '../../containers/AccessNav';
+import Burger from '../../containers/Burger';
+import ContentNav from '../../containers/ContentNav';
+import MobileNav from '../../containers/MobileNav';
 
 // Import styles
 import './header.scss';
 
+// Component
 const Header = ({
-  contentMenus,
-  isConnected,
-  isOpened,
-  toggleMenu,
-  headerColor,
-  logOut,
-  reconnectionAttempt,
+  burgerIsOpened,
+  headerBgColor,
 }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) {
-      reconnectionAttempt();
-    }
-  }, []);
-
   return (
     <header
-      className={classNames('header', { 'header--mobile': isMobile })}
-      style={{ backgroundColor: headerColor }}
+      className={classNames('Header', { 'Header--mobile': isMobile })}
+      style={{ backgroundColor: headerBgColor }}
     >
       <nav>
-        <div className="header__top">
-          <NavLink className="header__title" to="/">Avez-vous déjà lu..?</NavLink>
-          { !isMobile && <AccessNav isConnected={isConnected} logOut={logOut} /> }
-          { isMobile && <Burger isOpened={isOpened} toggleOpen={toggleMenu} />}
+        <div className="Header__top">
+          <NavLink className="Header__title" to="/">Avez-vous déjà lu..?</NavLink>
+          { !isMobile && <AccessNav /> }
+          { isMobile && <Burger />}
         </div>
 
-        <div className="header__bottom">
-          { !isMobile && <ContentNav menus={contentMenus} /> }
+        <div className="Header__bottom">
+          { !isMobile && <ContentNav /> }
           {
             isMobile
-            && isOpened
-            && <MobileNav contentMenus={contentMenus} isConnected={isConnected} logOut={logOut} />
+            && burgerIsOpened
+            && <MobileNav />
           }
         </div>
       </nav>
@@ -57,16 +45,11 @@ const Header = ({
   );
 };
 
+// Props validation
 Header.propTypes = {
-  contentMenus: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    route: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  })).isRequired,
-  isConnected: PropTypes.bool.isRequired,
-  isOpened: PropTypes.bool.isRequired,
-  toggleMenu: PropTypes.func.isRequired,
-  headerColor: PropTypes.string.isRequired,
+  burgerIsOpened: PropTypes.bool.isRequired,
+  headerBgColor: PropTypes.string.isRequired,
 };
 
+// Export component
 export default Header;

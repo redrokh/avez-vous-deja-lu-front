@@ -1,35 +1,53 @@
 // Import from libraries
 import { connect } from 'react-redux';
 
-// Import components
+// Import from app components
 import Anecdotes from '../../components/Anecdotes';
 
-// Import actions
-import { loadAnecdotes, loadAnecdotesByCategory, loadBests } from '../../actions';
+// Import actions and action creators
+import {
+  loadAnecdotes,
+  loadBestAnecdotes,
+  loadAnecdotesOfCategory,
+  setAnecdotesTitle,
+} from '../../actions/anecdoteActions';
 
+import {
+  loadCategoryName,
+} from '../../actions/categoryActions';
+
+// Link component props to state
 const mapStateToProps = (state) => ({
-  anecdotes: state.anecdotes.anecdotes,
-  isLoading: state.app.isLoadingAnecdotes,
+  title: state.anecdotes.title,
+  anecdotes: state.anecdotes.list,
+  loadingData: state.anecdotes.loadingData,
+  loadDataFailed: state.anecdotes.loadDataFailed,
+  dataLoaded: state.anecdotes.dataLoaded,
 });
 
+// Link component props to actions
 const mapDispatchToProps = (dispatch) => ({
-  initialize: (context, slug) => {
+  loadData: (context, slug) => {
     switch (context) {
       case 'anecdotes':
+        dispatch(setAnecdotesTitle('Toutes nos anecdotes'));
         dispatch(loadAnecdotes());
         break;
       case 'bests':
-        dispatch(loadBests());
+        console.log(context);
+        dispatch(setAnecdotesTitle('Découvrez nos meilleures anecdotes'));
+        dispatch(loadBestAnecdotes());
         break;
       case 'categories':
-        console.log('...');
-        dispatch(loadAnecdotesByCategory(slug));
+        dispatch(loadCategoryName(slug));
+        dispatch(loadAnecdotesOfCategory(slug));
+        dispatch(loadCategoryName(slug));
         break;
       default:
         break;
     }
-    dispatch(loadAnecdotes());
-  },
+  }
 });
 
+// Export container
 export default connect(mapStateToProps, mapDispatchToProps)(Anecdotes);

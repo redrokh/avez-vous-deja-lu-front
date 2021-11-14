@@ -6,9 +6,15 @@ import { useHistory } from 'react-router-dom';
 // import styles
 import './categories.scss';
 
-const Categories = ({ categories, initialize }) => {
+const Categories = ({
+  categories,
+  loadData,
+  loadingData,
+  loadDataFailed,
+  dataLoaded,
+}) => {
   useEffect(() => {
-    initialize();
+    loadData();
   }, []);
   const history = useHistory();
 
@@ -42,6 +48,9 @@ Categories.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
-  initialize: PropTypes.func.isRequired,
+  loadData: PropTypes.func.isRequired,
+  loadingData: PropTypes.bool.isRequired,
+  loadDataFailed: PropTypes.bool.isRequired,
+  dataLoaded: PropTypes.bool.isRequired,
 };
 export default Categories;

@@ -6,7 +6,7 @@
  * @returns {String} hex color
  */
 
-export const rgbToHex = (r, g, b) => {
+ export const rgbToHex = (r, g, b) => {
   // Convert rgb components to hex values (string)
   let rHex = r.toString(16);
   let gHex = g.toString(16);

@@ -1,62 +1,56 @@
+// Import actions
 import {
-  SET_LATEST_ANECDOTES,
-  SET_BEST_ANECDOTES,
   SET_ANECDOTES,
-  SET_ANECDOTE,
-  SET_LATEST_INDEX,
-  SET_BEST_INDEX,
-  SET_FAVORITES,
-} from '../actions';
+  LOADING_ANECDOTES,
+  LOAD_ANECDOTES_FAILED,
+  ANECDOTES_LOADED,
+  SET_ANECDOTES_TITLE,
+} from '../actions/anecdoteActions';
 
+// Define initial state
 const initialState = {
-  bests: [],
-  bestIndex: 0,
-  bestsTitle: 'Nos meilleures anecdotes',
-  bestsContext: '/nos-meilleures-anecdotes',
-  latests: [],
-  latestIndex: 0,
-  latestsTitle: 'Nos dernières anecdotes',
-  latestsContext: '/nos-dernieres-anecdotes',
-  latestsLoaded: false,
-  bestsLoaded: false,
-  anecdotesLoaded: false,
-  anecdotes: [],
-  anecdotesContext: '/anecdotes',
-  anecdote: {
-    id: 0,
-    title: '',
-    content: '',
-    writer: {
-      id: 0,
-      pseudo: '',
-    },
-    category: [],
-    source: '',
-    createdAt: '',
-  },
-  favorites: [],
+  title: '',
+  list: [],
+  loadingData: false,
+  loadDataFailed: false,
+  dataLoaded: false,
 };
 
+// Set new state based on action dispatched
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_LATEST_ANECDOTES:
-      return { ...state, latests: action.anecdotes, latestsLoaded: true };
-    case SET_BEST_ANECDOTES:
-      return { ...state, bests: action.anecdotes, bestsLoaded: true };
     case SET_ANECDOTES:
-      return { ...state, anecdotes: action.anecdotes };
-    case SET_ANECDOTE: {
-      return { ...state, anecdote: action.anecdote };
-    }
-    case SET_LATEST_INDEX:
-      return { ...state, latestIndex: action.newIndex };
-    case SET_BEST_INDEX:
-      return { ...state, bestIndex: action.newIndex };
-    case SET_FAVORITES:
-      return { ...state, favorites: action.favorites };
+      return { ...state, list: action.anecdotes };
+    case LOADING_ANECDOTES:
+      return {
+        ...state,
+        loadingData: true,
+        loadDataFailed: false,
+        dataLoaded: false,
+      };
+    case LOAD_ANECDOTES_FAILED:
+      return {
+        ...state,
+        loadingData: false,
+        loadDataFailed: true,
+        dataLoaded: false,
+      };
+    case ANECDOTES_LOADED:
+      return {
+        ...state,
+        loadingData: false,
+        loadDataFailed: false,
+        dataLoaded: true,
+      };
+    case SET_ANECDOTES_TITLE:
+      return {
+        ...state,
+        title: action.title,
+      };
     default:
       return state;
   }
 };
 
+// Export reducer
 export default reducer;

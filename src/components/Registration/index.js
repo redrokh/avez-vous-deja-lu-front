@@ -6,19 +6,19 @@ const Registration = ({
   pseudoInput,
   emailInput,
   passwordInput,
-  onPseudoChange,
-  onEmailChange,
-  onPasswordChange,
-  formValidation,
+  onPseudoInputChange,
+  onEmailInputChange,
+  onPasswordInputChange,
+  pseudoInputIsInvalid,
+  emailInputIsInvalid,
+  passwordInputIsInvalid,
+  pseudoInputError,
+  emailInputError,
+  passwordInputError,
   registrationError,
-  pseudoError,
-  emailError,
-  passwordError,
-  pseudoIsInvalid,
-  emailIsInvalid,
-  passwordIsInvalid,
   registrationFailed,
   registrationSucceeded,
+  formValidation,
 }) => {
   const history = useHistory();
 
@@ -31,6 +31,7 @@ const Registration = ({
       </section>
     );
   }
+
   return (
     <form
       className="Registration"
@@ -54,7 +55,7 @@ const Registration = ({
           className="Registration__field-input"
           id="pseudoInput"
           value={pseudoInput}
-          onChange={(e) => onPseudoChange(e.target.value)}
+          onChange={(e) => onPseudoInputChange(e.target.value)}
           type="text"
           label="Pseudo"
           placeholder="Pseudo"
@@ -63,9 +64,9 @@ const Registration = ({
         />
 
         {
-          pseudoIsInvalid && (
+          pseudoInputIsInvalid && (
             <span className="Registration__field-error">
-              { pseudoError }
+              { pseudoInputError }
             </span>
           )
         }
@@ -76,7 +77,7 @@ const Registration = ({
           className="Registration__field-input"
           id="emailInput"
           value={emailInput}
-          onChange={(e) => onEmailChange(e.target.value)}
+          onChange={(e) => onEmailInputChange(e.target.value)}
           type="text"
           label="Nom d'utilisateur"
           placeholder="Adresse email"
@@ -85,9 +86,9 @@ const Registration = ({
         />
 
         {
-          emailIsInvalid && (
+          emailInputIsInvalid && (
             <span className="Registration__field-error">
-              { emailError }
+              { emailInputError }
             </span>
           )
         }
@@ -99,19 +100,20 @@ const Registration = ({
           id="passwordInput"
           value={passwordInput}
           onChange={(e) => {
-            onPasswordChange(e.target.value);
+            onPasswordInputChange(e.target.value);
           }}
-          type="text"
+          type="password"
           label="Mot de passe"
           placeholder="Mot de passe"
           name="password"
+          autoComplete="off"
           required
         />
 
         {
-          passwordIsInvalid && (
+          passwordInputIsInvalid && (
             <span className="Registration__field-error">
-              { passwordError }
+              { passwordInputError }
             </span>
           )
         }

@@ -5,27 +5,30 @@ import classNames from 'classnames';
 // Import styles
 import './burger.scss';
 
-const Burger = ({ isOpened, toggleOpen }) => {
-  const cssClass = classNames('burger', {
-    'burger--opened': isOpened,
+const Burger = ({ isOpened, toggleIsOpened }) => {
+  const cssClass = classNames('Burger', {
+    'Burger--opened': isOpened,
   });
+
   return (
     <div
       className={cssClass}
       onClick={() => {
-        toggleOpen(!isOpened);
+        toggleIsOpened();
       }}
     >
-      <div className="burger__slice" />
-      <div className="burger__slice" />
-      <div className="burger__slice" />
+      <div className="Burger__slice" />
+      <div className="Burger__slice" />
+      <div className="Burger__slice" />
     </div>
   );
 };
 
+// Props validation
 Burger.propTypes = {
   isOpened: PropTypes.bool.isRequired,
-  toggleOpen: PropTypes.func.isRequired,
+  toggleIsOpened: PropTypes.func.isRequired,
 };
 
+// Export component
 export default Burger;

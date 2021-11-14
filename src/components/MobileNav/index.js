@@ -3,27 +3,29 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { NavLink, useLocation } from 'react-router-dom';
 
-// Import components
-import AccessNav from '../AccessNav';
+// Import from app components
+import AccessNav from '../../containers/AccessNav';
 
 // Import styles
 import './mobilenav.scss';
 
-const MobileNav = ({ contentMenus, isConnected, logOut }) => {
+// Component
+const MobileNav = ({ menus }) => {
   const location = useLocation();
-  return (
-    <div className="mobile-nav">
-      <AccessNav isConnected={isConnected} logOut={logOut} />
 
-      <ul className="mobile-nav__links">
+  return (
+    <div className="MobileNav">
+      <AccessNav />
+
+      <ul className="MobileNav__links">
         {
-          contentMenus.map(({ id, route, title }) => (
+          menus.map(({ id, route, title }) => (
             <li
               key={id}
               className={
                 classNames(
-                  'mobile-nav__item',
-                  { 'mobile-nav__item--selected': location.pathname === route },
+                  'MobileNav__item',
+                  { 'MobileNav__item--selected': location.pathname === route },
                 )
               }
             >
@@ -36,13 +38,14 @@ const MobileNav = ({ contentMenus, isConnected, logOut }) => {
   );
 };
 
+// Props validation
 MobileNav.propTypes = {
-  contentMenus: PropTypes.arrayOf(PropTypes.shape({
+  menus: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     route: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
-  isConnected: PropTypes.bool.isRequired,
 };
 
+// Export component
 export default MobileNav;

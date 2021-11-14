@@ -1,10 +1,10 @@
 @use 'src/styles/vars';
 
-.footer {
+.Footer {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: vars.$gutterMd;
+  padding: 2em;
   margin: 0em;
   background-color: black;
 
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    gap: vars.$gutterSm;
+    gap: 1em;
     text-align: center;
     width: 100%;
   }

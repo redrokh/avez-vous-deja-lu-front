@@ -8,35 +8,35 @@
   width: 80%;
 
   &__title {
-    font-size: vars.$fsH2Lg;
+    font-size: 36px;
     flex: 0 0 100%;
     text-align: center;
-    margin-bottom: vars.$gutterLg;
+    margin-bottom: 3em;
   }
 
   &__menu {
-    padding-top: vars.$gutterSm;
+    padding-top: 1em;
     width: 20%;
 
     .MyAccount__menu-list {
 
       .MyAccount__menu-item {
-        margin-bottom: vars.$gutterSm;
+        margin-bottom: 1em;
       }
     }
   }
 
   &__content {
-    padding-left: vars.$gutterLg;
+    padding-left: 3em;
     width: 80%;
     .MyAccount__content-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: vars.$gutterLg;
+      margin-bottom: 3em;
 
       .MyAccount__content-title {
-        font-size: vars.$fsH3Lg;
+        font-size: 28px;
       }
 
       .MyAccount__content-select {
@@ -52,14 +52,14 @@
   &__page {
     width: 80%;
     max-width: 100%;
-    margin-left: vars.$gutterSm;
-    padding: vars.$gutterSm;
+    margin-left: 1em;
+    padding: 1em;
     position: relative;
 
     .MyAccount__select {
       position: absolute;
-      top: vars.$gutterSm;
-      right: vars.$gutterLg;
+      top: 1em;
+      right: 3em;
     }
   }
 }

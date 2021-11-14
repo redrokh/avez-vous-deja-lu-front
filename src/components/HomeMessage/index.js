@@ -1,11 +1,12 @@
 // Import styles
 import './homemessage.scss';
 
+// Component
 const HomeMessage = () => (
-  <section className="home-message">
-    <h1 className="home-message__title">Avez-vous déjà lu</h1>
+  <section className="HomeMessage">
+    <h1 className="HomeMessage__title">Avez-vous déjà lu</h1>
 
-    <p className="home-message__content">
+    <p className="HomeMessage__content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
       Sed eu varius ligula. Quisque id sagittis metus. Nulla facilisi.
       Phasellus scelerisque euismod ligula, ac euismod nisl aliquet nec. <br />
@@ -17,4 +18,5 @@ const HomeMessage = () => (
   </section>
 );
 
+// Export component
 export default HomeMessage;

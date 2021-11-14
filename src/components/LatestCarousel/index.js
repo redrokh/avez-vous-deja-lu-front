@@ -14,35 +14,43 @@ const LatestCarousel = ({
   title,
   anecdotes,
   currentIndex,
-  modifyIndex,
-  initialize,
+  setCurrentIndex,
+  loadData,
+  loadingData,
+  dataLoaded,
   context,
-  isLoading,
 }) => {
   useEffect(() => {
-    initialize();
+    loadData();
   }, []);
 
-  if (isLoading) {
-    return (
-      <></>
-    );
+  if (!dataLoaded) {
+    if (loadingData) {
+      return (
+        <></>
+      );
+    }
+    else {
+      return (
+        <></>
+      );
+    }
   }
 
   return (
     <section
-      className="latest-carousel"
+      className="LatestCarousel"
     >
-      <h2 className="latest-carousel__title">{title}</h2>
+      <h2 className="LatestCarousel__title">{title}</h2>
 
-      <div className="latest-carousel__prev">
+      <div className="LatestCarousel__prev">
         <ChevronLeft
           onClick={() => {
             if (currentIndex === 0) {
-              modifyIndex(anecdotes.length - 1);
+              setCurrentIndex(anecdotes.length - 1);
             }
             else {
-              modifyIndex(currentIndex - 1);
+              setCurrentIndex(currentIndex - 1);
             }
           }}
         />
@@ -50,35 +58,35 @@ const LatestCarousel = ({
 
       <div>
         <AnecdoteCard
-          className="latest-carousel__anecdote"
+          className="LatestCarousel__anecdote"
           {...anecdotes[currentIndex]}
           context={context}
         />
       </div>
 
-      <div className="latest-carousel__next">
+      <div className="LatestCarousel__next">
         <ChevronRight
           onClick={() => {
-            modifyIndex((currentIndex + 1) % anecdotes.length);
+            setCurrentIndex((currentIndex + 1) % anecdotes.length);
           }}
         />
       </div>
 
-      <div className="latest-carousel__shortcuts">
+      <div className="LatestCarousel__shortcuts">
         {
           anecdotes.map((item, index) => (
             <div
               key={item.id}
               className={classNames(
-                'latest-carousel__shortcut-ext',
+                'LatestCarousel__shortcut-ext',
                 {
-                  'latest-carousel__shortcut-ext--selected': currentIndex === index,
+                  'LatestCarousel__shortcut-ext--selected': currentIndex === index,
                 },
               )}
-              onClick={() => modifyIndex(index)}
+              onClick={() => setCurrentIndex(index)}
             >
               <div
-                className="latest-carousel__shortcut-int"
+                className="LatestCarousel__shortcut-int"
               />
             </div>
           ))
@@ -105,10 +113,11 @@ LatestCarousel.propTypes = {
     })).isRequired,
   })).isRequired,
   currentIndex: PropTypes.number.isRequired,
-  modifyIndex: PropTypes.func.isRequired,
-  initialize: PropTypes.func.isRequired,
+  setCurrentIndex: PropTypes.func.isRequired,
+  loadData: PropTypes.func.isRequired,
   context: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  loadingData: PropTypes.bool.isRequired,
+  dataLoaded: PropTypes.bool.isRequired,
 };
 
 export default LatestCarousel;

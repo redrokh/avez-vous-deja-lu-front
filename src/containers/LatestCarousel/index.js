@@ -1,25 +1,27 @@
 // Import from libraries
 import { connect } from 'react-redux';
 
-// Import components
+// Import from app components
 import LatestCarousel from '../../components/LatestCarousel';
 
-// Import actions
-import { setLatestIndex, loadLatests } from '../../actions';
+// Import actions and action creators
+import { loadLatests, setLatestsIndex } from '../../actions/latestActions';
 
+// Link component props to state
 const mapStateToProps = (state) => ({
-  title: state.anecdotes.latestsTitle,
-  anecdotes: state.anecdotes.latests,
-  currentIndex: state.anecdotes.latestIndex,
-  context: state.anecdotes.latestsContext,
-  isLoading: state.app.isLoadingLatests,
+  title: state.latests.title,
+  anecdotes: state.latests.anecdotes,
+  currentIndex: state.latests.currentIndex,
+  loadingData: state.latests.loadingData,
+  dataLoaded: state.latests.dataLoaded,
+  context: state.latests.context,
 });
 
+// Link component props to actions
 const mapDispatchToProps = (dispatch) => ({
-  modifyIndex: (newIndex) => dispatch(setLatestIndex(newIndex)),
-  initialize: () => {
-    dispatch(loadLatests());
-  },
+  loadData: () => dispatch(loadLatests()),
+  setCurrentIndex: (index) => dispatch(setLatestsIndex(index)),
 });
 
+// Export container
 export default connect(mapStateToProps, mapDispatchToProps)(LatestCarousel);

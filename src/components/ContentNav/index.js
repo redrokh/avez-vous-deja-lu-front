@@ -6,19 +6,21 @@ import classNames from 'classnames';
 // Import styles
 import './contentnav.scss';
 
+// Component
 const ContentNav = ({ menus }) => {
   const location = useLocation();
+
   return (
-    <ul className="content-nav">
+    <ul className="ContentNav">
       {
         menus.map((menu) => (
           <li
             key={menu.id}
             className={
               classNames(
-                'content-nav__item',
+                'ContentNav__item',
                 {
-                  'content-nav__item--selected': location.pathname === menu.route,
+                  'ContentNav__item--selected': location.pathname === menu.route,
                 },
               )
             }
@@ -31,6 +33,7 @@ const ContentNav = ({ menus }) => {
   );
 };
 
+// Props validation
 ContentNav.propTypes = {
   menus: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -39,4 +42,5 @@ ContentNav.propTypes = {
   })).isRequired,
 };
 
+// Export component
 export default ContentNav;

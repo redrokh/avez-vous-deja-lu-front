@@ -18,43 +18,80 @@ const Anecdote = ({
   category,
   source,
   isFavorite,
+  loadIsFavorite,
+  loadingIsFavorite,
+  loadIsFavoriteFailed,
+  isFavoriteLoaded,
+  toggleIsFavorite,
+  voteCount,
+  iKnewCount,
+  iDidntKnowCount,
+  upVote,
+  upVoting,
+  upVoteFailed,
+  upVoteSucceeded,
+  downVote,
+  downVoting,
+  downVoteFailed,
+  downVoteSucceeded,
+  iKnew,
+  iKnewPending,
+  iKnewFailed,
+  iKnewSucceeded,
+  iDidntKnow,
+  iDidntKnowPending,
+  iDidntKnowFailed,
+  iDidntKnowSucceeded,
   nextAnecdote,
   prevAnecdote,
-  upvote,
-  downvote,
-  toggleIsFavorite,
-  knew,
-  didntKnow,
-  initialize,
+  loadAnecdote,
+  loadingAnecdote,
+  loadAnecdoteFailed,
+  anecdoteLoaded,
+  context,
   isConnected,
-  isLoading,
 }) => {
   const location = useLocation();
   const history = useHistory();
   const baseUrl = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
   const { anecdoteId } = useParams();
+
   useEffect(() => {
-    initialize(parseInt(anecdoteId, 10));
+    if (!isConnected && context === 'anecdotes') {
+      history.push('/connexion');
+    }
+  }, [isConnected]);
+
+  useEffect(() => {
+    loadAnecdote(context, parseInt(anecdoteId, 10));
+    if (isConnected) {
+      loadIsFavorite(parseInt(anecdoteId, 10));
+    }
   }, []);
 
   useEffect(() => {
-    if (anecdoteId !== id && isLoading) {
+    if (anecdoteId !== id && loadingAnecdote) {
       history.push(`${baseUrl}/${id}`);
     }
   }, [id]);
 
-  if (isLoading) {
+  if (loadingAnecdote || loadingIsFavorite) {
     return <></>;
   }
-  if (!isConnected) {
-    history.push('/connexion');
+
+  if (
+    loadAnecdoteFailed
+    || loadIsFavoriteFailed
+    || !anecdoteLoaded
+  ) {
+    return <></>
   }
 
   return (
-    <article className="anecdote">
-      <h2 className="anecdote__title">{title}</h2>
+    <article className="Anecdote">
+      <h2 className="Anecdote__title">{title}</h2>
 
-      <div className="anecdote__categories">
+      <div className="Anecdote__categories">
         {
           category.map((item) => (
             <Tag key={item.id} {...item} />
@@ -62,47 +99,88 @@ const Anecdote = ({
         }
       </div>
 
-      <div className="anecdote__top-part">
-        <div className="anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
-        { isConnected && <Star stroke="yellow" fill={isFavorite ? 'yellow' : 'none'} onClick={toggleIsFavorite} /> }
+      <div className="Anecdote__top-part">
+        <div className="Anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
+        <Star
+          stroke="yellow"
+          fill={isFavorite ? 'yellow' : 'none'}
+          onClick={() => {
+            if (isConnected) {
+              toggleIsFavorite(isFavorite);
+            }
+            else {
+              alert('Vous devez être connecté pour effectuer cette action');
+            }
+          }}
+        />
       </div>
 
-      <div className="anecdote__middle-part">
-        {
-          isConnected && (
-            <div className="anecdote__voter">
-              <ArrowUpCircle className="anecdote__upvote" onClick={() => upvote(writer.id, id)} />
-              <div className="anecdote__vote-count">Vote</div>
-              <ArrowDownCircle className="anecdote__downvote" onClick={() => downvote(writer.id, id)} />
-            </div>
-          )
-        }
+      <div className="Anecdote__middle-part">
+        <div className="Anecdote__voter">
+          <ArrowUpCircle
+            className="Anecdote__upvote"
+            onClick={() => {
+              if (isConnected) {
+                upVote(context);
+              }
+              else {
+                alert('Vous devez être connecté pour effectuer cette action');
+              }
+            }}
+          />
+          <div className="Anecdote__vote-count">{voteCount}</div>
+          <ArrowDownCircle
+            className="Anecdote__downvote"
+            onClick={() => {
+              if (isConnected) {
+                downVote(context);
+              }
+              else {
+                alert('Vous devez être connecté pour effectuer cette action');
+              }
+            }}
+          />
+        </div>
 
-        <p className="anecdote__content">{content}</p>
+        <p className="Anecdote__content">{content}</p>
       </div>
 
-      <div className="anecdote__info">
+      <div className="Anecdote__info">
         <button
-          className="anecdote__knew"
-          onClick={knew}
+          className="Anecdote__knew"
+          onClick={() => {
+            if (isConnected) {
+              iKnew(context)
+            }
+            else {
+              alert('Vous devez être connecté pour effectuer cette action');
+            }
+          }}
           type="button"
         >
-          Je connaissais
+          Je connaissais ({iKnewCount})
         </button>
 
         <button
-          className="anecdote__didnt-know"
-          onClick={didntKnow}
+          className="Anecdote__didnt-know"
+          onClick={() => {
+            if (isConnected) {
+              iDidntKnow(context)
+            }
+            else {
+              alert('Vous devez être connecté pour effectuer cette action');
+            }
+          }}
           type="button"
         >
-          Je ne connaissais pas
+          Je ne connaissais pas ({iDidntKnowCount})
         </button>
       </div>
 
-      <aside className="anecdote__sources">
-        <h3 className="anecdote__sources-title">Source :</h3>
+      <aside className="Anecdote__sources">
+        <h3 className="Anecdote__sources-title">Source :</h3>
         <a
-          className="anecdote__source-link"
+          className="Anecdote__source-link"
           target="_blank"
           href={source}
           rel="noreferrer"
@@ -111,16 +189,16 @@ const Anecdote = ({
         </a>
       </aside>
 
-      <div className="anecdote__nav">
+      <div className="Anecdote__nav">
         <button
-          className="anecdote__nav-link"
+          className="Anecdote__nav-link"
           onClick={() => prevAnecdote(id)}
           type="button"
         >
           Précédent
         </button>
         <button
-          className="anecdote__nav-link"
+          className="Anecdote__nav-link"
           onClick={() => nextAnecdote(id)}
           type="button"
         >
@@ -149,14 +227,19 @@ Anecdote.propTypes = {
   })).isRequired,
   prevAnecdote: PropTypes.func.isRequired,
   nextAnecdote: PropTypes.func.isRequired,
-  upvote: PropTypes.func.isRequired,
-  downvote: PropTypes.func.isRequired,
-  knew: PropTypes.func.isRequired,
-  didntKnow: PropTypes.func.isRequired,
-  initialize: PropTypes.func.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired,
+  iKnew: PropTypes.func.isRequired,
+  iDidntKnow: PropTypes.func.isRequired,
+  loadAnecdote: PropTypes.func.isRequired,
+  loadingAnecdote: PropTypes.bool.isRequired,
+  loadAnecdoteFailed: PropTypes.bool.isRequired,
+  anecdoteLoaded: PropTypes.bool.isRequired,
+  loadIsFavorite: PropTypes.func.isRequired,
+  loadingIsFavorite: PropTypes.bool.isRequired,
+  loadIsFavoriteFailed: PropTypes.bool.isRequired,
+  isFavoriteLoaded: PropTypes.bool.isRequired,
   toggleIsFavorite: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isConnected: PropTypes.bool.isRequired,
 };
 
 export default Anecdote;

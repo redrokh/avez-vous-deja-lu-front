@@ -1,78 +1,86 @@
 // Actions
-export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
-export const VALIDATE_REGISTRATION_FORM = 'VALIDATE_REGISTRATION_FORM';
-export const VALIDATE_REGISTRATION_PSEUDO_INPUT = 'VALIDATE_REGISTRATION_PSEUDO_INPUT';
-export const VALIDATE_REGISTRATION_EMAIL_INPUT = 'VALIDATE_REGISTRATION_EMAIL_INPUT';
-export const VALIDATE_REGISTRATION_PASSWORD_INPUT = 'VALIDATE_REGISTRATION_PASSWORD_INPUT';
+export const SET_REGISTRATION_PSEUDO_INPUT = 'SET_REGISTRATION_PSEUDO_INPUT';
+export const SET_REGISTRATION_EMAIL_INPUT = 'SET_REGISTRATION_EMAIL_INPUT';
+export const SET_REGISTRATION_PASSWORD_INPUT = 'SET_REGISTRATION_PASSWORD_INPUT';
+
+export const REGISTRATION_FORM_VALIDATION = 'REGISTRATION_FORM_VALIDATION';
+
 export const INVALIDATE_REGISTRATION_PSEUDO_INPUT = 'INVALIDATE_REGISTRATION_PSEUDO_INPUT';
 export const INVALIDATE_REGISTRATION_EMAIL_INPUT = 'INVALIDATE_REGISTRATION_EMAIL_INPUT';
 export const INVALIDATE_REGISTRATION_PASSWORD_INPUT = 'INVALIDATE_REGISTRATION_PASSWORD_INPUT';
 
-export const UPDATE_REGISTRATION_PSEUDO_INPUT = 'UPDATE_REGISTRATION_PSEUDO_INPUT';
-export const UPDATE_REGISTRATION_EMAIL_INPUT = 'UPDATE_REGISTRATION_EMAIL_INPUT';
-export const UPDATE_REGISTRATION_PASSWORD_INPUT = 'UPDATE_REGISTRATION_PASSWORD_INPUT';
+export const VALIDATE_REGISTRATION_PSEUDO_INPUT ='VALIDATE_REGISTRATION_PSEUDO_INPUT';
+export const VALIDATE_REGISTRATION_EMAIL_INPUT ='VALIDATE_REGISTRATION_EMAIL_INPUT';
+export const VALIDATE_REGISTRATION_PASSWORD_INPUT = 'VALIDATE_REGISTRATION_PASSWORD_INPUT';
 
-export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
-export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
+export const REGISTER = 'REGISTER';
+
+export const REGISTRATION_FAILED = 'REGISTRATION_FAILED';
+export const REGISTRATION_SUCCEEDED = 'REGISTRATION_SUCCEEDED';
+
+export const CLEAR_REGISTRATION_FORM = 'CLEAR_REGISTRATION_FORM';
+export const RESET_REGISTRATION_STATE = 'RESET_REGISTRATION_STATE';
 
 // Action creators
-export const registrationRequest = () => ({
-  type: REGISTRATION_REQUEST,
-});
-
-export const validateRegistrationForm = () => ({
-  type: VALIDATE_REGISTRATION_FORM,
-});
-
-export const validateRegistrationPseudoInput = (context) => ({
-  type: VALIDATE_REGISTRATION_PSEUDO_INPUT,
-  context,
-});
-
-export const validateRegistrationEmailInput = (context) => ({
-  context,
-  type: VALIDATE_REGISTRATION_EMAIL_INPUT,
-});
-
-export const validateRegistrationPasswordInput = (context) => ({
-  type: VALIDATE_REGISTRATION_PASSWORD_INPUT,
-  context,
-});
-
-export const invalidateRegistrationPseudoInput = (context) => ({
-  type: INVALIDATE_REGISTRATION_PSEUDO_INPUT,
-  context,
-});
-
-export const invalidateRegistrationEmailInput = (context) => ({
-  type: INVALIDATE_REGISTRATION_EMAIL_INPUT,
-  context,
-});
-
-export const invalidateRegistrationPasswordInput = (context) => ({
-  type: INVALIDATE_REGISTRATION_PASSWORD_INPUT,
-  context,
-});
-
-export const updateRegistrationPseudoInput = (pseudo) => ({
-  type: UPDATE_REGISTRATION_PSEUDO_INPUT,
+export const setRegistrationPseudoInput = (pseudo) => ({
+  type: SET_REGISTRATION_PSEUDO_INPUT,
   pseudo,
 });
 
-export const updateRegistrationEmailInput = (email) => ({
-  type: UPDATE_REGISTRATION_EMAIL_INPUT,
+export const setRegistrationEmailInput = (email) => ({
+  type: SET_REGISTRATION_EMAIL_INPUT,
   email,
 });
 
-export const updateRegistrationPasswordInput = (password) => ({
-  type: UPDATE_REGISTRATION_PASSWORD_INPUT,
+export const setRegistrationPasswordInput = (password) => ({
+  type: SET_REGISTRATION_PASSWORD_INPUT,
   password,
 });
 
-export const registrationSuccess = () => ({
-  type: REGISTRATION_SUCCESS,
+export const registrationFormValidation = () => ({
+  type: REGISTRATION_FORM_VALIDATION,
 });
 
-export const registrationFailure = () => ({
-  type: REGISTRATION_FAILURE,
+export const invalidateRegistrationPseudoInput = () => ({
+  type: INVALIDATE_REGISTRATION_PSEUDO_INPUT,
+});
+
+export const invalidateRegistrationEmailInput = () => ({
+  type: INVALIDATE_REGISTRATION_EMAIL_INPUT,
+});
+
+export const invalidateRegistrationPasswordInput = () => ({
+  type: INVALIDATE_REGISTRATION_PASSWORD_INPUT,
+});
+
+export const validateRegistrationPseudoInput = () => ({
+  type: VALIDATE_REGISTRATION_PSEUDO_INPUT,
+});
+
+export const validateRegistrationEmailInput = () => ({
+  type: VALIDATE_REGISTRATION_EMAIL_INPUT,
+});
+
+export const validateRegistrationPasswordInput = () => ({
+  type: VALIDATE_REGISTRATION_PASSWORD_INPUT,
+});
+
+export const register = () => ({
+  type: REGISTER,
+});
+
+export const registrationFailed = () => ({
+  type: REGISTRATION_FAILED,
+});
+
+export const registrationSucceeded = () => ({
+  type: REGISTRATION_SUCCEEDED,
+});
+
+export const clearRegistrationForm = () => ({
+  type: CLEAR_REGISTRATION_FORM,
+});
+
+export const resetRegistrationState = () => ({
+  type: RESET_REGISTRATION_STATE,
 });

@@ -1,8 +1,8 @@
-.burger {
+.Burger {
   position: relative;
   height: 20px;
   width: 20px;
-  .burger__slice {
+  .Burger__slice {
     position: absolute;
     width: 20px;
     height: 3px;
@@ -11,31 +11,31 @@
     background-color: white;
   }
 
-  .burger__slice:nth-child(1) {
+  .Burger__slice:nth-child(1) {
     top: 0px;
   }
 
-  .burger__slice:nth-child(2) {
+  .Burger__slice:nth-child(2) {
     top: 8px;
   }
 
-  .burger__slice:nth-child(3) {
+  .Burger__slice:nth-child(3) {
     top: 16px;
   }
 
-  &--opened .burger__slice {
+  &--opened .Burger__slice {
     height: 2px;
   }
-  &--opened .burger__slice:nth-child(1) {
+  &--opened .Burger__slice:nth-child(1) {
     transform: translate(0, 8px) rotate(45deg);
     transform-origin: center;
   }
 
-  &--opened .burger__slice:nth-child(2) {
+  &--opened .Burger__slice:nth-child(2) {
     width: 0px;
   }
 
-  &--opened .burger__slice:nth-child(3) {
+  &--opened .Burger__slice:nth-child(3) {
     transform: translate(0, -8px) rotate(-45deg);;
     transform-origin: center;
   }

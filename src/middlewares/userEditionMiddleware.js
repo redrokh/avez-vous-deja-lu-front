@@ -1,76 +1,77 @@
+// Import axios preconfigured object
 import API from '../utils/api';
+
+// Import actions and action creators
 import {
-  EDITION_PSEUDO_INPUT_VALIDATION,
-  EDITION_EMAIL_INPUT_VALIDATION,
-  EDITION_PASSWORD_INPUT_VALIDATION,
-  CHANGE_PSEUDO_REQUEST,
-  CHANGE_EMAIL_REQUEST,
-  CHANGE_PASSWORD_REQUEST,
-  CHANGE_AVATAR_REQUEST,
+  PSEUDO_INPUT_VALIDATION,
+  EMAIL_INPUT_VALIDATION,
+  PASSWORD_INPUT_VALIDATION,
+  CHANGE_PSEUDO,
+  CHANGE_EMAIL,
+  CHANGE_PASSWORD,
   CHANGE_AVATAR,
-  changePseudoRequest,
-  changeEmailRequest,
-  changePasswordRequest,
-  changeAvatarRequest,
-  invalidateEditionPseudoInput,
-  invalidateEditionEmailInput,
-  invalidateEditionPasswordInput,
-  validateEditionPseudoInput,
-  validateEditionEmailInput,
-  validateEditionPasswordInput,
+  validateUserEditionPseudoInput,
+  validateUserEditionEmailInput,
+  validateUserEditionPasswordInput,
+  invalidateUserEditionPseudoInput,
+  invalidateUserEditionEmailInput,
+  invalidateUserEditionPasswordInput,
   togglePseudoEdition,
   toggleEmailEdition,
   togglePasswordEdition,
+  changePseudo,
+  changeEmail,
+  changePassword,
+  changeAvatar,
 } from '../actions/userEditionActions';
 
-import {
-  loadUser,
-  setAvatar,
-  logOut,
-} from '../actions';
+import { loadUser } from '../actions/userActions';
 
-const userEditionMiddleware = (store) => (next) => (action) => {
+import { logOut } from '../actions/authActions';
+
+// Trigger treatment according to action type
+const middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case EDITION_PSEUDO_INPUT_VALIDATION: {
+    case PSEUDO_INPUT_VALIDATION: {
       const pseudoIsValid = store.getState().userEdition.pseudoInput.length >= 2;
       if (!pseudoIsValid) {
-        store.dispatch(invalidateEditionPseudoInput());
+        store.dispatch(invalidateUserEditionPseudoInput());
       }
       else {
-        store.dispatch(validateEditionPseudoInput());
-        store.dispatch(changePseudoRequest());
+        store.dispatch(validateUserEditionPseudoInput());
+        store.dispatch(changePseudo());
         store.dispatch(togglePseudoEdition());
       }
       break;
     }
-    case EDITION_EMAIL_INPUT_VALIDATION: {
+    case EMAIL_INPUT_VALIDATION: {
       const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       const emailIsValid = emailRegex.test(
         String(store.getState().userEdition.emailInput.toLowerCase()),
       );
       if (!emailIsValid) {
-        store.dispatch(invalidateEditionEmailInput());
+        store.dispatch(invalidateUserEditionEmailInput());
       }
       else {
-        store.dispatch(validateEditionEmailInput());
-        store.dispatch(changeEmailRequest());
+        store.dispatch(validateUserEditionEmailInput());
+        store.dispatch(changeEmail());
         store.dispatch(toggleEmailEdition());
       }
       break;
     }
-    case EDITION_PASSWORD_INPUT_VALIDATION: {
+    case PASSWORD_INPUT_VALIDATION: {
       const passwordIsValid = store.getState().userEdition.passwordInput.length >= 6;
       if (!passwordIsValid) {
-        store.dispatch(invalidateEditionPasswordInput());
+        store.dispatch(invalidateUserEditionPasswordInput());
       }
       else {
-        store.dispatch(validateEditionPasswordInput());
-        store.dispatch(changePasswordRequest());
+        store.dispatch(validateUserEditionPasswordInput());
+        store.dispatch(changePassword());
         store.dispatch(togglePasswordEdition());
       }
       break;
     }
-    case CHANGE_PSEUDO_REQUEST:
+    case CHANGE_PSEUDO:
       API.patch(
         `user/${store.getState().user.id}/edit`,
         {
@@ -78,7 +79,7 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${store.getState().auth.token}`,
           },
         },
       )
@@ -89,7 +90,7 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => console.log(error));
       break;
-    case CHANGE_EMAIL_REQUEST:
+    case CHANGE_EMAIL:
       API.patch(
         `user/${store.getState().user.id}/edit`,
         {
@@ -97,7 +98,7 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${store.getState().auth.token}`,
           },
         },
       )
@@ -108,7 +109,7 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => console.log(error));
       break;
-    case CHANGE_PASSWORD_REQUEST:
+    case CHANGE_PASSWORD:
       API.patch(
         `user/${store.getState().user.id}/edit`,
         {
@@ -116,7 +117,7 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${store.getState().user.token}`,
+            Authorization: `Bearer ${store.getState().auth.token}`,
           },
         },
       )
@@ -128,11 +129,26 @@ const userEditionMiddleware = (store) => (next) => (action) => {
         .catch((error) => console.log(error));
       break;
     case CHANGE_AVATAR:
-      store.dispatch(setAvatar(action.avatar));
+      API.patch(
+        `user/${store.getState().user.id}/edit`,
+        {
+          avatar: `${action.avatar}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        }
+      )
+        .then((response) => {
+          store.dispatch(loadUser());
+        })
+        .catch((error) => console.log(error));
       break;
     default:
   }
   next(action);
 };
 
-export default userEditionMiddleware;
+// Export middleware
+export default middleware;

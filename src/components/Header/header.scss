@@ -1,11 +1,11 @@
 @use 'src/styles/vars';
 
-.header {
+.Header {
   position: fixed;
   z-index: 10;
   width: 100%;
   background-color: black;
-  padding: vars.$gutterSm vars.$gutterSm 0;
+  padding: 1em 1em 0;
   color: white;
   border-bottom: 1px solid rgb(255, 255, 255, 0.2);
   &__top {
@@ -13,7 +13,7 @@
     justify-content: space-between;
     margin: 0em;
 
-    .header__title {
+    .Header__title {
       display: flex;
       align-items: center;
     }
@@ -25,7 +25,7 @@
   }
 }
 
-.header--mobile {
+.Header--mobile {
   position: static;
-  padding-bottom: vars.$gutterSm / 2;
+  padding-bottom: 0.5em;
 }

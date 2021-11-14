@@ -1,5 +1,6 @@
 // import from libraries
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 // import styles
 import './connection.scss';
 
@@ -8,97 +9,108 @@ const Connection = ({
   passwordInput,
   onEmailInputChange,
   onPasswordInputChange,
-  emailIsInvalid,
-  passwordIsInvalid,
-  emailError,
-  passwordError,
+  emailInputIsInvalid,
+  passwordInputIsInvalid,
+  emailInputError,
+  passwordInputError,
   connectionFailed,
+  connectionSucceeded,
   formValidation,
-}) => (
-  <form
-    className="Connection"
-    onSubmit={(e) => {
-      e.preventDefault();
-      formValidation();
-    }}
-  >
-    <h2 className="Connection__title">Se connecter</h2>
+}) => {
+  const history = useHistory();
 
-    {
-      connectionFailed && (
-        <div className="Connection__error-msg">
-          Adresse email ou mot de passe incorrect
-        </div>
-      )
+  useEffect(() => {
+    if (connectionSucceeded) {
+      history.push('/');
     }
+  }, [connectionSucceeded]);
 
-    <div className="Connection__field">
-      <input
-        className="Connection__field-input"
-        id="emailInput"
-        value={emailInput}
-        onChange={(e) => onEmailInputChange(e.target.value)}
-        type="text"
-        label="Nom d'utilisateur"
-        placeholder="Adresse email"
-        name="username"
-        required
-      />
-
-      {/* <label
-        className="Connection__field-label"
-        htmlFor="emailInput"
-      >
-        Adresse email
-      </label> */}
+  return (
+    <form
+      className="Connection"
+      onSubmit={(e) => {
+        e.preventDefault();
+        formValidation();
+      }}
+    >
+      <h2 className="Connection__title">Se connecter</h2>
 
       {
-        emailIsInvalid && (
-          <span className="Connection__field-error">
-            { emailError }
-          </span>
+        connectionFailed && (
+          <div className="Connection__error-msg">
+            Adresse email ou mot de passe incorrect
+          </div>
         )
       }
-    </div>
 
-    <div className="Connection__field">
-      <input
-        className="Connection__field-input"
-        id="passwordInput"
-        value={passwordInput}
-        onChange={(e) => {
-          onPasswordInputChange(e.target.value);
-        }}
-        type="text"
-        label="Mot de passe"
-        placeholder="Mot de passe"
-        name="password"
-        required
-      />
+      <div className="Connection__field">
+        <input
+          className="Connection__field-input"
+          id="emailInput"
+          value={emailInput}
+          onChange={(e) => onEmailInputChange(e.target.value)}
+          type="text"
+          label="Nom d'utilisateur"
+          placeholder="Adresse email"
+          name="password"
+          autoComplete="off"
+          required
+        />
 
-      {/* <label
-        className="Connection__field-label"
-        htmlFor="passwordInput"
-      >
-        Mot de passe
-      </label> */}
+        {/* <label
+          className="Connection__field-label"
+          htmlFor="emailInput"
+        >
+          Adresse email
+        </label> */}
 
-      {
-        passwordIsInvalid && (
-          <span className="Connection__field-error">
-            { passwordError }
-          </span>
-        )
-      }
-    </div>
+        {
+          emailInputIsInvalid && (
+            <span className="Connection__field-error">
+              { emailInputError }
+            </span>
+          )
+        }
+      </div>
 
-    <p className="Connection__registration-msg">Vous n'avez pas de compte ? Je m'en <NavLink className="Connection__registration-link" to="/inscription" exact> crée</NavLink> un. </p>
+      <div className="Connection__field">
+        <input
+          className="Connection__field-input"
+          id="passwordInput"
+          value={passwordInput}
+          onChange={(e) => {
+            onPasswordInputChange(e.target.value);
+          }}
+          type="password"
+          label="Mot de passe"
+          placeholder="Mot de passe"
+          name="password"
+          required
+        />
 
-    <div className="Connection__submit-container">
-      <button className="Connection__submit-button" type="submit">Se Connecter</button>
-    </div>
-  </form>
+        {/* <label
+          className="Connection__field-label"
+          htmlFor="passwordInput"
+        >
+          Mot de passe
+        </label> */}
 
-);
+        {
+          passwordInputIsInvalid && (
+            <span className="Connection__field-error">
+              { passwordInputError }
+            </span>
+          )
+        }
+      </div>
 
+      <p className="Connection__registration-msg">Vous n'avez pas de compte ? Je m'en <NavLink className="Connection__registration-link" to="/inscription" exact> crée</NavLink> un. </p>
+
+      <div className="Connection__submit-container">
+        <button className="Connection__submit-button" type="submit">Se Connecter</button>
+      </div>
+    </form>
+
+  );
+};
 export default Connection;

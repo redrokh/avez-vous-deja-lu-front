@@ -1,75 +1,76 @@
 @use '../../styles/vars';
 
-.anecdote {
+.Anecdote {
   display: flex;
   flex-direction: column;
   max-width: 800px;
-  padding: 0em vars.$gutterLg;
+  padding: 0em 3em;
 
   &__title {
-    font-size: vars.$fsH2Lg;
+    font-size: 36px;
     text-align: left;
-    margin-bottom: vars.$gutterMd;
+    margin-bottom: 2em;
   }
 
   &__categories {
-    margin-bottom: vars.$gutterMd;
+    margin-bottom: 2em;
   }
 
   &__top-part {
     display: flex;
     align-items: flex-end;
-    margin-bottom: vars.$gutterMd;
+    margin-bottom: 2em;
 
-    .anecdote__publication {
+    .Anecdote__publication {
       color: rgba(255, 255, 255, 0.7);
       font-style: italic;
-      font-size: vars.$fsBody;
+      font-size: 16px;
       text-align: left;
-      margin-right: vars.$gutterSm;
+      margin-right: 1em;
     }
   }
 
   &__middle-part {
     display: flex;
-    margin-bottom: vars.$gutterLg;
+    margin-bottom: 3em;
 
-    .anecdote__voter {
+    .Anecdote__voter {
       display: flex;
       flex-direction: column;
 
-      .anecdote__upvote, .anecdote__downvote {
+      .Anecdote__upvote, .Anecdote__downvote {
       }
 
-      .anecdote__vote-count {
-        margin: vars.$gutterSm 0em vars.$gutterSm;
+      .Anecdote__vote-count {
+        text-align: center;
+        margin: 1em 0em 1em;
       }
     }
 
-    .anecdote__content {
-      font-size: vars.$fsBody;
-      line-height: vars.$lhBodyLg;
+    .Anecdote__content {
+      font-size: 16px;
+      line-height: 1.375em;
       text-align: left;
-      margin-left: vars.$gutterMd;
+      margin-left: 2em;
     }
   }
   
-  .anecdote__info {
+  .Anecdote__info {
     display: flex;
     justify-content: right;
-    margin-bottom: vars.$gutterLg;
+    margin-bottom: 3em;
 
-    .anecdote__knew {
+    .Anecdote__knew {
       border: 1px solid green;
       color: green;
       background-color: #FFF;
       border-radius: 6px;
-      padding: vars.$gutterSm / 2 vars.$gutterSm;
-      font-size: vars.$fsBody;
-      margin-right: vars.$gutterSm;
+      padding: 1em / 2 1em;
+      font-size: 16px;
+      margin-right: 1em;
     }
       
-    .anecdote__didnt-know {
+    .Anecdote__didnt-know {
       border: 1px solid red;
       color: red;
       background-color: #FFF;
@@ -79,56 +80,56 @@
     }
   }
 
-  .anecdote__sources {
+  .Anecdote__sources {
     display: flex;
     flex-direction: column;
-    margin-bottom: vars.$gutterLg;
+    margin-bottom: 3em;
     border-top: 1px solid rgb(255, 255, 255, 0.5);
-    padding-top: vars.$gutterMd;
+    padding-top: 2em;
 
-    .anecdote__sources-title {
+    .Anecdote__sources-title {
       margin-right: 1em;
-      font-size: vars.$fsH3Lg;
-      margin-bottom: vars.$gutterMd;
+      font-size: 28px;
+      margin-bottom: 2em;
     }
 
-    /* .anecdote__source-list {
+    /* .Anecdote__source-list {
       list-style: inside;
 
-      .anecdote__source-item {
-        margin-bottom: vars.$gutterSm;
+      .Anecdote__source-item {
+        margin-bottom: 1em;
         color: rgb(255, 255, 255, 0.6);
       }
 
-      .anecdote__source-item:hover {
+      .Anecdote__source-item:hover {
         opacity: 0.5;
       }
     } */
     
-    .anecdote__source-link {
-      margin-bottom: vars.$gutterSm;
+    .Anecdote__source-link {
+      margin-bottom: 1em;
       color: rgb(255, 255, 255, 0.6);
     }
 
-    .anecdote__source-link:hover {
+    .Anecdote__source-link:hover {
       opacity: 0.5;
     }
 
   }
 
-  .anecdote__nav {
+  .Anecdote__nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: vars.$gutterLg;
-    padding-top: vars.$gutterMd;
+    margin-bottom: 3em;
+    padding-top: 2em;
     border-top: 1px solid rgb(255, 255, 255, 0.5);
 
-    .anecdote__nav-link {
+    .Anecdote__nav-link {
       border: 1px solid black;
       border-radius: 5px;
       background-color: #FFF;
-      padding: vars.$gutterSm / 2 vars.$gutterSm;
+      padding: 1em / 2 1em;
       }
   }
   
@@ -136,7 +137,7 @@
 }
 
 @media (max-width: 425px) {
-  .anecdote__header {
+  .Anecdote__header {
     margin-left: 2em;
   }
   .know {
@@ -163,7 +164,7 @@
     justify-content: flex-end;
     margin: auto;
   }
-  .info__anecdote {
+  .info__Anecdote {
     display: flex;
     justify-content: center;
   }
