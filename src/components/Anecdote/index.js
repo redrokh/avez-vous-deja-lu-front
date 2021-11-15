@@ -62,6 +62,7 @@ const Anecdote = ({
     if (isFirstMount) {
       isFirstMount = false;
     }
+    console.log('first mount');
   }, []);
 
   useEffect(() => {
@@ -78,8 +79,13 @@ const Anecdote = ({
   }, [reconnecting]);
 
   useEffect(() => {
+    // Coming from next/prev button
     if (id !== 0 && isFirstMount) {
       history.push(`${baseUrl}/${id}`);
+    }
+    // Coming from favorites
+    else if (isConnected) {
+      loadAnecdote(context, parseInt(anecdoteId, 10));
     }
   }, [id]);
 
