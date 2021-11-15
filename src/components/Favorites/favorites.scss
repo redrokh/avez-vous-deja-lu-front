@@ -9,7 +9,8 @@
         border-bottom: 2px solid rgba(255, 255, 255, 0.3);
         
         .Favorites__header-cell {
-          padding: 1em 0;
+          padding: 0em vars.$gutterMd vars.$gutterXs 0;
+          font-weight: 700;
         }
       }
     }
@@ -24,10 +25,14 @@
 
           .Favorites__categories {
             display: flex;
-            flex: wrap;
+            flex-wrap: wrap;
+            gap: vars.$gutterSm;
           }
 
           .Favorites__delete-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: rgb(212, 58, 58);
             border: 0;
             border-radius: 5px;
@@ -43,6 +48,7 @@
             -webkit-user-select: none;
             touch-action: manipulation;
             transition-duration: 0.4s;
+            padding: 0.4em 0.5em 0em 0.5em;
           }
       
           .Favorites__delete-button:hover {

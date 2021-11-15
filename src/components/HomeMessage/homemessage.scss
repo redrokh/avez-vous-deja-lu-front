@@ -1,19 +1,16 @@
 @use 'src/styles/vars';
 
 .HomeMessage {
-  margin: 0em auto 3em;
+  margin: 0em auto vars.$gutterXl;
   max-width: 800px;
-  padding: 0em 3em 3em;
+  padding: 0em vars.$gutterXl vars.$gutterXl;
   border-bottom: 1px solid rgb(255, 255, 255, 0.5);
 
   &__title {
-    font-size: 48px;
-    margin-bottom: 2em;
+    margin-bottom: vars.$gutterXs;
   }
 
   &__content {
-    font-size: 16px;
     text-align: left;
-    line-height: 1.05em;
   }
 }

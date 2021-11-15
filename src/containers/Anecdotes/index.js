@@ -23,6 +23,8 @@ const mapStateToProps = (state) => ({
   loadingData: state.anecdotes.loadingData,
   loadDataFailed: state.anecdotes.loadDataFailed,
   dataLoaded: state.anecdotes.dataLoaded,
+  isConnected: state.auth.isConnected,
+  reconnecting: state.auth.reconnecting,
 });
 
 // Link component props to actions
@@ -34,7 +36,6 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(loadAnecdotes());
         break;
       case 'bests':
-        console.log(context);
         dispatch(setAnecdotesTitle('Découvrez nos meilleures anecdotes'));
         dispatch(loadBestAnecdotes());
         break;

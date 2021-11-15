@@ -7,7 +7,6 @@
   padding: 0em 3em;
 
   &__title {
-    font-size: 36px;
     text-align: left;
     margin-bottom: 2em;
   }
@@ -24,7 +23,6 @@
     .Anecdote__publication {
       color: rgba(255, 255, 255, 0.7);
       font-style: italic;
-      font-size: 16px;
       text-align: left;
       margin-right: 1em;
     }
@@ -48,8 +46,6 @@
     }
 
     .Anecdote__content {
-      font-size: 16px;
-      line-height: 1.375em;
       text-align: left;
       margin-left: 2em;
     }
@@ -66,7 +62,6 @@
       background-color: #FFF;
       border-radius: 6px;
       padding: 1em / 2 1em;
-      font-size: 16px;
       margin-right: 1em;
     }
       
@@ -76,7 +71,6 @@
       background-color: #FFF;
       border-radius: 6px;
       padding: 0.3em;
-      font-size: 1.1em;
     }
   }
 
@@ -89,7 +83,6 @@
 
     .Anecdote__sources-title {
       margin-right: 1em;
-      font-size: 28px;
       margin-bottom: 2em;
     }
 

@@ -22,7 +22,6 @@ import {
   changePseudo,
   changeEmail,
   changePassword,
-  changeAvatar,
 } from '../actions/userEditionActions';
 
 import { loadUser } from '../actions/userActions';
@@ -138,9 +137,9 @@ const middleware = (store) => (next) => (action) => {
           headers: {
             Authorization: `Bearer ${store.getState().auth.token}`,
           },
-        }
+        },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadUser());
         })
         .catch((error) => console.log(error));

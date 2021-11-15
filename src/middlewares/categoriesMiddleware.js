@@ -14,6 +14,10 @@ import {
   categoryNameLoaded,
 } from '../actions/categoryActions';
 
+import {
+  setAnecdotesTitle,
+} from '../actions/anecdoteActions';
+
 // Trigger treatment according to action type
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -31,13 +35,13 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setCategories(response.data));
           store.dispatch(categoriesLoaded());
         })
-        .catch(() => store.dispatch(loadCategoriesFailed()))
+        .catch(() => store.dispatch(loadCategoriesFailed()));
       break;
     }
     case LOAD_CATEGORY_NAME: {
       store.dispatch(loadingCategoryName());
       API.get(
-        'category',
+        `category/${action.slug}`,
         {
           headers: {
             Authorization: `Bearer ${store.getState().auth.token}`,
@@ -45,10 +49,10 @@ const middleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          store.dispatch(setAnecdotesTitle(response.data.name));
+          store.dispatch(setAnecdotesTitle(`${response.data[0].name}`));
           store.dispatch(categoryNameLoaded());
         })
-        .catch(() => store.dispatch(loadCategoryNameFailed()))
+        .catch(() => store.dispatch(loadCategoryNameFailed()));
       break;
     }
     default:

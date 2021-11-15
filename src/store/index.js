@@ -13,10 +13,17 @@ import latestsMiddleware from '../middlewares/latestsMiddleware';
 import anecdotesMiddleware from '../middlewares/anecdotesMiddleware';
 import anecdoteMiddleware from '../middlewares/anecdoteMiddleware';
 import categoriesMiddleware from '../middlewares/categoriesMiddleware';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Combine middlewares
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ 
+    trace: true,
+    traceLimit: 25,
+  }))
+  || (compose);
 const enhancers = composeEnhancers(
   applyMiddleware(
     authMiddleware,

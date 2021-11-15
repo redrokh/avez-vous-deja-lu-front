@@ -106,7 +106,7 @@ export const loadingAnecdote = () => ({
 
 export const setAnecdote = (anecdote) => ({
   type: SET_ANECDOTE,
-  anecdote
+  anecdote,
 });
 
 export const loadAnecdoteFailed = () => ({
@@ -117,16 +117,18 @@ export const anecdoteLoaded = () => ({
   type: ANECDOTE_LOADED,
 });
 
-export const loadPrevAnecdote = (context, anecdoteId) => ({
+export const loadPrevAnecdote = (context, anecdoteId, categorySlug) => ({
   type: LOAD_PREV_ANECDOTE,
   context,
   anecdoteId,
+  categorySlug,
 });
 
-export const loadNextAnecdote = (context, anecdoteId) => ({
+export const loadNextAnecdote = (context, anecdoteId, categorySlug) => ({
   type: LOAD_NEXT_ANECDOTE,
   context,
   anecdoteId,
+  categorySlug,
 });
 
 export const loadIsFavorite = (anecdoteId) => ({

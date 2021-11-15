@@ -19,18 +19,21 @@ const Categories = ({
   const history = useHistory();
 
   return (
-    <section>
-      <h2 className="main__title">Toutes les Catégories</h2>
+    <section className="Categories">
+      <h2 className="Categories__title">Toutes les Catégories</h2>
 
-      <ul className="categorie__grid">
+      <ul className="Categories__grid">
         {
           categories.map((category) => (
             <li
               key={category.id}
-              className="grid__card"
+              className="Categories__card"
+              style={{
+                backgroundColor: category.color,
+              }}
               onClick={() => history.push(`/categories/${category.slug}`)}
             >
-              <h3 className="title__card">{category.name}</h3>
+              <h3 className="Categories__card-title">{category.name}</h3>
             </li>
           ))
         }

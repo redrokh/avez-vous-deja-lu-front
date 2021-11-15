@@ -6,7 +6,6 @@
   width: 50%;
   .contact__title {
     text-align: center;
-    font-size: 36px;
     margin-bottom: 1em;
   }
   .contact__input {
@@ -24,7 +23,7 @@
   .contact__input::placeholder {
     color: #fff;
     font-style: italic;
-    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    transition: top 200ms ease-in, left 200ms ease-in;
   }
   .contact__input:focus {
     box-shadow: 0 0 .2rem #fff,
@@ -39,7 +38,6 @@
     text-align: center;
     margin-top: 2em;
     .submit{
-      font-size: 1em;
       padding: 0.8em;
       background: none;
       border: 1px solid #fff;

@@ -24,17 +24,10 @@ const BestCarousel = ({
     loadData();
   }, []);
 
-  if (!dataLoaded) {
-    if (loadingData) {
-      return (
-        <></>
-      );
-    }
-    else {
-      return (
-        <></>
-      );
-    }
+  if (!dataLoaded || loadingData) {
+    return (
+      <></>
+    );
   }
 
   return (
@@ -56,9 +49,8 @@ const BestCarousel = ({
         />
       </div>
 
-      <div>
+      <div className="BestCarousel__anecdote">
         <AnecdoteCard
-          className="BestCarousel__anecdote"
           {...anecdotes[currentIndex]}
           context={context}
         />

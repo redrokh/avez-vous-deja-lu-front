@@ -37,7 +37,7 @@ const Profile = ({
 
   useEffect(() => {
     if (!isConnected) {
-      history.push('/');
+      history.push('/connexion');
     }
   }, [isConnected]);
 

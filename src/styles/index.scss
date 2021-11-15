@@ -1,9 +1,25 @@
 @use 'reset';
 @use 'vars';
 
+@font-face {
+  font-family: 'soraregular';
+  src: url('../assets/fonts/sora-variablefont_wght-webfont.woff2') format('woff2'),
+       url('../assets/fonts/sora-variablefont_wght-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'soraregular';
+  src: url('../assets/fonts/sora-variablefont_wght-webfont.woff2') format('woff2'),
+       url('../assets/fonts/sora-variablefont_wght-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: 500;
+}
+/* 
 body {
   font-family: sans-serif;
-}
+} */
 
 /* 
   // or you can import your own font

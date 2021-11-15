@@ -37,21 +37,37 @@ const mapStateToProps = (state) => ({
   loadingIsFavorite: state.anecdote.loadingIsFavorite,
   loadIsFavoriteFailed: state.anecdote.loadIsFavoriteFailed,
   isFavoriteLoaded: state.anecdote.isFavoriteLoaded,
+  upVoting: state.anecdote.upVoting,
+  upVoteFailed: state.anecdote.upVoteFailed,
+  upVoteSucceeded: state.anecdote.upVoteSucceeded,
+  downVoting: state.anecdote.downVoting,
+  downVoteFailed: state.anecdote.downVoteFailed,
+  downVoteSucceeded: state.anecdote.downVoteSucceeded,
+  iKnewPending: state.anecdote.iKnewPending,
+  iKnewFailed: state.anecdote.iKnewFailed,
+  iKnewSucceeded: state.anecdote.iKnewSucceeded,
+  iDidntKnowPending: state.anecdote.iDidntKnowPending,
+  iDidntKnowFailed: state.anecdote.iDidntKnowFailed,
+  iDidntKnowSucceeded: state.anecdote.iDidntKnowSucceeded,
   isConnected: state.auth.isConnected,
+  reconnecting: state.auth.reconnecting,
 });
 
 // Link component props to actions
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   loadAnecdote: (context, anecdoteId) => dispatch(loadAnecdote(context, anecdoteId)),
   loadIsFavorite: (anecdoteId) => dispatch(loadIsFavorite(anecdoteId)),
-  prevAnecdote: (anecdoteId) => dispatch(loadPrevAnecdote(ownProps.context, anecdoteId)),
-  nextAnecdote: (anecdoteId) => dispatch(loadNextAnecdote(ownProps.context, anecdoteId)),
+  prevAnecdote: (context, anecdoteId, categorySlug) => dispatch(
+    loadPrevAnecdote(context, anecdoteId, categorySlug),
+  ),
+  nextAnecdote: (context, anecdoteId, categorySlug) => dispatch(
+    loadNextAnecdote(context, anecdoteId, categorySlug),
+  ),
   upVote: (context) => dispatch(upVote(context)),
   downVote: (context) => dispatch(downVote(context)),
   iKnew: (context) => dispatch(iKnew(context)),
   iDidntKnow: (context) => dispatch(iDidntKnow(context)),
   toggleIsFavorite: (isFavorite) => {
-    console.log(isFavorite);
     if (!isFavorite) {
       dispatch(addFavorite());
     }

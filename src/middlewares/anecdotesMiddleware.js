@@ -29,7 +29,7 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setAnecdotes(response.data));
           store.dispatch(anecdotesLoaded());
         })
-        .catch(() => store.dispatch(loadAnecdotesFailed()))
+        .catch(() => store.dispatch(loadAnecdotesFailed()));
       break;
     }
     case LOAD_BEST_ANECDOTES: {
@@ -46,7 +46,7 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setAnecdotes(response.data));
           store.dispatch(anecdotesLoaded());
         })
-        .catch(() => store.dispatch(loadAnecdotesFailed()))
+        .catch(() => store.dispatch(loadAnecdotesFailed()));
       break;
     }
     case LOAD_ANECDOTES_OF_CATEGORY: {
@@ -63,7 +63,7 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setAnecdotes(response.data));
           store.dispatch(anecdotesLoaded());
         })
-        .catch(() => store.dispatch(loadAnecdotesFailed()))
+        .catch(() => store.dispatch(loadAnecdotesFailed()));
       break;
     }
     default:

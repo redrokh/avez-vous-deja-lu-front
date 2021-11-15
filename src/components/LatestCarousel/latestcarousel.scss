@@ -7,16 +7,17 @@
   justify-content: center;
   align-items: center;
   padding: 0em 3em 3em;
-  margin-bottom: 3em;
   max-width: 800px;
   width: 100%;
-  border-bottom: 1px solid rgb(255, 255, 255, 0.5);
 
   &__title {
-    font-size: 36px;
     width: 100%;
-    margin-bottom: 2em;
+    margin-bottom: vars.$gutterXs;;
     text-align: center;
+  }
+
+  &__anecdote {
+    width: 100%;
   }
 
   &__next, &__prev {

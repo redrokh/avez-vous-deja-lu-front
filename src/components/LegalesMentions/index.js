@@ -44,7 +44,7 @@ const LegalesMentions = () => (
           Adresse : 31 PL des Corolles, 92400 Courbevoie.
         </li>
         <li className="article__description">
-          Site Web : <Link to="/" className="site__link">www.avezvousdéjàlu.fr</Link>
+          Site Web : <Link to="/" className="site__link">www.avezvousdejalu.fr</Link>
         </li>
       </ul>
 

@@ -24,17 +24,10 @@ const LatestCarousel = ({
     loadData();
   }, []);
 
-  if (!dataLoaded) {
-    if (loadingData) {
-      return (
-        <></>
-      );
-    }
-    else {
-      return (
-        <></>
-      );
-    }
+  if (!dataLoaded || loadingData) {
+    return (
+      <></>
+    );
   }
 
   return (
@@ -56,9 +49,8 @@ const LatestCarousel = ({
         />
       </div>
 
-      <div>
+      <div className="LatestCarousel__anecdote">
         <AnecdoteCard
-          className="LatestCarousel__anecdote"
           {...anecdotes[currentIndex]}
           context={context}
         />

@@ -11,8 +11,8 @@ import {
   validateConnectionEmailInput,
   validateConnectionPasswordInput,
   logIn,
+  logingIn,
   connectionFailed,
-  connectionSucceeded,
   clearConnectionForm,
   resetAuthState,
 } from '../actions/authActions';
@@ -58,6 +58,7 @@ const middleware = (store) => (next) => (action) => {
       break;
     }
     case LOG_IN: {
+      store.dispatch(logingIn());
       API.post(
         'login_check',
         {
@@ -72,9 +73,6 @@ const middleware = (store) => (next) => (action) => {
             email: store.getState().auth.emailInput,
           };
           localStorage.setItem('user', JSON.stringify(user));
-
-          // Connection succeeded
-          store.dispatch(connectionSucceeded(response.data.token));
 
           // Get user data
           store.dispatch(loadUser());
