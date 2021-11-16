@@ -1,0 +1,71 @@
+@use '../../styles/vars';
+
+.WhoWeAre {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 80%;
+  &__title {
+    text-align: left;
+    margin-bottom: vars.$gutterSm;
+  }
+
+  &__card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: vars.$gutterLg;
+    border: 1px solid white;
+    padding: vars.$gutterSm;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    .WhoWeAre__photo {
+      height: 100px;
+      width: 100px;
+      border-radius: 50px;
+      margin-top: vars.$gutterSm;
+      margin-right: vars.$gutterLg;
+    }
+
+    .WhoWeAre__description {
+      width: 600px;
+    }
+  }
+
+  &__card--julian:hover {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #19A4DF,
+                0 0 0.8rem #19A4DF,
+                0 0 2.8rem #19A4DF,
+                inset 0 0 1.3rem #19A4DF;
+  }
+
+  &__card--benjamin:hover {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #19df5b,
+                0 0 0.8rem #19df5b,
+                0 0 2.8rem #19df5b,
+                inset 0 0 1.3rem #19df5b;
+  }
+
+  &__card--lucas:hover {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #dcdf19,
+                0 0 0.8rem #dcdf19,
+                0 0 2.8rem #dcdf19,
+                inset 0 0 1.3rem #dcdf19;
+  }
+
+  &__card--alexandre:hover {
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #df1919,
+                0 0 0.8rem #df1919,
+                0 0 2.8rem #df1919,
+                inset 0 0 1.3rem #df1919;
+  }
+}

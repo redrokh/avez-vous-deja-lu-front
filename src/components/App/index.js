@@ -17,6 +17,7 @@ import Anecdote from '../../containers/Anecdote';
 import RandomAnecdote from '../../containers/RandomAnecdote';
 import Categories from '../../containers/Categories';
 import Error from '../Error';
+import WhoWeAre from '../WhoWeAre';
 import Contact from '../Contact';
 import LegalesMentions from '../LegalesMentions';
 import Footer from '../../containers/Footer';
@@ -138,9 +139,10 @@ const App = ({
           </Route>
 
           <Route
-            path="/qui-sommes_nous"
+            path="/qui-sommes-nous"
             exact
           >
+            <WhoWeAre />
           </Route>
 
           { /* Authorized for signed user */ }
