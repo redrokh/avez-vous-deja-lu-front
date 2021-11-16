@@ -16,11 +16,13 @@
   }
 
   &__item--selected {
-    box-shadow: 0 0 .2rem #fff,
+    text-shadow: 0 0 1px #fff,
+                 0 0 4px #19A4DF,
+    /* box-shadow: 0 0 .2rem #fff,
               0 0 .2rem #fff,
               0 0 2rem #19A4DF,
               0 0 0.6rem #19A4DF,
               0 0 1rem #19A4DF,
-              inset 0 0 0.8rem #19A4DF;
+              inset 0 0 0.8rem #19A4DF; */
   }
 }

@@ -4,11 +4,11 @@
   padding: 2em;
   text-align: left;
   max-width: 800px;
-  width: 700px;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.2);
+  overflow: auto;
 
   &__title {
-    font-size: 1.3em;
     margin-bottom: 1em;
   }
 
@@ -24,6 +24,7 @@
 
   &__description {
     margin-bottom: 1em;
+    //white-space: pre;
   }
 
   &__link {
@@ -33,20 +34,18 @@
 
   &__link:hover {
     color: #fff;
-    text-shadow:
-      0 0 1px #fff,
-      0 0 2px #fff,
-      0 0 4px #19A4DF,
-      0 0 5px #19A4DF,
-      0 0 6px #19A4DF;
+    text-shadow: 0 0 1px #fff,
+                 0 0 4px #19A4DF,
   }
 
-  @media (min-width: 200px) and (max-width: 300px) {
-    height: 1100px;
+  @media (max-width: 280px) {
+    height: 500px;
+    width: 220px;
   }
 
-  @media (min-width: 300px) and (max-width: 400px) {
-    height: 800px;
+  @media (min-width: 280px) and (max-width: 600px) {
+    height: 400px;
+    width: 100%;
   }
 
   @media (min-width: 400px) and (max-width: 500px) {

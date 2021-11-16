@@ -1,4 +1,6 @@
 import { useHistory } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+
 // import styles
 import './registration.scss';
 
@@ -15,12 +17,25 @@ const Registration = ({
   pseudoInputError,
   emailInputError,
   passwordInputError,
+  registering,
   registrationError,
   registrationFailed,
   registrationSucceeded,
   formValidation,
 }) => {
   const history = useHistory();
+
+  if (registering) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
+  }
 
   if (registrationSucceeded) {
     return (

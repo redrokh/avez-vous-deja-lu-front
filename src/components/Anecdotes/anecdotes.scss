@@ -4,10 +4,8 @@
   display: flex;
   flex-direction: column;
   padding: 0em 2em 0em;
-  margin-bottom: 3em;
   .anecdotes__title {
-    font-size: 36px;
-    margin-bottom: 3em;
+    margin-bottom: vars.$gutterXs;
     text-align: center;
   }
   .anecdotes__list {

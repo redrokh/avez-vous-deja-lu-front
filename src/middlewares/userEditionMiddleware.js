@@ -22,7 +22,6 @@ import {
   changePseudo,
   changeEmail,
   changePassword,
-  changeAvatar,
 } from '../actions/userEditionActions';
 
 import { loadUser } from '../actions/userActions';
@@ -128,23 +127,26 @@ const middleware = (store) => (next) => (action) => {
         })
         .catch((error) => console.log(error));
       break;
-    case CHANGE_AVATAR:
+    case CHANGE_AVATAR: {
+      const avatar = action.avatar.split(',')[1];
       API.patch(
-        `user/${store.getState().user.id}/edit`,
+        `user/${store.getState().user.id}/edit/img`,
         {
-          avatar: `${action.avatar}`,
+          img: `${avatar}`,
         },
         {
           headers: {
             Authorization: `Bearer ${store.getState().auth.token}`,
           },
-        }
+        },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadUser());
+          window.location.reload();
         })
         .catch((error) => console.log(error));
       break;
+    }
     default:
   }
   next(action);

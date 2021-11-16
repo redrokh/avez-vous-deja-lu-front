@@ -7,7 +7,6 @@
   padding: 0em 3em;
 
   &__title {
-    font-size: 36px;
     text-align: left;
     margin-bottom: 2em;
   }
@@ -18,13 +17,12 @@
 
   &__top-part {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 2em;
 
     .Anecdote__publication {
       color: rgba(255, 255, 255, 0.7);
       font-style: italic;
-      font-size: 16px;
       text-align: left;
       margin-right: 1em;
     }
@@ -48,16 +46,17 @@
     }
 
     .Anecdote__content {
-      font-size: 16px;
-      line-height: 1.375em;
       text-align: left;
       margin-left: 2em;
+      //white-space: pre;
     }
   }
   
   .Anecdote__info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: right;
+    gap: vars.$gutterSm;
     margin-bottom: 3em;
 
     .Anecdote__knew {
@@ -65,9 +64,7 @@
       color: green;
       background-color: #FFF;
       border-radius: 6px;
-      padding: 1em / 2 1em;
-      font-size: 16px;
-      margin-right: 1em;
+      height: 40px;
     }
       
     .Anecdote__didnt-know {
@@ -75,8 +72,7 @@
       color: red;
       background-color: #FFF;
       border-radius: 6px;
-      padding: 0.3em;
-      font-size: 1.1em;
+      height: 40px;
     }
   }
 
@@ -89,7 +85,6 @@
 
     .Anecdote__sources-title {
       margin-right: 1em;
-      font-size: 28px;
       margin-bottom: 2em;
     }
 
@@ -130,78 +125,7 @@
       border-radius: 5px;
       background-color: #FFF;
       padding: 1em / 2 1em;
+      height: 35px;
       }
   }
-  
-
 }
-
-@media (max-width: 425px) {
-  .Anecdote__header {
-    margin-left: 2em;
-  }
-  .know {
-    margin-left: 4em;
-    margin-right: 2em;
-  }
-  .didnt__know {
-    margin-left: 1em;
-    margin-bottom: 1.5em;
-    margin-top: 1.5em;
-  }
-  .source__link {
-    border: 1px solid black;
-    max-width: 15%;
-    margin-left: 2em;
-    margin-right: 2em;
-    display: flex;
-    justify-content: flex-end;
-    border-radius: 5px;
-  }
-  .source__title {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin: auto;
-  }
-  .info__Anecdote {
-    display: flex;
-    justify-content: center;
-  }
-  .btn__prev__next {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  .previous {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #FFF;
-    margin-left: 2em;
-    padding: 0.5em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    }
-  .next {
-    border: 1px solid black;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 0.5em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-right: 2em;
-  }
-
-};
-
-@media (max-width: 425px) {
-  .container__content{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    text-align: center;
-    width: 85%;
-    margin-left: 4em;
-  }
-};
-
-

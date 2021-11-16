@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Edit, Check, X } from 'react-feather';
 
@@ -33,18 +33,11 @@ const Profile = ({
   passwordInputValidation,
   isConnected,
 }) => {
-  const history = useHistory();
-
-  useEffect(() => {
-    if (!isConnected) {
-      history.push('/');
-    }
-  }, [isConnected]);
 
   return (
     <section className="Profile">
       <div className="Profile__avatar">
-        <img className="Profile__avatar-img" src={`${baseSrc}${avatar}`} alt="avatar" />
+        <img className="Profile__avatar-img" src={`${avatar}?${new Date()}`} alt="avatar" />
 
         <label
           className="Profile__avatar-label"
@@ -57,7 +50,9 @@ const Profile = ({
             htmlFor="avatar"
             onChange={(e) => {
               const reader = new FileReader();
-              reader.onload = () => onAvatarChange(reader.result);
+              reader.onload = () => {
+                onAvatarChange(reader.result);
+              };
               reader.readAsDataURL(e.target.files[0]);
             }}
           />
@@ -146,6 +141,8 @@ const Profile = ({
               <div className="Profile__field">
                 <input
                   className="Profile__field-input"
+                  type="password"
+                  autoComplete="off"
                   value={passwordInput}
                   onChange={(e) => onPasswordInputChange(e.target.value)}
                 />

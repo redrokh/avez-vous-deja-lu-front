@@ -10,6 +10,7 @@
     height: 100px;
     width: 100px;
     border-radius: 50px;
+    object-fit: scale-down;
 
     &-img {
       height: 100%;
@@ -74,6 +75,21 @@
         flex-direction: column;
         .Profile__field-input {
           margin-bottom: 1em;
+          padding-left: 0.5em;
+          color: #fff;
+          border-radius: 5px;
+          border: 1px solid #fff;
+          background: none;
+          box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .Profile__field-input:focus {
+          box-shadow: 0 0 .2rem #fff,
+                      0 0 .2rem #fff,
+                      0 0 2rem #19A4DF,
+                      0 0 0.8rem #19A4DF,
+                      0 0 2.8rem #19A4DF,
+                      inset 0 0 1.3rem #19A4DF;
         }
 
         .Profile__field-error {

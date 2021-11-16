@@ -1,7 +1,8 @@
 // import libraries
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { ArrowUpCircle, ArrowDownCircle, Star } from 'react-feather';
+import Loader from 'react-loader-spinner';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 
 // Import components
@@ -50,41 +51,73 @@ const Anecdote = ({
   anecdoteLoaded,
   context,
   isConnected,
+  reconnecting,
 }) => {
+  let isFirstMount = useRef(true);
   const location = useLocation();
   const history = useHistory();
   const baseUrl = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
-  const { anecdoteId } = useParams();
+  const { categorySlug, anecdoteId } = useParams();
 
   useEffect(() => {
-    if (!isConnected && context === 'anecdotes') {
-      history.push('/connexion');
-    }
-  }, [isConnected]);
-
-  useEffect(() => {
-    loadAnecdote(context, parseInt(anecdoteId, 10));
-    if (isConnected) {
-      loadIsFavorite(parseInt(anecdoteId, 10));
+    if (isFirstMount) {
+      isFirstMount = false;
     }
   }, []);
 
   useEffect(() => {
-    if (anecdoteId !== id && loadingAnecdote) {
+    // Route doesn't require authorization or user has authorization
+    if (context === 'bests' || context === 'latests' || isConnected) {
+      if (!anecdoteLoaded && !loadingAnecdote) {
+        loadAnecdote(context, parseInt(anecdoteId, 10));
+      }
+    }
+    // Route requires authorization and user is not reconnecting
+    else if (!reconnecting) {
+      history.push('/connexion');
+    }
+  }, [reconnecting]);
+
+  useEffect(() => {
+    // Coming from next/prev button
+    if (id !== 0 && isFirstMount) {
       history.push(`${baseUrl}/${id}`);
+    }
+    // Coming from favorites
+    else if (isConnected) {
+      loadAnecdote(context, parseInt(anecdoteId, 10));
     }
   }, [id]);
 
-  if (loadingAnecdote || loadingIsFavorite) {
-    return <></>;
+  if (
+    reconnecting
+    || loadingAnecdote
+    || loadingIsFavorite
+    || upVoting
+    || downVoting
+    || iKnewPending
+    || iDidntKnowPending
+  ) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
   }
 
   if (
     loadAnecdoteFailed
     || loadIsFavoriteFailed
-    || !anecdoteLoaded
+    || upVoteFailed
+    || downVoteFailed
+    || iKnewFailed
+    || iDidntKnowFailed
   ) {
-    return <></>
+    return <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>;
   }
 
   return (
@@ -150,7 +183,7 @@ const Anecdote = ({
           className="Anecdote__knew"
           onClick={() => {
             if (isConnected) {
-              iKnew(context)
+              iKnew(context);
             }
             else {
               alert('Vous devez être connecté pour effectuer cette action');
@@ -165,7 +198,7 @@ const Anecdote = ({
           className="Anecdote__didnt-know"
           onClick={() => {
             if (isConnected) {
-              iDidntKnow(context)
+              iDidntKnow(context);
             }
             else {
               alert('Vous devez être connecté pour effectuer cette action');
@@ -192,14 +225,14 @@ const Anecdote = ({
       <div className="Anecdote__nav">
         <button
           className="Anecdote__nav-link"
-          onClick={() => prevAnecdote(id)}
+          onClick={() => prevAnecdote(context, anecdoteId, categorySlug)}
           type="button"
         >
           Précédent
         </button>
         <button
           className="Anecdote__nav-link"
-          onClick={() => nextAnecdote(id)}
+          onClick={() => nextAnecdote(context, anecdoteId, categorySlug)}
           type="button"
         >
           Suivant

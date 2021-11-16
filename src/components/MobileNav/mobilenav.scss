@@ -1,3 +1,5 @@
+@use '../../styles/vars';
+
 .MobileNav {
   display: flex;
   flex-direction: column;
@@ -7,21 +9,29 @@
   .MobileNav__links {
     position: relative;
     .MobileNav__item {
-      margin-bottom: 0.5em;
+      margin-bottom: vars.$gutterSm;
     }
 
     .MobileNav__item--selected {
-      color: rgb(255, 255, 255, 0.5);
+      text-shadow:
+      0 0 1px #fff,
+      0 0 4px #19A4DF,
     }
 
-    .MobileNav__item--selected::before {
+    /* .MobileNav__item--selected::before {
       content:"\A";
       border-style: solid;
       border-width: 5px 5px 5px 10px;
       border-color: transparent transparent transparent rgba(255, 255, 255, 1);
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.8rem #19A4DF,
+                  0 0 2.8rem #19A4DF,
+                  inset 0 0 1.3rem #19A4DF;
       position: absolute;
       left: -2em;
-    }
+    } */
   }
 }
 

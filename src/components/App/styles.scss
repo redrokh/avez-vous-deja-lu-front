@@ -1,3 +1,5 @@
+@use '../../styles/vars';
+
 .app {
   display: flex;
   flex-direction: column;
@@ -5,4 +7,94 @@
   height: 100vh;
   margin: 0em auto;
   color: white;
+}
+
+* {
+  font-size: vars.$fsBody;
+  line-height: vars.$lhBody;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: vars.$fsH1Xs;
+    line-height: vars.$lhH1Xs;
+  }
+
+  h2 {
+    font-size: vars.$fsH2Xs;
+    line-height: vars.$lhH2Xs;
+  }
+
+  h3 {
+    font-size: vars.$fsH3Xs;
+    line-height: vars.$lhH3Xs;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 960px) {
+  h1 {
+    font-size: vars.$fsH1Sm;
+    line-height: vars.$lhH1Sm;
+  }
+
+  h2 {
+    font-size: vars.$fsH2Sm;
+    line-height: vars.$lhH2Sm;
+  }
+
+  h3 {
+    font-size: vars.$fsH3Sm;
+    line-height: vars.$lhH3Sm;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1264px) {
+  h1 {
+    font-size: vars.$fsH1Md;
+    line-height: vars.$lhH1Md;
+  }
+
+  h2 {
+    font-size: vars.$fsH2Md;
+    line-height: vars.$lhH2Md;
+  }
+
+  h3 {
+    font-size: vars.$fsH3Md;
+    line-height: vars.$lhH3Md;
+  }
+}
+
+@media (min-width: 1264px) and (max-width: 1904px) {
+  h1 {
+    font-size: vars.$fsH1Lg;
+    line-height: vars.$lhH1Lg;
+  }
+
+  h2 {
+    font-size: vars.$fsH2Lg;
+    line-height: vars.$lhH2Lg;
+  }
+
+  h3 {
+    font-size: vars.$fsH3Lg;
+    line-height: vars.$lhH3Lg;
+  }
+}
+
+@media (min-width: 1904px) {
+  h1 {
+    font-size: vars.$fsH1Xl;
+    line-height: vars.$lhH1Xl;
+  }
+
+  h2 {
+    font-size: vars.$fsH2Xl;
+    line-height: vars.$lhH2Xl;
+  }
+
+  h3 {
+    font-size: vars.$fsH3Xl;
+    line-height: vars.$lhH3Xl;
+  }
 }

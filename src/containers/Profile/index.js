@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Profile from '../../components/Profile';
 
 // Import actions and action creators
-import { 
+import {
   togglePseudoEdition,
   toggleEmailEdition,
   togglePasswordEdition,
@@ -16,7 +16,7 @@ import {
   emailInputValidation,
   passwordInputValidation,
   changeAvatar,
- } from '../../actions/userEditionActions';
+} from '../../actions/userEditionActions';
 
 // Link component props to state
 const mapStateToProps = (state) => ({

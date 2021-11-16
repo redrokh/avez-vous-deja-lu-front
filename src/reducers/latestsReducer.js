@@ -5,6 +5,7 @@ import {
   LATESTS_LOADED,
   LOAD_LATESTS_FAILED,
   SET_LATESTS_INDEX,
+  RESET_LATESTS_STATE,
 } from '../actions/latestActions';
 
 // Define initial state
@@ -27,9 +28,11 @@ const reducer = (state = initialState, action) => {
     case LATESTS_LOADED:
       return { ...state, dataLoaded: true, loadingData: false };
     case LOAD_LATESTS_FAILED:
-      return { ...state, dataLoaded: false, loadingData: false }
+      return { ...state, dataLoaded: false, loadingData: false };
     case SET_LATESTS_INDEX:
       return { ...state, currentIndex: action.index };
+    case RESET_LATESTS_STATE:
+      return initialState;
     default:
       return state;
   }

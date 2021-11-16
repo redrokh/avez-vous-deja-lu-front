@@ -7,6 +7,7 @@ import {
   LOAD_ANECDOTE,
   LOAD_PREV_ANECDOTE,
   LOAD_NEXT_ANECDOTE,
+  LOAD_RANDOM_ANECDOTE,
   LOAD_IS_FAVORITE,
   ADD_FAVORITE,
   DELETE_FAVORITE,
@@ -23,6 +24,7 @@ import {
   setAnecdote,
   loadAnecdoteFailed,
   anecdoteLoaded,
+  loadIsFavorite,
   loadingIsFavorite,
   setIsFavorite,
   loadIsFavoriteFailed,
@@ -64,40 +66,112 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setAnecdotes(response.data));
           store.dispatch(anecdotesLoaded());
         })
-        .catch(() => store.dispatch(loadAnecdotesFailed()))
+        .catch(() => store.dispatch(loadAnecdotesFailed()));
       break;
     }
     case LOAD_ANECDOTE: {
       store.dispatch(loadingAnecdote());
-      const baseUrl = `anecdote/${action.context.substring(0, action.context.length - 1)}`;
-      API.get(`${baseUrl}/${action.anecdoteId}`)
+      let baseUrl = '';
+      switch (action.context) {
+        case 'bests':
+          baseUrl = 'anecdote/best/';
+          break;
+        case 'latests':
+          baseUrl = 'anecdote/latest/';
+          break;
+        default:
+          baseUrl = 'anecdote/';
+      }
+      API.get(
+        `${baseUrl}${action.anecdoteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
           store.dispatch(anecdoteLoaded());
+          if (action.context === 'favorites' || action.context === 'categories' || action.context === 'anecdotes') {
+            store.dispatch((loadIsFavorite(response.data.id)));
+          }
         })
-        .catch(() => store.dispatch(loadAnecdoteFailed()))
+        .catch(() => store.dispatch(loadAnecdoteFailed()));
       break;
     }
     case LOAD_PREV_ANECDOTE: {
       store.dispatch(loadingAnecdote());
-      const baseUrl = `anecdote/${action.context.substring(0, action.context.length - 1)}`;
-      API.get(`${baseUrl}/${action.anecdoteId}/prev`)
+      let baseUrl = '';
+      switch (action.context) {
+        case 'bests':
+          baseUrl = 'anecdote/best/';
+          break;
+        case 'latests':
+          baseUrl = 'anecdote/latest/';
+          break;
+        case 'categories':
+          baseUrl = `category/${action.categorySlug}/anecdote/`;
+          break;
+        case 'favorites':
+          baseUrl = `user/${store.getState().user.id}/favorite/`;
+          break;
+        default:
+          baseUrl = 'anecdote/';
+      }
+      API.get(
+        `${baseUrl}${action.anecdoteId}/prev`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
           store.dispatch(anecdoteLoaded());
+          if (action.context === 'favorites' || action.context === 'categories' || action.context === 'anecdotes') {
+            store.dispatch((loadIsFavorite(response.data.id)));
+          }
         })
-        .catch(() => store.dispatch(loadAnecdoteFailed()))
+        .catch(() => store.dispatch(loadAnecdoteFailed()));
       break;
     }
     case LOAD_NEXT_ANECDOTE: {
       store.dispatch(loadingAnecdote());
-      const baseUrl = `anecdote/${action.context.substring(0, action.context.length - 1)}`;
-      API.get(`${baseUrl}/${action.anecdoteId}/prev`)
+      let baseUrl = '';
+      switch (action.context) {
+        case 'bests':
+          baseUrl = 'anecdote/best/';
+          break;
+        case 'latests':
+          baseUrl = 'anecdote/latest/';
+          break;
+        case 'categories':
+          baseUrl = `category/${action.categorySlug}/anecdote/`;
+          break;
+        case 'favorites':
+          baseUrl = `user/${store.getState().user.id}/favorite/`;
+          break;
+        default:
+          baseUrl = 'anecdote/';
+      }
+      API.get(
+        `${baseUrl}${action.anecdoteId}/next`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
           store.dispatch(anecdoteLoaded());
+          if (action.context === 'favorites' || action.context === 'categories' || action.context === 'anecdotes') {
+            store.dispatch((loadIsFavorite(response.data.id)));
+          }
         })
-        .catch(() => store.dispatch(loadAnecdoteFailed()))
+        .catch(() => store.dispatch(loadAnecdoteFailed()));
       break;
     }
     case LOAD_IS_FAVORITE: {
@@ -106,15 +180,15 @@ const middleware = (store) => (next) => (action) => {
         `user/${store.getState().user.id}/favorite/${action.anecdoteId}/check`,
         {
           headers: {
-            Authorization: `Bearer ${store.getState().auth.token}`
-          }
-        }
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
       )
         .then((response) => {
           store.dispatch(setIsFavorite(response.data.response));
           store.dispatch(isFavoriteLoaded());
         })
-        .catch(() => store.dispatch(loadIsFavoriteFailed()))
+        .catch(() => store.dispatch(loadIsFavoriteFailed()));
       break;
     }
     case ADD_FAVORITE: {
@@ -128,11 +202,11 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(setIsFavorite(true));
           store.dispatch(addFavoriteSucceeded());
         })
-        .catch((error) => store.dispatch(addFavoriteFailed()))
+        .catch(() => store.dispatch(addFavoriteFailed()));
       break;
     }
     case DELETE_FAVORITE: {
@@ -145,11 +219,11 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(setIsFavorite(false));
           store.dispatch(deleteFavoriteSucceeded());
         })
-        .catch((error) => store.dispatch(deleteFavoriteFailed()))
+        .catch(() => store.dispatch(deleteFavoriteFailed()));
       break;
     }
     case UP_VOTE: {
@@ -163,11 +237,11 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadAnecdote(action.context, store.getState().anecdote.id));
           store.dispatch(upVoteSucceeded());
         })
-        .catch((error) => store.dispatch(upVoteFailed()))
+        .catch(() => store.dispatch(upVoteFailed()));
       break;
     }
     case DOWN_VOTE: {
@@ -181,11 +255,11 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadAnecdote(action.context, store.getState().anecdote.id));
           store.dispatch(downVoteSucceeded());
         })
-        .catch((error) => store.dispatch(downVoteFailed()))
+        .catch(() => store.dispatch(downVoteFailed()));
       break;
     }
     case I_KNEW: {
@@ -199,11 +273,11 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadAnecdote(action.context, store.getState().anecdote.id));
           store.dispatch(iKnewSucceeded());
         })
-        .catch((error) => store.dispatch(iKnewFailed()))
+        .catch(() => store.dispatch(iKnewFailed()));
       break;
     }
     case I_DIDNT_KNOW: {
@@ -217,11 +291,29 @@ const middleware = (store) => (next) => (action) => {
           },
         },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(loadAnecdote(action.context, store.getState().anecdote.id));
           store.dispatch(iDidntKnowSucceeded());
         })
-        .catch((error) => store.dispatch(iDidntKnowFailed()))
+        .catch(() => store.dispatch(iDidntKnowFailed()));
+      break;
+    }
+    case LOAD_RANDOM_ANECDOTE: {
+      store.dispatch(loadingAnecdote());
+      API.get(
+        `user/${store.getState().user.id}/random`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdote(response.data));
+          store.dispatch(anecdoteLoaded());
+          store.dispatch((loadIsFavorite(response.data.id)));
+        })
+        .catch(() => store.dispatch(loadAnecdoteFailed()));
       break;
     }
     default:

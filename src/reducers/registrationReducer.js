@@ -9,6 +9,7 @@ import {
   VALIDATE_REGISTRATION_PSEUDO_INPUT,
   VALIDATE_REGISTRATION_EMAIL_INPUT,
   VALIDATE_REGISTRATION_PASSWORD_INPUT,
+  REGISTERING,
   REGISTRATION_FAILED,
   REGISTRATION_SUCCEEDED,
   CLEAR_REGISTRATION_FORM,
@@ -26,6 +27,7 @@ const initialState = {
   pseudoInputError: 'Votre pseudo doit contenir au moins 2 caractères',
   emailInputError: "Le format de l'adresse email n'est pas valide",
   passwordInputError: 'Votre mot de passe doit contenir au moins 6 caractères',
+  registering: false,
   registrationFailed: false,
   registrationSucceeded: false,
 };
@@ -51,14 +53,31 @@ const reducer = (state = initialState, action) => {
       return { ...state, emailInputIsInvalid: false };
     case VALIDATE_REGISTRATION_PASSWORD_INPUT:
       return { ...state, passwordInputIsInvalid: false };
+    case REGISTERING:
+      return {
+        ...state,
+        registering: true,
+        registrationFailed: false,
+        registrationSucceeded: false,
+      };
     case REGISTRATION_FAILED: {
-      return { ...state, registrationFailed: true };
+      return {
+        ...state,
+        registering: false,
+        registrationFailed: true,
+        registrationSucceeded: false,
+      };
     }
     case REGISTRATION_SUCCEEDED: {
-      return { ...state, registrationSucceeded: true };
+      return {
+        ...state,
+        registering: false,
+        registrationFailed: false,
+        registrationSucceeded: true,
+      };
     }
     case CLEAR_REGISTRATION_FORM: {
-      const cleared = {...initialState};
+      const cleared = { ...initialState };
       cleared.registrationSucceeded = state.registrationSucceeded;
       cleared.registrationFailed = state.registrationFailed;
       return cleared;

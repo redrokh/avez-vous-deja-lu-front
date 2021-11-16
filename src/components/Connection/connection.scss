@@ -10,8 +10,6 @@
   width: 600px;
 
   &__title {
-    font-size: 36px;
-    margin-bottom: 1em;
     text-align: center;
   }
 
@@ -35,7 +33,6 @@
       padding: 0.5em;
       border-radius: 5px;
       background-color: grey;
-      font-size: 0.7em;
       transition: transform 200ms;
     }
 
@@ -54,7 +51,7 @@
     &-input::placeholder {
       color: #fff;
       font-style: italic;
-      transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+      transition: top 200ms ease-in, left 200ms ease-in;
     }
 
     &-input:focus {
@@ -68,7 +65,7 @@
 
     &-error {
       position: absolute;
-      top: 65px;
+      top: 70px;
       color: rgb(231, 84, 84);
       font-style: italic;
     }
@@ -93,7 +90,7 @@
   }
 
   &__submit-container {
-    margin-top: 1em;
+    margin-top: 2em;
 
     .Connection__submit-button {
       padding: 0.5em;

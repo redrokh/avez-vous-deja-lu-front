@@ -11,8 +11,8 @@ import {
   validateConnectionEmailInput,
   validateConnectionPasswordInput,
   logIn,
+  logingIn,
   connectionFailed,
-  connectionSucceeded,
   clearConnectionForm,
   resetAuthState,
 } from '../actions/authActions';
@@ -21,6 +21,19 @@ import {
   loadUser,
   resetUserState,
 } from '../actions/userActions';
+
+import {
+  resetAnecdoteState,
+  resetAnecdotesState,
+} from '../actions/anecdoteActions';
+
+import {
+  resetBestsState,
+} from '../actions/bestActions';
+
+import {
+  resetLatestsState,
+} from '../actions/latestActions';
 
 // Trigger treatment according to action type
 const middleware = (store) => (next) => (action) => {
@@ -58,6 +71,7 @@ const middleware = (store) => (next) => (action) => {
       break;
     }
     case LOG_IN: {
+      store.dispatch(logingIn());
       API.post(
         'login_check',
         {
@@ -72,9 +86,6 @@ const middleware = (store) => (next) => (action) => {
             email: store.getState().auth.emailInput,
           };
           localStorage.setItem('user', JSON.stringify(user));
-
-          // Connection succeeded
-          store.dispatch(connectionSucceeded(response.data.token));
 
           // Get user data
           store.dispatch(loadUser());

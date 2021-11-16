@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ChevronLeft, ChevronRight } from 'react-feather';
+import Loader from 'react-loader-spinner';
 import classNames from 'classnames';
 
 // Import components
@@ -24,17 +25,21 @@ const LatestCarousel = ({
     loadData();
   }, []);
 
+  if (loadingData) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
+  }
   if (!dataLoaded) {
-    if (loadingData) {
-      return (
-        <></>
-      );
-    }
-    else {
-      return (
-        <></>
-      );
-    }
+    return (
+      <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>
+    );
   }
 
   return (
@@ -56,9 +61,8 @@ const LatestCarousel = ({
         />
       </div>
 
-      <div>
+      <div className="LatestCarousel__anecdote">
         <AnecdoteCard
-          className="LatestCarousel__anecdote"
           {...anecdotes[currentIndex]}
           context={context}
         />

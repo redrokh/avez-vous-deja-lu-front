@@ -1,7 +1,8 @@
 // import from libraries
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
 // import styles
 import './categories.scss';
@@ -18,19 +19,34 @@ const Categories = ({
   }, []);
   const history = useHistory();
 
-  return (
-    <section>
-      <h2 className="main__title">Toutes les Catégories</h2>
+  if (loadingData) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
+  }
 
-      <ul className="categorie__grid">
+  return (
+    <section className="Categories">
+      <h2 className="Categories__title">Toutes les Catégories</h2>
+
+      <ul className="Categories__grid">
         {
           categories.map((category) => (
             <li
               key={category.id}
-              className="grid__card"
+              className="Categories__card"
+              style={{
+                backgroundColor: category.color,
+              }}
               onClick={() => history.push(`/categories/${category.slug}`)}
             >
-              <h3 className="title__card">{category.name}</h3>
+              <h3 className="Categories__card-title">{category.name}</h3>
             </li>
           ))
         }

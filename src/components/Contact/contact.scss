@@ -1,15 +1,15 @@
 @use '../../styles/vars';
 
-.contact__form {
+.Contact__form {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  .contact__title {
+  max-width: 400px;
+  width: 80%;
+  .Contact__title {
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
   }
-  .contact__input {
+  .Contact__input {
     color: #fff;
     position: relative;
     margin-top: 1em;
@@ -21,12 +21,12 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 1em;
   }
-  .contact__input::placeholder {
+  .Contact__input::placeholder {
     color: #fff;
     font-style: italic;
-    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    transition: top 200ms ease-in, left 200ms ease-in;
   }
-  .contact__input:focus {
+  .Contact__input:focus {
     box-shadow: 0 0 .2rem #fff,
                 0 0 .2rem #fff,
                 0 0 2rem #19A4DF,
@@ -39,7 +39,6 @@
     text-align: center;
     margin-top: 2em;
     .submit{
-      font-size: 1em;
       padding: 0.8em;
       background: none;
       border: 1px solid #fff;

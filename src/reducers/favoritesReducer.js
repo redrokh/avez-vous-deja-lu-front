@@ -13,7 +13,7 @@ import {
 const initialState = {
   anecdotes: [],
   loadingData: false,
-  loadDataFaild: false,
+  loadDataFailed: false,
   dataLoaded: false,
   deletingFavorite: false,
   deleteFavoriteFailed: false,
@@ -24,14 +24,29 @@ const initialState = {
 // Set new state based on action dispatched
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_FAVORITES:
-      return { ...state, loadingFavorites: true };
     case SET_FAVORITES:
       return { ...state, anecdotes: action.anecdotes };
+    case LOADING_FAVORITES:
+      return {
+        ...state,
+        loadingData: true,
+        loadDataFailed: false,
+        dataLoaded: false,
+      };
     case LOAD_FAVORITES_FAILED:
-      return { ...state, dataLoaded: false, loadingData: false };
+      return {
+        ...state,
+        loadingData: false,
+        loadDataFailed: true,
+        dataLoaded: false,
+      };
     case FAVORITES_LOADED:
-      return { ...state, dataLoaded: true, loadingData: false }
+      return {
+        ...state,
+        loadingData: false,
+        loadDataFailed: false,
+        dataLoaded: true,
+      };
     case FAVORITES_DELETING_FAVORITE:
       return {
         ...state,
@@ -51,7 +66,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         deletingFavorite: false,
         deleteFavoriteFailed: false,
-        deleteFavoriteSucceeded: true
+        deleteFavoriteSucceeded: true,
       };
     default:
       return state;

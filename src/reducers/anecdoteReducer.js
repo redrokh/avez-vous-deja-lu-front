@@ -8,9 +8,7 @@ import {
   LOADING_IS_FAVORITE,
   LOAD_IS_FAVORITE_FAILED,
   IS_FAVORITE_LOADED,
-  LOADING_DATA,
-  LOAD_DATA_FAILED,
-  DATA_LOADED,
+  RESET_ANECDOTE_STATE,
 } from '../actions/anecdoteActions';
 
 // Define initial state
@@ -37,6 +35,18 @@ const initialState = {
   loadingIsFavorite: false,
   loadIsFavoriteFailed: false,
   isFavoriteLoaded: false,
+  upVoting: false,
+  upVoteFailed: false,
+  upVoteSucceeded: false,
+  downVoting: false,
+  downVoteFailed: false,
+  downVoteSucceeded: false,
+  iKnewPending: false,
+  iKnewFailed: false,
+  iKnewSucceeded: false,
+  iDidntKnowPending: false,
+  iDidntKnowFailed: false,
+  iDidntKnowSucceeded: false,
 };
 
 // Set new state based on action dispatched
@@ -51,43 +61,49 @@ const reducer = (state = initialState, action) => {
         ...state,
         loadingAnecdote: true,
         loadAnecdoteFailed: false,
-        anecdoteLoaded: false
+        anecdoteLoaded: false,
       };
     case LOAD_ANECDOTE_FAILED:
       return {
         ...state,
         loadingAnecdote: false,
         loadAnecdoteFailed: true,
-        anecdoteLoaded: false
+        anecdoteLoaded: false,
       };
     case ANECDOTE_LOADED:
       return {
         ...state,
         loadingAnecdote: false,
         loadAnecdoteFailed: false,
-        anecdoteLoaded: true
+        anecdoteLoaded: true,
       };
     case LOADING_IS_FAVORITE:
       return {
         ...state,
         loadingIsFavorite: true,
         loadIsFavoriteFailed: false,
-        isFavoriteLoaded: false
+        isFavoriteLoaded: false,
       };
-    case LOAD_IS_FAVORITE_FAILED:
+    case LOAD_IS_FAVORITE_FAILED: {
+      console.log('load is favorite failed');
       return {
         ...state,
         loadingIsFavorite: false,
         loadIsFavoriteFailed: true,
-        isFavoriteLoaded: false
+        isFavoriteLoaded: false,
       };
-    case IS_FAVORITE_LOADED:
+    }
+    case IS_FAVORITE_LOADED: {
+      console.log('is favorite loaded');
       return {
         ...state,
         loadingIsFavorite: false,
         loadIsFavoriteFailed: false,
-        isFavoriteLoaded: true
+        isFavoriteLoaded: true,
       };
+    }
+    case RESET_ANECDOTE_STATE:
+      return initialState;
     default:
       return state;
   }

@@ -14,16 +14,17 @@ import './myaccount.scss';
 
 const MyAccount = ({
   isConnected,
+  reconnecting,
 }) => {
   const history = useHistory();
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
-    if (!isConnected) {
+    if (!isConnected && !reconnecting) {
       history.push('/connexion');
     }
-  }, []);
+  }, [reconnecting]);
   return (
     <section className="MyAccount">
       <h2 className="MyAccount__title">Mon compte</h2>

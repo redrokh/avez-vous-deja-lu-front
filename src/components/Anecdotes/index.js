@@ -1,7 +1,8 @@
 // Import from libraries
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
@@ -18,11 +19,37 @@ const Anecdotes = ({
   loadDataFailed,
   dataLoaded,
   anecdoteGroup,
+  isConnected,
+  reconnecting,
 }) => {
+  const history = useHistory();
   const context = useLocation().pathname;
+
   useEffect(() => {
     loadData(anecdoteGroup, slug);
   }, [context]);
+
+  if (!isConnected && slug.length > 0 && !reconnecting) {
+    history.push('/connexion');
+  }
+
+  if (reconnecting || loadingData) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
+  }
+
+  if (loadDataFailed) {
+    return (
+      <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>
+    );
+  }
 
   return (
     <section className="anecdotes">

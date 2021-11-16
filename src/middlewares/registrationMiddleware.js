@@ -12,6 +12,7 @@ import {
   validateRegistrationEmailInput,
   validateRegistrationPasswordInput,
   register,
+  registering,
   registrationFailed,
   registrationSucceeded,
   clearRegistrationForm,
@@ -25,7 +26,7 @@ const middleware = (store) => (next) => (action) => {
       const pseudoIsValid = store.getState().registration.pseudoInput.length >= 2;
 
       // Check email
-      const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
       const emailIsValid = emailRegex.test(
         String(store.getState().registration.emailInput.toLowerCase()),
       );
@@ -35,7 +36,6 @@ const middleware = (store) => (next) => (action) => {
 
       // Set pseudo validation status
       if (!pseudoIsValid) {
-        console.log('?');
         store.dispatch(invalidateRegistrationPseudoInput());
       }
       else {
@@ -44,7 +44,6 @@ const middleware = (store) => (next) => (action) => {
 
       // Set email validation status
       if (!emailIsValid) {
-        console.log('??');
         store.dispatch(invalidateRegistrationEmailInput());
       }
       else {
@@ -53,14 +52,11 @@ const middleware = (store) => (next) => (action) => {
 
       // Set password validation status
       if (!passwordIsValid) {
-        console.log('??');
         store.dispatch(invalidateRegistrationPasswordInput());
       }
       else {
         store.dispatch(validateRegistrationPasswordInput());
       }
-
-      console.log(pseudoIsValid, emailIsValid, passwordIsValid);
 
       // Ask API for token
       if (pseudoIsValid && emailIsValid && passwordIsValid) {
@@ -68,7 +64,8 @@ const middleware = (store) => (next) => (action) => {
       }
       break;
     }
-    case REGISTER:
+    case REGISTER: {
+      store.dispatch(registering());
       const { pseudoInput, emailInput, passwordInput } = store.getState().registration;
       API.post(
         'register',
@@ -76,14 +73,15 @@ const middleware = (store) => (next) => (action) => {
           pseudo: pseudoInput,
           email: emailInput,
           password: passwordInput,
-        }
+        },
       )
-        .then((response) => {
+        .then(() => {
           store.dispatch(registrationSucceeded());
           store.dispatch(clearRegistrationForm());
         })
         .catch(() => store.dispatch(registrationFailed()));
       break;
+    }
     default:
   }
   next(action);

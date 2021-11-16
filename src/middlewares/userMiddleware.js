@@ -3,6 +3,10 @@ import API from '../utils/api';
 
 // Import actions and action creators
 import {
+  connectionFailed,
+  connectionSucceeded,
+} from '../actions/authActions';
+import {
   LOAD_USER,
   setUser,
 
@@ -22,12 +26,20 @@ const middleware = (store) => (next) => (action) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
         .then((response) => {
+          // Store user data
           store.dispatch(setUser(response.data[0]));
+
+          // Connection succeeded
+          store.dispatch(
+            connectionSucceeded(
+              token,
+            ),
+          );
         })
-        .catch((error) => console.log(error));
+        .catch(() => store.dispatch(connectionFailed()));
       break;
     }
     default:

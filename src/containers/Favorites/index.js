@@ -13,6 +13,8 @@ const mapStateToProps = (state) => ({
   loadingData: state.favorites.loadingData,
   loadDataFailed: state.favorites.loadDataFailed,
   dataLoaded: state.favorites.dataLoaded,
+  isConnected: state.auth.isConnected,
+  reconnecting: state.auth.reconnecting,
 });
 
 // Link component props to actions

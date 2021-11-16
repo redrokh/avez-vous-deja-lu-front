@@ -9,6 +9,22 @@
   .AccessNav__item {
     margin: 0.5em;
 
+    .AccessNav__left-link {
+      padding: vars.$gutterXs;
+    }
+
+    .AccessNav__left-link--selected {
+      padding: vars.$gutterXs;
+      text-shadow: 0 0 1px #fff,
+                   0 0 4px #19A4DF,
+      /* box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.6rem #19A4DF,
+                  0 0 1rem #19A4DF,
+                  inset 0 0 0.8rem #19A4DF; */
+    }
+
     .AccessNav__connection-button {
       background-color: #0078d0;
     }
@@ -22,8 +38,6 @@
       color: #fff;
       cursor: pointer;
       display: inline-block;
-      font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
-      font-size: 16px;
       font-weight: 600;
       outline: 0;
       padding: 0.5em;
@@ -36,8 +50,22 @@
       touch-action: manipulation;
       transition-duration: 0.4s;
     }
-    .Access-nav__deconnection-button:hover {
-      background-color: #67bfff;
+
+    .AccessNav__connection-button:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #0078d0,
+                  0 0 0.8rem #0078d0,
+                  0 0 2.8rem #0078d0,
+                  inset 0 0 1.3rem #0078d0;
+    }
+    .AccessNav__deconnection-button:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem rgb(231, 84, 84),
+                  0 0 0.8rem rgb(231, 84, 84),
+                  0 0 2.8rem rgb(231, 84, 84),
+                  inset 0 0 1.3rem rgb(231, 84, 84);
     }
   }
 }

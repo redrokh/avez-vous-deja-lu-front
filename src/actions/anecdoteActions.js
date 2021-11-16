@@ -58,6 +58,11 @@ export const I_DIDNT_KNOW_PENDING = 'I_DIDNT_KNOW_PENDING';
 export const I_DIDNT_KNOW_FAILED = 'I_DIDNT_KNOW_FAILED';
 export const I_DIDNT_KNOW_SUCCEEDED = 'I_DIDNT_KNOW_SUCCEEDED';
 
+export const LOAD_RANDOM_ANECDOTE = 'LOAD_RANDOM_ANECDOTE';
+
+export const RESET_ANECDOTE_STATE = 'RESET_ANECDOTE_STATE';
+export const RESET_ANECDOTES_STATE = 'RESET_ANECDOTES_STATE';
+
 // Action creators
 export const loadAnecdotes = () => ({
   type: LOAD_ANECDOTES,
@@ -106,7 +111,7 @@ export const loadingAnecdote = () => ({
 
 export const setAnecdote = (anecdote) => ({
   type: SET_ANECDOTE,
-  anecdote
+  anecdote,
 });
 
 export const loadAnecdoteFailed = () => ({
@@ -117,16 +122,18 @@ export const anecdoteLoaded = () => ({
   type: ANECDOTE_LOADED,
 });
 
-export const loadPrevAnecdote = (context, anecdoteId) => ({
+export const loadPrevAnecdote = (context, anecdoteId, categorySlug) => ({
   type: LOAD_PREV_ANECDOTE,
   context,
   anecdoteId,
+  categorySlug,
 });
 
-export const loadNextAnecdote = (context, anecdoteId) => ({
+export const loadNextAnecdote = (context, anecdoteId, categorySlug) => ({
   type: LOAD_NEXT_ANECDOTE,
   context,
   anecdoteId,
+  categorySlug,
 });
 
 export const loadIsFavorite = (anecdoteId) => ({
@@ -249,4 +256,16 @@ export const iDidntKnowFailed = () => ({
 
 export const iDidntKnowSucceeded = () => ({
   type: I_DIDNT_KNOW_SUCCEEDED,
+});
+
+export const loadRandomAnecdote = () => ({
+  type: LOAD_RANDOM_ANECDOTE,
+});
+
+export const resetAnecdoteState = () => ({
+  type: RESET_ANECDOTE_STATE,
+});
+
+export const resetAnecdotesState = () => ({
+  type: RESET_ANECDOTES_STATE,
 });

@@ -16,7 +16,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER: {
-      const { id, pseudo, email, img } = action.user;
+      const {
+        id,
+        pseudo,
+        email,
+        img,
+      } = action.user;
       return {
         ...state,
         id,

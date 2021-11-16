@@ -5,9 +5,10 @@
   z-index: 10;
   width: 100%;
   background-color: black;
-  padding: 1em 1em 0;
+  padding: vars.$gutterSm vars.$gutterSm vars.$gutterXs vars.$gutterSm;
   color: white;
   border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+  font-weight: 600;
   &__top {
     display: flex;
     justify-content: space-between;

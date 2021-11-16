@@ -1,5 +1,7 @@
 // Import from libraries
-import { Switch, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // Import from app components
 import Header from '../../containers/Header';
@@ -12,8 +14,10 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Anecdotes from '../../containers/Anecdotes';
 import Anecdote from '../../containers/Anecdote';
+import RandomAnecdote from '../../containers/RandomAnecdote';
 import Categories from '../../containers/Categories';
 import Error from '../Error';
+import WhoWeAre from '../WhoWeAre';
 import Contact from '../Contact';
 import LegalesMentions from '../LegalesMentions';
 import Footer from '../../containers/Footer';
@@ -22,158 +26,192 @@ import Footer from '../../containers/Footer';
 import './styles.scss';
 
 // Component
-const App = () => (
-  <div className="app">
-    { /* Header */ }
-    <Header />
+const App = ({
+  reconnectUser,
+  cancelReconnection,
+  registrationSucceeded,
+  resetRegistrationState,
+}) => {
+  const location = useLocation();
 
-    { /* Page content */ }
+  useEffect(() => {
+    if (location.pathname !== '/inscription' && registrationSucceeded) {
+      resetRegistrationState();
+    }
+  }, [location]);
 
-    <Page>
-      { /* Authorized for unsigned users */ }
-      <Switch>
-        <Route
-          path="/"
-          exact
-        >
-         <HomeMessage />
-         <BestCarousel />
-         <LatestCarousel />
-        </Route>
+  useEffect(() => {
+    if (localStorage.getItem('user') !== null) {
+      reconnectUser();
+    }
+    else {
+      cancelReconnection();
+    }
+  }, []);
+  return (
+    <div className="app">
+      { /* Header */ }
+      <Header />
 
-        <Route
-          path="/inscription"
-          exact
-        >
-          <Registration />
-        </Route>
+      { /* Page content */ }
 
-        <Route
-          path="/connexion"
-          exact
-        >
-          <Connection />
-        </Route>
+      <Page>
+        { /* Authorized for unsigned users */ }
+        <Switch>
+          <Route
+            path="/"
+            exact
+          >
+            <HomeMessage />
+            <BestCarousel />
+            <LatestCarousel />
+          </Route>
 
-        <Route
-          path="/anecdotes"
-          exact
-        >
-          <Anecdotes
-            anecdoteGroup="anecdotes"
-          />
-        </Route>
+          <Route
+            path="/inscription"
+            exact
+          >
+            <Registration />
+          </Route>
 
-        <Route
-          path="/categories"
-          exact
-        >
-          <Categories />
-        </Route>
+          <Route
+            path="/connexion"
+            exact
+          >
+            <Connection />
+          </Route>
 
-        <Route
-          path="/nos-meilleures-anecdotes"
-          exact
-        >
-          <Anecdotes
-            anecdoteGroup="bests"
-          />
-        </Route>
-
-        <Route
-          path="/nos-meilleures-anecdotes/anecdote/:anecdoteId"
-          exact
-        >
-          <Anecdote
-            context="bests"
-          />
-        </Route>
-
-        <Route
-          path="/nos-dernieres-anecdotes/anecdote/:anecdoteId"
-          exact
-        >
-          <Anecdote
-            context="latests"
-          />
-        </Route>
-
-        <Route
-          path="/mentions-legales"
-          exact
-        >
-          <LegalesMentions />
-        </Route>
-
-        <Route
-          path="/contact"
-          exact
-        >
-          <Contact />
-        </Route>
-
-        <Route
-          path="/qui-sommes_nous"
-          exact
-        >
-        </Route>
-
-        { /* Authorized for signed user */ }
-
-        <Route
-          path="/mon-compte"
-        >
-          <MyAccount />
-        </Route>
-
-        <Route
-          path="/mes-favoris/:anecdoteId"
-          exact
-        >
-          <Anecdote context="favorites" />
-        </Route>
-
-        <Route
-          path="/anecdotes/anecdote/:anecdoteId"
-          exact
-        >
-          <Anecdote context="anecdotes" />
-        </Route>
-
-        <Route
-          path="/categories/:slug"
-          render={({ match }) => (
+          <Route
+            path="/anecdotes"
+            exact
+          >
             <Anecdotes
-              anecdoteGroup="categories"
-              slug={match.params.slug}
+              anecdoteGroup="anecdotes"
             />
-          )}
-          exact
-        />
+          </Route>
 
-        <Route
-          path="/categories/:categorySlug/anecdote/:anecdoteId"
-          exact
-        >
-        </Route>
+          <Route
+            path="/categories"
+            exact
+          >
+            <Categories />
+          </Route>
 
-        <Route
-          path="/au-hasard/anecdote/:anecdoteId"
-          exact
-        ></Route>
+          <Route
+            path="/nos-meilleures-anecdotes"
+            exact
+          >
+            <Anecdotes
+              anecdoteGroup="bests"
+            />
+          </Route>
 
-        { /* Url is not supported */ }
+          <Route
+            path="/nos-meilleures-anecdotes/anecdote/:anecdoteId"
+            exact
+          >
+            <Anecdote
+              context="bests"
+            />
+          </Route>
 
-        <Route>
-          <Error />
-        </Route>
-      </Switch>
-    </Page>
+          <Route
+            path="/nos-dernieres-anecdotes/anecdote/:anecdoteId"
+            exact
+          >
+            <Anecdote
+              context="latests"
+            />
+          </Route>
 
-    { /* Footer */ }
-    <Footer />
-  </div>
-);
+          <Route
+            path="/mentions-legales"
+            exact
+          >
+            <LegalesMentions />
+          </Route>
+
+          <Route
+            path="/contact"
+            exact
+          >
+            <Contact />
+          </Route>
+
+          <Route
+            path="/qui-sommes-nous"
+            exact
+          >
+            <WhoWeAre />
+          </Route>
+
+          { /* Authorized for signed user */ }
+
+          <Route
+            path="/mon-compte"
+          >
+            <MyAccount />
+          </Route>
+
+          <Route
+            path="/mes-favoris/:anecdoteId"
+            exact
+          >
+            <Anecdote context="favorites" />
+          </Route>
+
+          <Route
+            path="/anecdotes/anecdote/:anecdoteId"
+            exact
+          >
+            <Anecdote context="anecdotes" />
+          </Route>
+
+          <Route
+            path="/categories/:slug"
+            render={({ match }) => (
+              <Anecdotes
+                anecdoteGroup="categories"
+                slug={match.params.slug}
+              />
+            )}
+            exact
+          />
+
+          <Route
+            path="/categories/:categorySlug/anecdote/:anecdoteId"
+            exact
+          >
+            <Anecdote
+              context="categories"
+            />
+          </Route>
+
+          <Route
+            path="/au-hasard"
+            exact
+          >
+            <RandomAnecdote />
+          </Route>
+
+          { /* Url is not supported */ }
+
+          <Route>
+            <Error />
+          </Route>
+        </Switch>
+      </Page>
+
+      { /* Footer */ }
+      <Footer />
+    </div>
+  );
+};
+
+App.propTypes = {
+  reconnectUser: PropTypes.func.isRequired,
+  cancelReconnection: PropTypes.func.isRequired,
+};
 
 // == Export
 export default App;
