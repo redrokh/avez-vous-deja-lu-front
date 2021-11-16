@@ -8,9 +8,9 @@ import { useParams, useLocation, useHistory } from 'react-router-dom';
 // Import components
 import Tag from '../Tag';
 // import styles
-import './anecdote.scss';
+import './randomanecdote.scss';
 
-const Anecdote = ({
+const RandomAnecdote = ({
   id,
   title,
   createdAt,
@@ -19,7 +19,6 @@ const Anecdote = ({
   category,
   source,
   isFavorite,
-  loadIsFavorite,
   loadingIsFavorite,
   loadIsFavoriteFailed,
   isFavoriteLoaded,
@@ -49,45 +48,21 @@ const Anecdote = ({
   loadingAnecdote,
   loadAnecdoteFailed,
   anecdoteLoaded,
-  context,
   isConnected,
   reconnecting,
 }) => {
-  let isFirstMount = useRef(true);
-  const location = useLocation();
   const history = useHistory();
-  const baseUrl = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
-  const { categorySlug, anecdoteId } = useParams();
 
   useEffect(() => {
-    if (isFirstMount) {
-      isFirstMount = false;
-    }
-  }, []);
-
-  useEffect(() => {
-    // Route doesn't require authorization or user has authorization
-    if (context === 'bests' || context === 'latests' || isConnected) {
-      if (!anecdoteLoaded && !loadingAnecdote) {
-        loadAnecdote(context, parseInt(anecdoteId, 10));
-      }
+    // Load anecdote when user is connected and anecdote is not already loading
+    if (isConnected && !anecdoteLoaded && !loadingAnecdote) {
+      loadAnecdote();
     }
     // Route requires authorization and user is not reconnecting
-    else if (!reconnecting) {
+    else if (!reconnecting && !isConnected) {
       history.push('/connexion');
     }
   }, [reconnecting]);
-
-  useEffect(() => {
-    // Coming from next/prev button
-    if (id !== 0 && isFirstMount) {
-      history.push(`${baseUrl}/${id}`);
-    }
-    // Coming from favorites
-    else if (isConnected) {
-      loadAnecdote(context, parseInt(anecdoteId, 10));
-    }
-  }, [id]);
 
   if (
     reconnecting
@@ -121,10 +96,22 @@ const Anecdote = ({
   }
 
   return (
-    <article className="Anecdote">
-      <h2 className="Anecdote__title">{title}</h2>
+    <article className="RandomAnecdote">
+      <div className="RandomAnecdote__header">
+        <h2 className="RandomAnecdote__title">{title}</h2>
 
-      <div className="Anecdote__categories">
+        <div>
+          <button
+            className="RandomAnecdote__generate-button"
+            type="button"
+            onClick={() => loadAnecdote()}
+          >
+            Générer une autre anecdote
+          </button>
+        </div>
+      </div>
+
+      <div className="RandomAnecdote__categories">
         {
           category.map((item) => (
             <Tag key={item.id} {...item} />
@@ -132,8 +119,8 @@ const Anecdote = ({
         }
       </div>
 
-      <div className="Anecdote__top-part">
-        <div className="Anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
+      <div className="RandomAnecdote__top-part">
+        <div className="RandomAnecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
         <Star
           stroke="yellow"
           fill={isFavorite ? 'yellow' : 'none'}
@@ -148,25 +135,25 @@ const Anecdote = ({
         />
       </div>
 
-      <div className="Anecdote__middle-part">
-        <div className="Anecdote__voter">
+      <div className="RandomAnecdote__middle-part">
+        <div className="RandomAnecdote__voter">
           <ArrowUpCircle
-            className="Anecdote__upvote"
+            className="RandomAnecdote__upvote"
             onClick={() => {
               if (isConnected) {
-                upVote(context);
+                upVote();
               }
               else {
                 alert('Vous devez être connecté pour effectuer cette action');
               }
             }}
           />
-          <div className="Anecdote__vote-count">{voteCount}</div>
+          <div className="RandomAnecdote__vote-count">{voteCount}</div>
           <ArrowDownCircle
-            className="Anecdote__downvote"
+            className="RandomAnecdote__downvote"
             onClick={() => {
               if (isConnected) {
-                downVote(context);
+                downVote();
               }
               else {
                 alert('Vous devez être connecté pour effectuer cette action');
@@ -175,15 +162,15 @@ const Anecdote = ({
           />
         </div>
 
-        <p className="Anecdote__content">{content}</p>
+        <p className="RandomAnecdote__content">{content}</p>
       </div>
 
-      <div className="Anecdote__info">
+      <div className="RandomAnecdote__info">
         <button
-          className="Anecdote__knew"
+          className="RandomAnecdote__knew"
           onClick={() => {
             if (isConnected) {
-              iKnew(context);
+              iKnew();
             }
             else {
               alert('Vous devez être connecté pour effectuer cette action');
@@ -195,10 +182,10 @@ const Anecdote = ({
         </button>
 
         <button
-          className="Anecdote__didnt-know"
+          className="RandomAnecdote__didnt-know"
           onClick={() => {
             if (isConnected) {
-              iDidntKnow(context);
+              iDidntKnow();
             }
             else {
               alert('Vous devez être connecté pour effectuer cette action');
@@ -210,10 +197,10 @@ const Anecdote = ({
         </button>
       </div>
 
-      <aside className="Anecdote__sources">
-        <h3 className="Anecdote__sources-title">Source :</h3>
+      <aside className="RandomAnecdote__sources">
+        <h3 className="RandomAnecdote__sources-title">Source :</h3>
         <a
-          className="Anecdote__source-link"
+          className="RandomAnecdote__source-link"
           target="_blank"
           href={source}
           rel="noreferrer"
@@ -221,28 +208,11 @@ const Anecdote = ({
           {source}
         </a>
       </aside>
-
-      <div className="Anecdote__nav">
-        <button
-          className="Anecdote__nav-link"
-          onClick={() => prevAnecdote(context, anecdoteId, categorySlug)}
-          type="button"
-        >
-          Précédent
-        </button>
-        <button
-          className="Anecdote__nav-link"
-          onClick={() => nextAnecdote(context, anecdoteId, categorySlug)}
-          type="button"
-        >
-          Suivant
-        </button>
-      </div>
     </article>
   );
 };
 
-Anecdote.propTypes = {
+RandomAnecdote.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
@@ -258,8 +228,6 @@ Anecdote.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
-  prevAnecdote: PropTypes.func.isRequired,
-  nextAnecdote: PropTypes.func.isRequired,
   upVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
   iKnew: PropTypes.func.isRequired,
@@ -275,4 +243,4 @@ Anecdote.propTypes = {
   toggleIsFavorite: PropTypes.func.isRequired,
 };
 
-export default Anecdote;
+export default RandomAnecdote;

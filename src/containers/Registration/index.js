@@ -23,6 +23,7 @@ const mapStateToProps = (state) => ({
   pseudoInputError: state.registration.pseudoInputError,
   emailInputError: state.registration.emailInputError,
   passwordInputError: state.registration.passwordInputError,
+  registering: state.registration.registering,
   registrationFailed: state.registration.registrationFailed,
   registrationSucceeded: state.registration.registrationSucceeded,
 });

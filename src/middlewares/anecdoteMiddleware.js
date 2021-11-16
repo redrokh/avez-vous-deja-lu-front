@@ -7,6 +7,7 @@ import {
   LOAD_ANECDOTE,
   LOAD_PREV_ANECDOTE,
   LOAD_NEXT_ANECDOTE,
+  LOAD_RANDOM_ANECDOTE,
   LOAD_IS_FAVORITE,
   ADD_FAVORITE,
   DELETE_FAVORITE,
@@ -92,7 +93,6 @@ const middleware = (store) => (next) => (action) => {
         .then((response) => {
           store.dispatch(setAnecdote(response.data));
           store.dispatch(anecdoteLoaded());
-          console.log(action.context);
           if (action.context === 'favorites' || action.context === 'categories' || action.context === 'anecdotes') {
             store.dispatch((loadIsFavorite(response.data.id)));
           }
@@ -296,6 +296,24 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(iDidntKnowSucceeded());
         })
         .catch(() => store.dispatch(iDidntKnowFailed()));
+      break;
+    }
+    case LOAD_RANDOM_ANECDOTE: {
+      store.dispatch(loadingAnecdote());
+      API.get(
+        `user/${store.getState().user.id}/random`,
+        {
+          headers: {
+            Authorization: `Bearer ${store.getState().auth.token}`,
+          },
+        },
+      )
+        .then((response) => {
+          store.dispatch(setAnecdote(response.data));
+          store.dispatch(anecdoteLoaded());
+          store.dispatch((loadIsFavorite(response.data.id)));
+        })
+        .catch(() => store.dispatch(loadAnecdoteFailed()));
       break;
     }
     default:

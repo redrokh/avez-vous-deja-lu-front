@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import Tag from '../Tag';
+import PropTypes from 'prop-types';
 import { Trash2 } from 'react-feather';
+import Loader from 'react-loader-spinner';
+
+import Tag from '../Tag';
 
 import './favorites.scss';
 
@@ -13,21 +15,42 @@ const Favorites = ({
   loadingData,
   loadDataFailed,
   dataLoaded,
+  isConnected,
+  reconnecting,
 }) => {
+  let isFirstMount = useRef(true);
   const history = useHistory();
 
   useEffect(() => {
-    loadData();
-  }, [])
+    if (isFirstMount) {
+      isFirstMount = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isConnected && !dataLoaded && !loadingData) {
+      loadData();
+    }
+  }, [reconnecting]);
 
   if (loadingData) {
-    return <></>;
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
   }
 
   if (loadDataFailed || !dataLoaded) {
-    return <></>
+    return (
+      <></>
+    );
   }
-  
+
   if (anecdotes.length === 0) {
     return (
       <section className="Favorites">

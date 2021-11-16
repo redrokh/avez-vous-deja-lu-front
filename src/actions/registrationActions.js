@@ -14,7 +14,7 @@ export const VALIDATE_REGISTRATION_EMAIL_INPUT ='VALIDATE_REGISTRATION_EMAIL_INP
 export const VALIDATE_REGISTRATION_PASSWORD_INPUT = 'VALIDATE_REGISTRATION_PASSWORD_INPUT';
 
 export const REGISTER = 'REGISTER';
-
+export const REGISTERING = 'REGISTERING';
 export const REGISTRATION_FAILED = 'REGISTRATION_FAILED';
 export const REGISTRATION_SUCCEEDED = 'REGISTRATION_SUCCEEDED';
 
@@ -67,6 +67,10 @@ export const validateRegistrationPasswordInput = () => ({
 
 export const register = () => ({
   type: REGISTER,
+});
+
+export const registering = () => ({
+  type: REGISTERING,
 });
 
 export const registrationFailed = () => ({

@@ -1,14 +1,14 @@
 @use '../../styles/vars';
 
-.contact__form {
+.Contact__form {
   display: flex;
   flex-direction: column;
   width: 50%;
-  .contact__title {
+  .Contact__title {
     text-align: center;
     margin-bottom: 1em;
   }
-  .contact__input {
+  .Contact__input {
     color: #fff;
     position: relative;
     margin-top: 1em;
@@ -20,12 +20,12 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 1em;
   }
-  .contact__input::placeholder {
+  .Contact__input::placeholder {
     color: #fff;
     font-style: italic;
     transition: top 200ms ease-in, left 200ms ease-in;
   }
-  .contact__input:focus {
+  .Contact__input:focus {
     box-shadow: 0 0 .2rem #fff,
                 0 0 .2rem #fff,
                 0 0 2rem #19A4DF,

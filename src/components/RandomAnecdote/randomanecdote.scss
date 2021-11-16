@@ -1,0 +1,149 @@
+@use '../../styles/vars';
+
+.RandomAnecdote {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  padding: 0em 3em;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: vars.$gutterMd;
+
+    .RandomAnecdote__title {
+      text-align: left;
+    }
+
+    .RandomAnecdote__generate-button {
+      margin-top: vars.$gutterSm;
+      background-color: rgb(62, 119, 62);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: 600;
+      outline: 0;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      transition: all .3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition-duration: 0.4s;
+    }
+
+    .RandomAnecdote__generate-button:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem rgb(62, 119, 62),
+                  0 0 0.8rem rgb(62, 119, 62),
+                  0 0 2.8rem rgb(62, 119, 62),
+                  inset 0 0 1.3rem rgb(62, 119, 62);
+    }
+  }
+
+  &__categories {
+    margin-bottom: 2em;
+  }
+
+  &__top-part {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2em;
+
+    .RandomAnecdote__publication {
+      color: rgba(255, 255, 255, 0.7);
+      font-style: italic;
+      text-align: left;
+      margin-right: 1em;
+    }
+  }
+
+  &__middle-part {
+    display: flex;
+    margin-bottom: 3em;
+
+    .RandomAnecdote__voter {
+      display: flex;
+      flex-direction: column;
+
+      .RandomAnecdote__upvote, .RandomAnecdote__downvote {
+      }
+
+      .RandomAnecdote__vote-count {
+        text-align: center;
+        margin: 1em 0em 1em;
+      }
+    }
+
+    .RandomAnecdote__content {
+      text-align: left;
+      margin-left: 2em;
+    }
+  }
+  
+  .RandomAnecdote__info {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 3em;
+
+    .RandomAnecdote__knew {
+      border: 1px solid green;
+      color: green;
+      background-color: #FFF;
+      border-radius: 6px;
+      padding: 1em / 2 1em;
+      margin-right: 1em;
+    }
+      
+    .RandomAnecdote__didnt-know {
+      border: 1px solid red;
+      color: red;
+      background-color: #FFF;
+      border-radius: 6px;
+      padding: 0.3em;
+    }
+  }
+
+  .RandomAnecdote__sources {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3em;
+    border-top: 1px solid rgb(255, 255, 255, 0.5);
+    padding-top: 2em;
+
+    .RandomAnecdote__sources-title {
+      margin-right: 1em;
+      margin-bottom: 2em;
+    }
+
+    /* .RandomAnecdote__source-list {
+      list-style: inside;
+
+      .RandomAnecdote__source-item {
+        margin-bottom: 1em;
+        color: rgb(255, 255, 255, 0.6);
+      }
+
+      .RandomAnecdote__source-item:hover {
+        opacity: 0.5;
+      }
+    } */
+    
+    .RandomAnecdote__source-link {
+      margin-bottom: 1em;
+      color: rgb(255, 255, 255, 0.6);
+    }
+
+    .RandomAnecdote__source-link:hover {
+      opacity: 0.5;
+    }
+
+  }
+}
+

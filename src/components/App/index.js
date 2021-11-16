@@ -14,6 +14,7 @@ import BestCarousel from '../../containers/BestCarousel';
 import LatestCarousel from '../../containers/LatestCarousel';
 import Anecdotes from '../../containers/Anecdotes';
 import Anecdote from '../../containers/Anecdote';
+import RandomAnecdote from '../../containers/RandomAnecdote';
 import Categories from '../../containers/Categories';
 import Error from '../Error';
 import Contact from '../Contact';
@@ -40,11 +41,9 @@ const App = ({
 
   useEffect(() => {
     if (localStorage.getItem('user') !== null) {
-      console.log('reconnecting user');
       reconnectUser();
     }
     else {
-      console.log('cancelling reconnection');
       cancelReconnection();
     }
   }, []);
@@ -187,9 +186,11 @@ const App = ({
           </Route>
 
           <Route
-            path="/au-hasard/anecdote/:anecdoteId"
+            path="/au-hasard"
             exact
-          ></Route>
+          >
+            <RandomAnecdote />
+          </Route>
 
           { /* Url is not supported */ }
 

@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
 // Import components
 import AnecdoteCard from '../AnecdoteCard';
@@ -34,7 +35,13 @@ const Anecdotes = ({
 
   if (reconnecting || loadingData) {
     return (
-      <div>En attente...</div>
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
     );
   }
 

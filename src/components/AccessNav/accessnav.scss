@@ -50,8 +50,22 @@
       touch-action: manipulation;
       transition-duration: 0.4s;
     }
-    .Access-nav__deconnection-button:hover {
-      background-color: #67bfff;
+
+    .AccessNav__connection-button:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #0078d0,
+                  0 0 0.8rem #0078d0,
+                  0 0 2.8rem #0078d0,
+                  inset 0 0 1.3rem #0078d0;
+    }
+    .AccessNav__deconnection-button:hover {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem rgb(231, 84, 84),
+                  0 0 0.8rem rgb(231, 84, 84),
+                  0 0 2.8rem rgb(231, 84, 84),
+                  inset 0 0 1.3rem rgb(231, 84, 84);
     }
   }
 }

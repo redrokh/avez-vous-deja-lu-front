@@ -12,6 +12,7 @@ import {
   validateRegistrationEmailInput,
   validateRegistrationPasswordInput,
   register,
+  registering,
   registrationFailed,
   registrationSucceeded,
   clearRegistrationForm,
@@ -64,6 +65,7 @@ const middleware = (store) => (next) => (action) => {
       break;
     }
     case REGISTER: {
+      store.dispatch(registering());
       const { pseudoInput, emailInput, passwordInput } = store.getState().registration;
       API.post(
         'register',

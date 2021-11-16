@@ -1,7 +1,8 @@
 // import from libraries
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
 
 // import styles
 import './categories.scss';
@@ -17,6 +18,18 @@ const Categories = ({
     loadData();
   }, []);
   const history = useHistory();
+
+  if (loadingData) {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#fff"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
+  }
 
   return (
     <section className="Categories">

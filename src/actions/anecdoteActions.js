@@ -58,6 +58,8 @@ export const I_DIDNT_KNOW_PENDING = 'I_DIDNT_KNOW_PENDING';
 export const I_DIDNT_KNOW_FAILED = 'I_DIDNT_KNOW_FAILED';
 export const I_DIDNT_KNOW_SUCCEEDED = 'I_DIDNT_KNOW_SUCCEEDED';
 
+export const LOAD_RANDOM_ANECDOTE = 'LOAD_RANDOM_ANECDOTE';
+
 // Action creators
 export const loadAnecdotes = () => ({
   type: LOAD_ANECDOTES,
@@ -251,4 +253,8 @@ export const iDidntKnowFailed = () => ({
 
 export const iDidntKnowSucceeded = () => ({
   type: I_DIDNT_KNOW_SUCCEEDED,
+});
+
+export const loadRandomAnecdote = () => ({
+  type: LOAD_RANDOM_ANECDOTE,
 });

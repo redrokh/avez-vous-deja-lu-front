@@ -8,7 +8,7 @@ import {
 // Import from utils
 import {
   darkenHexColor,
-  proportionalHexColor
+  proportionalHexColor,
 } from '../utils/functions';
 
 // Define initial state

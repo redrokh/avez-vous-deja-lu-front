@@ -33,13 +33,6 @@ const Profile = ({
   passwordInputValidation,
   isConnected,
 }) => {
-  const history = useHistory();
-
-  useEffect(() => {
-    if (!isConnected) {
-      history.push('/connexion');
-    }
-  }, [isConnected]);
 
   return (
     <section className="Profile">
