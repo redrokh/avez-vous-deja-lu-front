@@ -1,3 +1,6 @@
+// Import from libraries
+import { NavLink } from 'react-router-dom';
+
 // Import styles
 import './homemessage.scss';
 
@@ -7,13 +10,11 @@ const HomeMessage = () => (
     <h1 className="HomeMessage__title">Avez-vous déjà lu</h1>
 
     <p className="HomeMessage__content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-      Sed eu varius ligula. Quisque id sagittis metus. Nulla facilisi.
-      Phasellus scelerisque euismod ligula, ac euismod nisl aliquet nec. <br />
-      Suspendisse vulputate convallis tincidunt. In eget neque libero.
-      Donec leo est, convallis quis mattis quis, bibendum eu nibh.
-      Maecenas lectus lorem, aliquet sed condimentum sed, cursus ut mi.
-      Nam hendrerit sodales ornare.
+      Bienvenue sur le site d'Avez-vous déjà lu !<br />
+      Vous voulez faire le malin avec vos amis et votre famille ? Vous voulez juste passer un peu bon temps en sirotant votre café ?<br />
+      Pas de soucis vous êtes au bon endroit ! Nous avons recensés des anecdotes insolites et drôles pour votre plus grand plaisir ! ;)<br />
+      Vous pouvez librement consulter nos meilleures anecdotes ainsi que nos plus récentes !<br />
+      Vous en voulez plus ? Il suffit de vous inscrire <NavLink className="HomeMessage__inscription-link" to="/inscription">ici</NavLink>.<br />
     </p>
   </section>
 );
