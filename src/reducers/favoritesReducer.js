@@ -13,7 +13,7 @@ import {
 const initialState = {
   anecdotes: [],
   loadingData: false,
-  loadDataFaild: false,
+  loadDataFailed: false,
   dataLoaded: false,
   deletingFavorite: false,
   deleteFavoriteFailed: false,
@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         deletingFavorite: false,
         deleteFavoriteFailed: false,
-        deleteFavoriteSucceeded: true
+        deleteFavoriteSucceeded: true,
       };
     default:
       return state;

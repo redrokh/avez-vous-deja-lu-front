@@ -23,18 +23,26 @@
       align-items: flex-end;
       width: 200px;
       height: 200px;
-      border: 1px solid white;
       border-radius: 20px;
       padding-bottom: 2em;
       
 
       &-title {
+        padding: vars.$gutterXs;
+        font-size: 1.5em;
         text-transform: uppercase;
         font-weight: 600;
       }
     }
 
-    
+    .Categories__card:hover {
+      box-shadow: 0 0 .2rem #ffffff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.8rem #19A4DF,
+                  0 0 2.8rem #19A4DF,
+                  inset 0 0 1.3rem #19A4DF;
+    }
   }
   
   

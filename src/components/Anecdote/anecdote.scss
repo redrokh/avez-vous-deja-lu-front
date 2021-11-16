@@ -17,7 +17,7 @@
 
   &__top-part {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 2em;
 
     .Anecdote__publication {
@@ -48,12 +48,15 @@
     .Anecdote__content {
       text-align: left;
       margin-left: 2em;
+      //white-space: pre;
     }
   }
   
   .Anecdote__info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: right;
+    gap: vars.$gutterSm;
     margin-bottom: 3em;
 
     .Anecdote__knew {
@@ -61,8 +64,7 @@
       color: green;
       background-color: #FFF;
       border-radius: 6px;
-      padding: 1em / 2 1em;
-      margin-right: 1em;
+      height: 40px;
     }
       
     .Anecdote__didnt-know {
@@ -70,7 +72,7 @@
       color: red;
       background-color: #FFF;
       border-radius: 6px;
-      padding: 0.3em;
+      height: 40px;
     }
   }
 
@@ -123,6 +125,7 @@
       border-radius: 5px;
       background-color: #FFF;
       padding: 1em / 2 1em;
+      height: 35px;
       }
   }
 }

@@ -18,19 +18,18 @@ const Favorites = ({
   isConnected,
   reconnecting,
 }) => {
-  let isFirstMount = useRef(true);
   const history = useHistory();
 
   useEffect(() => {
-    if (isFirstMount) {
-      isFirstMount = false;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isConnected && !dataLoaded && !loadingData) {
+    if (isConnected) {
       loadData();
     }
+  }, [isConnected]);
+
+  useEffect(() => {
+    /* if (isConnected && !dataLoaded && !loadingData) {
+      loadData();
+    } */
   }, [reconnecting]);
 
   if (loadingData) {
