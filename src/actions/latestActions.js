@@ -5,6 +5,7 @@ export const SET_LATESTS = 'SET_LATESTS';
 export const LATESTS_LOADED = 'LATESTS_LOADED';
 export const LOAD_LATESTS_FAILED = 'LOAD_LATESTS_FAILED';
 export const SET_LATESTS_INDEX = 'SET_LATESTS_INDEX';
+export const RESET_LATESTS_STATE = 'RESET_LATESTS_STATE';
 
 // Action creators
 export const loadLatests = () => ({
@@ -32,3 +33,8 @@ export const setLatestsIndex = (index) => ({
   type: SET_LATESTS_INDEX,
   index,
 });
+
+export const resetLatestsState = () => ({
+  type: RESET_LATESTS_STATE,
+});
+

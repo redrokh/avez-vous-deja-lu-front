@@ -77,7 +77,9 @@ const reducer = (state = initialState, action) => {
       return cleared;
     }
     case RESET_AUTH_STATE: {
-      return initialState;
+      const newState = { ...initialState };
+      newState.reconnecting = false;
+      return newState;
     }
     case SET_RECONNECTING:
       return { ...state, reconnecting: action.value };

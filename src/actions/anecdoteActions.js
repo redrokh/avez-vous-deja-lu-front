@@ -60,6 +60,9 @@ export const I_DIDNT_KNOW_SUCCEEDED = 'I_DIDNT_KNOW_SUCCEEDED';
 
 export const LOAD_RANDOM_ANECDOTE = 'LOAD_RANDOM_ANECDOTE';
 
+export const RESET_ANECDOTE_STATE = 'RESET_ANECDOTE_STATE';
+export const RESET_ANECDOTES_STATE = 'RESET_ANECDOTES_STATE';
+
 // Action creators
 export const loadAnecdotes = () => ({
   type: LOAD_ANECDOTES,
@@ -257,4 +260,12 @@ export const iDidntKnowSucceeded = () => ({
 
 export const loadRandomAnecdote = () => ({
   type: LOAD_RANDOM_ANECDOTE,
+});
+
+export const resetAnecdoteState = () => ({
+  type: RESET_ANECDOTE_STATE,
+});
+
+export const resetAnecdotesState = () => ({
+  type: RESET_ANECDOTES_STATE,
 });

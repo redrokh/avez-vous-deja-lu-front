@@ -5,6 +5,7 @@ import {
   LOAD_ANECDOTES_FAILED,
   ANECDOTES_LOADED,
   SET_ANECDOTES_TITLE,
+  RESET_ANECDOTES_STATE,
 } from '../actions/anecdoteActions';
 
 // Define initial state
@@ -47,6 +48,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         title: action.title,
       };
+    case RESET_ANECDOTES_STATE:
+      return initialState;
     default:
       return state;
   }

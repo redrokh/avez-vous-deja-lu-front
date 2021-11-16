@@ -8,6 +8,7 @@ import {
   LOADING_IS_FAVORITE,
   LOAD_IS_FAVORITE_FAILED,
   IS_FAVORITE_LOADED,
+  RESET_ANECDOTE_STATE,
 } from '../actions/anecdoteActions';
 
 // Define initial state
@@ -101,6 +102,8 @@ const reducer = (state = initialState, action) => {
         isFavoriteLoaded: true,
       };
     }
+    case RESET_ANECDOTE_STATE:
+      return initialState;
     default:
       return state;
   }

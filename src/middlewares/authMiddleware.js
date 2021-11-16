@@ -22,6 +22,19 @@ import {
   resetUserState,
 } from '../actions/userActions';
 
+import {
+  resetAnecdoteState,
+  resetAnecdotesState,
+} from '../actions/anecdoteActions';
+
+import {
+  resetBestsState,
+} from '../actions/bestActions';
+
+import {
+  resetLatestsState,
+} from '../actions/latestActions';
+
 // Trigger treatment according to action type
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {

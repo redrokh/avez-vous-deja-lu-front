@@ -5,6 +5,7 @@ import {
   BESTS_LOADED,
   LOAD_BESTS_FAILED,
   SET_BESTS_INDEX,
+  RESET_BESTS_STATE,
 } from '../actions/bestActions';
 
 // Define initial state
@@ -27,9 +28,11 @@ const reducer = (state = initialState, action) => {
     case BESTS_LOADED:
       return { ...state, dataLoaded: true, loadingData: false };
     case LOAD_BESTS_FAILED:
-      return { ...state, dataLoaded: false, loadingData: false }
+      return { ...state, dataLoaded: false, loadingData: false };
     case SET_BESTS_INDEX:
       return { ...state, currentIndex: action.index };
+    case RESET_BESTS_STATE:
+      return initialState;
     default:
       return state;
   }
