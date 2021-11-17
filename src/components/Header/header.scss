@@ -1,6 +1,7 @@
 @use 'src/styles/vars';
 
 .Header {
+  text-transform: uppercase;
   position: fixed;
   z-index: 10;
   width: 100%;
@@ -8,7 +9,7 @@
   padding: vars.$gutterSm vars.$gutterSm vars.$gutterXs vars.$gutterSm;
   color: white;
   border-bottom: 1px solid rgb(255, 255, 255, 0.2);
-  font-weight: 600;
+  font-weight: 500;
   &__top {
     display: flex;
     justify-content: space-between;

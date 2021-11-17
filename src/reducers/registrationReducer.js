@@ -27,6 +27,7 @@ const initialState = {
   pseudoInputError: 'Votre pseudo doit contenir au moins 2 caractères',
   emailInputError: "Le format de l'adresse email n'est pas valide",
   passwordInputError: 'Votre mot de passe doit contenir au moins 6 caractères',
+  registrationError: 'Adresse email ou pseudo déjà pris',
   registering: false,
   registrationFailed: false,
   registrationSucceeded: false,

@@ -2,7 +2,10 @@
 import './whoweare.scss';
 
 // Import images
-import defaultImage from 'src/assets/img/avatar.svg';
+import julian from 'src/assets/img/julian.png';
+import benji from 'src/assets/img/benji.png';
+import luke from 'src/assets/img/luke.png';
+import oreDa from 'src/assets/img/oreDa.png';
 
 const WhoWeAre = () => (
   <section
@@ -13,7 +16,7 @@ const WhoWeAre = () => (
     <div className="WhoWeAre__card WhoWeAre__card--julian">
       <img
         className="WhoWeAre__photo"
-        src={defaultImage}
+        src={julian}
         alt="Julian LAPENNE"
       />
 
@@ -31,7 +34,7 @@ const WhoWeAre = () => (
     <div className="WhoWeAre__card WhoWeAre__card--benjamin">
       <img
         className="WhoWeAre__photo"
-        src={defaultImage}
+        src={benji}
         alt="Benjamin FOURMONT"
       />
 
@@ -49,7 +52,7 @@ const WhoWeAre = () => (
     <div className="WhoWeAre__card WhoWeAre__card--lucas">
       <img
         className="WhoWeAre__photo"
-        src={defaultImage}
+        src={luke}
         alt="Benjamin FOURMONT"
       />
 
@@ -67,7 +70,7 @@ const WhoWeAre = () => (
     <div className="WhoWeAre__card WhoWeAre__card--alexandre">
       <img
         className="WhoWeAre__photo"
-        src={defaultImage}
+        src={oreDa}
         alt="Benjamin FOURMONT"
       />
 
