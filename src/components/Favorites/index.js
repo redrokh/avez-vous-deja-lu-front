@@ -117,7 +117,7 @@ const Favorites = ({
                     type="button"
                     onClick={() => deleteFavorite(id)}
                   >
-                    <Trash2 stroke="white" strokeWidth="1" />
+                    <Trash2 stroke="white" strokeWidth="1" size="20" />
                   </button>
                 </td>
               </tr>

@@ -107,3 +107,19 @@
   }
 }
 
+.Registration__error {
+  display: flex;
+  justify-content: center;
+  margin-top: vars.$gutterMd;
+  font-size: vars.$fsBody;
+
+  .Registration__reset {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    padding-top: vars.$gutterMd;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+  }
+}
+

@@ -2,35 +2,39 @@
 
 .WhoWeAre {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   max-width: 800px;
+  gap: vars.$gutterMd;
   width: 80%;
   &__title {
-    text-align: left;
-    margin-bottom: vars.$gutterSm;
+    width: 100%;
+    text-align: center;
+    margin-bottom: vars.$gutterXs;
   }
 
   &__card {
+    width: 45%;
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-bottom: vars.$gutterLg;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     border: 1px solid white;
     padding: vars.$gutterSm;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.2);
 
     .WhoWeAre__photo {
-      height: 100px;
-      width: 100px;
-      border-radius: 50px;
+      object-fit: contain;
+      height: 120px;
+      width: 120px;
+      border-radius: 60px;
       margin-top: vars.$gutterSm;
-      margin-right: vars.$gutterLg;
-      margin-bottom: vars.$gutterMd;
+      background-color: rgb(255, 255, 255, 0.3);
+      margin-bottom: vars.$gutterSm;
     }
 
     .WhoWeAre__description {
-      width: 600px;
+      text-align: center;
     }
   }
 
@@ -41,6 +45,14 @@
                 0 0 0.8rem #19A4DF,
                 0 0 2.8rem #19A4DF,
                 inset 0 0 1.3rem #19A4DF;
+    .WhoWeAre__photo {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #19A4DF,
+                  0 0 0.8rem #19A4DF,
+                  0 0 2.8rem #19A4DF,
+                  inset 0 0 1.3rem #19A4DF;
+    }
   }
 
   &__card--benjamin:hover {
@@ -50,6 +62,14 @@
                 0 0 0.8rem #19df5b,
                 0 0 2.8rem #19df5b,
                 inset 0 0 1.3rem #19df5b;
+      .WhoWeAre__photo {
+        box-shadow: 0 0 .2rem #fff,
+                    0 0 .2rem #fff,
+                    0 0 2rem #19df5b,
+                    0 0 0.8rem #19df5b,
+                    0 0 2.8rem #19df5b,
+                    inset 0 0 1.3rem #19df5b;
+      }
   }
 
   &__card--lucas:hover {
@@ -59,6 +79,15 @@
                 0 0 0.8rem #dcdf19,
                 0 0 2.8rem #dcdf19,
                 inset 0 0 1.3rem #dcdf19;
+    
+    .WhoWeAre__photo {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #dcdf19,
+                  0 0 0.8rem #dcdf19,
+                  0 0 2.8rem #dcdf19,
+                  inset 0 0 1.3rem #dcdf19;
+    }
   }
 
   &__card--alexandre:hover {
@@ -68,5 +97,13 @@
                 0 0 0.8rem #df1919,
                 0 0 2.8rem #df1919,
                 inset 0 0 1.3rem #df1919;
+    .WhoWeAre__photo {
+      box-shadow: 0 0 .2rem #fff,
+                  0 0 .2rem #fff,
+                  0 0 2rem #df1919,
+                  0 0 0.8rem #df1919,
+                  0 0 2.8rem #df1919,
+                  inset 0 0 1.3rem #df1919;
+    }
   }
 }

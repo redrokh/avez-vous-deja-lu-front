@@ -22,6 +22,7 @@ const Registration = ({
   registrationFailed,
   registrationSucceeded,
   formValidation,
+  resetRegistrationState,
 }) => {
   const history = useHistory();
 
@@ -44,6 +45,22 @@ const Registration = ({
           Inscription réussie. Pour vous connecter cliquer <span onClick={() => history.push('/connexion')}>ici</span>.
         </div>
       </section>
+    );
+  }
+
+  if (registrationFailed) {
+    return (
+      <div className="Registration__error">
+        {registrationError}<br />
+        Pour revenir au formulaire d'inscription cliquez
+        <button
+          className="Registration__reset"
+          type="button"
+          onClick={() => resetRegistrationState()}
+        >
+          ici
+        </button>
+      </div>
     );
   }
 

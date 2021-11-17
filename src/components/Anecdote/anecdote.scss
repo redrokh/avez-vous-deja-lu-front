@@ -60,19 +60,29 @@
     margin-bottom: 3em;
 
     .Anecdote__knew {
-      border: 1px solid green;
-      color: green;
-      background-color: #FFF;
+      border: none;
+      background-color: rgb(52, 109, 52);
+      color: white;
       border-radius: 6px;
       height: 40px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: vars.$gutterXs vars.$gutterSm;
     }
       
     .Anecdote__didnt-know {
-      border: 1px solid red;
-      color: red;
-      background-color: #FFF;
+      border: none;
+      background-color: rgb(160, 52, 52);
+      color: white;
       border-radius: 6px;
       height: 40px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: vars.$gutterXs vars.$gutterSm;
     }
   }
 
@@ -121,11 +131,23 @@
     border-top: 1px solid rgb(255, 255, 255, 0.5);
 
     .Anecdote__nav-link {
-      border: 1px solid black;
+      border: none;
       border-radius: 5px;
-      background-color: #FFF;
+      background-color: transparent;
       padding: 1em / 2 1em;
       height: 35px;
-      }
+      color: white;
+      background-color: #0078d0;
+      box-shadow: 2px 2px 2px 1px #0078d0;
+      font-weight: 700;
+    }
+
+    /* .Anecdote__nav-link--left {
+      background-color: rgba(30, 200, 130, 0.6);
+    }
+
+    .Anecdote__nav-link--right {
+      background-color: rgba(30, 200, 130, 0.6);
+    } */
   }
 }

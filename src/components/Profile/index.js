@@ -80,10 +80,10 @@ const Profile = ({
               <Check
                 onClick={() => pseudoInputValidation()}
                 strokeWidth="2"
-                color="green"
+                color="#32a64b"
               />
 
-              <X color="red" onClick={() => togglePseudoEdition()} />
+              <X color="#e75454" onClick={() => togglePseudoEdition()} />
             </div>
           )
         }
@@ -95,7 +95,8 @@ const Profile = ({
                 onClick={() => {
                   togglePseudoEdition();
                 }}
-                strokeWidth="1"
+                strokeWidth="2"
+                color="#bbb"
               />
             </div>
           )
@@ -119,10 +120,10 @@ const Profile = ({
               <Check
                 onClick={() => emailInputValidation()}
                 strokeWidth="2"
-                color="green"
+                color="#32a64b"
               />
 
-              <X color="red" onClick={() => toggleEmailEdition()} />
+              <X color="#e75454" onClick={() => toggleEmailEdition()} />
             </div>
           )
         }
@@ -130,7 +131,7 @@ const Profile = ({
           !editingEmail && (
             <div className="Profile__email">
               <span className="Profile__value">{email}</span>
-              <Edit onClick={() => toggleEmailEdition()} strokeWidth="1" />
+              <Edit onClick={() => toggleEmailEdition()} strokeWidth="2" color="#bbb" />
             </div>
           )
         }
@@ -155,10 +156,10 @@ const Profile = ({
               <Check
                 onClick={() => passwordInputValidation()}
                 strokeWidth="2"
-                color="green"
+                color="#32a64b"
               />
 
-              <X color="red" onClick={() => togglePasswordEdition()} />
+              <X color="#e75454" onClick={() => togglePasswordEdition()} />
             </div>
           )
         }

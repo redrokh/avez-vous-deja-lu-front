@@ -9,7 +9,8 @@ import {
   setRegistrationPseudoInput,
   setRegistrationEmailInput,
   setRegistrationPasswordInput,
-  registrationFormValidation
+  registrationFormValidation,
+  resetRegistrationState,
 } from '../../actions/registrationActions';
 
 // Link component props to state
@@ -23,6 +24,7 @@ const mapStateToProps = (state) => ({
   pseudoInputError: state.registration.pseudoInputError,
   emailInputError: state.registration.emailInputError,
   passwordInputError: state.registration.passwordInputError,
+  registrationError: state.registration.registrationError,
   registering: state.registration.registering,
   registrationFailed: state.registration.registrationFailed,
   registrationSucceeded: state.registration.registrationSucceeded,
@@ -34,6 +36,7 @@ const mapDispatchToProps = (dispatch) => ({
   onEmailInputChange: (email) => dispatch(setRegistrationEmailInput(email)),
   onPasswordInputChange: (password) => dispatch(setRegistrationPasswordInput(password)),
   formValidation: () => dispatch(registrationFormValidation()),
+  resetRegistrationState: () => dispatch(resetRegistrationState()),
 });
 
 // Export container
