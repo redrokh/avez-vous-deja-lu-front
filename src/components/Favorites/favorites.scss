@@ -18,6 +18,7 @@
       .Favorites__body-row {
 
         .Favorites__body-cell {
+          vertical-align: top;
           padding: 1em 2em 1em 0;
           word-break: break-all;
 
@@ -34,6 +35,7 @@
             background-color: rgb(212, 58, 58);
             border: 0;
             border-radius: 5px;
+            height: 30px;
             color: #fff;
             cursor: pointer;
             display: inline-block;
@@ -46,7 +48,6 @@
             -webkit-user-select: none;
             touch-action: manipulation;
             transition-duration: 0.4s;
-            padding: 0.4em 0.5em 0em 0.5em;
           }
       
           .Favorites__delete-button:hover {
