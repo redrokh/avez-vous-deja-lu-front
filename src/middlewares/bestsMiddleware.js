@@ -21,6 +21,7 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(bestsLoaded());
         })
         .catch(() => store.dispatch(loadBestsFailed()));
+      break;
     }
     default:
   }

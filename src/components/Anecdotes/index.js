@@ -26,7 +26,9 @@ const Anecdotes = ({
   const context = useLocation().pathname;
 
   useEffect(() => {
-    loadData(anecdoteGroup, slug);
+    if (!loadingData && !dataLoaded) {
+      loadData(anecdoteGroup, slug);
+    }
   }, [context]);
 
   if (!isConnected && slug.length > 0 && !reconnecting) {
@@ -51,6 +53,7 @@ const Anecdotes = ({
     );
   }
 
+  console.log(anecdotes);
   return (
     <section className="anecdotes">
       <h2 className="anecdotes__title">{title}</h2>
