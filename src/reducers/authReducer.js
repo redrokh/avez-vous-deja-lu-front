@@ -16,8 +16,8 @@ import {
 
 // Define initial state
 const initialState = {
-  emailInput: 'redrokh@oclock.io',
-  passwordInput: 'redrokh',
+  emailInput: '',
+  passwordInput: '',
   emailInputIsInvalid: false,
   passwordInputIsInvalid: false,
   emailInputError: "Le format de l'adresse email n'est pas valide",
