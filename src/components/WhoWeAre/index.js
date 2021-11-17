@@ -23,7 +23,7 @@ const WhoWeAre = () => (
       <div className="WhoWeAre__description">
         <h3 className="WhoWeAre__name">Julian LAPENNE</h3>
 
-        <span className="WhoWeAre__role">Développeur Backend Junior</span>
+        <span className="WhoWeAre__role">Scrum Master et Lead Dev Back</span>
 
         <p className="WhoWeAre__message">
           Je suis tellement discret sur mon grille-pain haut débit que l’on se demande si je suis encore là.
@@ -39,9 +39,9 @@ const WhoWeAre = () => (
       />
 
       <div className="WhoWeAre__description">
-        <h3 className="WhoWeAre__name">Benjamin Fourmont</h3>
+        <h3 className="WhoWeAre__name">Benjamin FOURMONT</h3>
 
-        <span className="WhoWeAre__role">Développeur Backend Junior</span>
+        <span className="WhoWeAre__role">Product Owner et Référent Technique Back</span>
 
         <p className="WhoWeAre__message">
           J’ai peur d’Alexandre...
@@ -59,7 +59,7 @@ const WhoWeAre = () => (
       <div className="WhoWeAre__description">
         <h3 className="WhoWeAre__name">Lucas CAMUS</h3>
 
-        <span className="WhoWeAre__role">Développeur Frontend Junior</span>
+        <span className="WhoWeAre__role">Référent Technique Front</span>
 
         <p className="WhoWeAre__message">
           J'aime bien prendre une semaine de vacances avant les vacances pour bien préparer les vacances, et une semaine après pour me remettre de mes vacances :D
@@ -77,7 +77,7 @@ const WhoWeAre = () => (
       <div className="WhoWeAre__description">
         <h3 className="WhoWeAre__name">Alexandre MURDAY</h3>
 
-        <span className="WhoWeAre__role">Développeur Frontend Junior</span>
+        <span className="WhoWeAre__role">Lead Fev Front et Git Master</span>
 
         <p className="WhoWeAre__message">
           Vive le troll ! Trollons tous pour être heureux ;)
