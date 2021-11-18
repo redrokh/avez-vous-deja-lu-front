@@ -7,36 +7,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
-  width: 80%;
+  padding: 0 vars.$gutterMd 0 vars.$gutterMd;
+  max-width: 600px;
+  width: 100%;
 
   .Registration__title {
     text-align: center;
+    margin-bottom: vars.$gutterSm;
   }
 
   .Registration__field {
-    display: flex;
-
-    width: 400px;
-    margin-bottom: 5em;
-    position: relative;
-
-    &-label {
-      display: inline-block;
-      top: 0;
-      left: 20px;
-      position: absolute;
-      padding: 0.5em;
-      border-radius: 5px;
-      background-color: grey;
-      transition: transform 200ms;
-    }
+    width: 100%;
+    max-width: 90%;
+    margin-bottom: vars.$gutterSm;
 
     &-input {
-      position: absolute;
-      top: 22px;
-      width: 400px;
-      padding: 0.5em;
+      width: 100%;
+      padding: vars.$gutterXs;
       color: #fff;
       border-radius: 5px;
       border: 1px solid #fff;
@@ -60,8 +47,7 @@
     }
 
     &-error {
-      position: absolute;
-      top: 70px;
+      margin-top: vars.$gutterSm;
       color: rgb(231, 84, 84);
       font-style: italic;
     }

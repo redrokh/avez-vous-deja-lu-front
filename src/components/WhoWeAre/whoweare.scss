@@ -3,6 +3,7 @@
 .WhoWeAre {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   max-width: 800px;
   gap: vars.$gutterMd;
   width: 80%;
@@ -13,7 +14,8 @@
   }
 
   &__card {
-    width: 45%;
+    width: 300px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -35,6 +37,12 @@
 
     .WhoWeAre__description {
       text-align: center;
+
+      .WhoWeAre__role {
+        font-weight: 600;
+        font-style: italic;
+        color: rgb(255, 255, 255, 0.6);
+      }
     }
   }
 

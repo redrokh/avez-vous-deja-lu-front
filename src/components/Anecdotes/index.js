@@ -49,11 +49,10 @@ const Anecdotes = ({
 
   if (loadDataFailed) {
     return (
-      <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>
+      <div className="Anecdotes__server-error">Désolé, nous rencontrons des problèmes de serveur temporaire</div>
     );
   }
 
-  console.log(anecdotes);
   return (
     <section className="anecdotes">
       <h2 className="anecdotes__title">{title}</h2>

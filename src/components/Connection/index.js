@@ -57,18 +57,11 @@ const Connection = ({
           required
         />
 
-        {/* <label
-          className="Connection__field-label"
-          htmlFor="emailInput"
-        >
-          Adresse email
-        </label> */}
-
         {
           emailInputIsInvalid && (
-            <span className="Connection__field-error">
+            <div className="Connection__field-error">
               { emailInputError }
-            </span>
+            </div>
           )
         }
       </div>
@@ -87,13 +80,6 @@ const Connection = ({
           name="password"
           required
         />
-
-        {/* <label
-          className="Connection__field-label"
-          htmlFor="passwordInput"
-        >
-          Mot de passe
-        </label> */}
 
         {
           passwordInputIsInvalid && (

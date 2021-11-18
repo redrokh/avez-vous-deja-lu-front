@@ -80,7 +80,9 @@ const middleware = (store) => (next) => (action) => {
             store.dispatch((loadIsFavorite(response.data.id)));
           }
         })
-        .catch(() => store.dispatch(loadAnecdoteFailed()));
+        .catch((error) => {
+          store.dispatch(loadAnecdoteFailed());
+        });
       break;
     }
     case LOAD_PREV_ANECDOTE: {

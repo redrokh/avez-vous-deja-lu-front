@@ -3,29 +3,35 @@
 .Contact__form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  width: 80%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 vars.$gutterMd 0 vars.$gutterMd;
+  max-width: 600px;
+  width: 100%;
+
   .Contact__title {
     text-align: center;
-    margin-bottom: 0em;
+    margin-bottom: vars.$gutterSm;
   }
+
   .Contact__input {
-    color: #fff;
-    position: relative;
-    margin-top: 1em;
-    width:100%;
-    padding: 0.5em;
+    width: 100%;
+    max-width: 90%;
+    margin-bottom: vars.$gutterSm;
+    padding: vars.$gutterXs;
     border-radius: 5px;
     border-color: #fff;
     background: none;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.2);
     margin-bottom: 1em;
   }
+
   .Contact__input::placeholder {
     color: #fff;
     font-style: italic;
     transition: top 200ms ease-in, left 200ms ease-in;
   }
+
   .Contact__input:focus {
     box-shadow: 0 0 .2rem #fff,
                 0 0 .2rem #fff,
@@ -34,10 +40,12 @@
                 0 0 2.8rem #19A4DF,
                 inset 0 0 1.3rem #19A4DF;
   }
+
   .submit__button {
     width: 100%;
     text-align: center;
     margin-top: 2em;
+
     .submit{
       padding: 0.8em;
       background: none;
@@ -45,6 +53,7 @@
       border-radius: 5px;
       color: #fff;
     }
+
     .submit:hover {
       box-shadow: 0 0 .2rem #fff,
                   0 0 .2rem #fff,

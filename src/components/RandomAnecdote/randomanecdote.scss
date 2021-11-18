@@ -8,8 +8,8 @@
 
   &__header {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: vars.$gutterMd;
 
@@ -53,7 +53,7 @@
 
   &__top-part {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 2em;
 
     .RandomAnecdote__publication {
@@ -66,9 +66,11 @@
 
   &__middle-part {
     display: flex;
+    align-items: flex-start;
     margin-bottom: 3em;
 
     .RandomAnecdote__voter {
+      padding-top: vars.$gutterXs;
       display: flex;
       flex-direction: column;
 
@@ -77,7 +79,7 @@
 
       .RandomAnecdote__vote-count {
         text-align: center;
-        margin: 1em 0em 1em;
+        margin: vars.$gutterXs 0em vars.$gutterXs 0;
       }
     }
 
@@ -89,24 +91,33 @@
   
   .RandomAnecdote__info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: right;
+    gap: vars.$gutterSm;
     margin-bottom: 3em;
 
     .RandomAnecdote__knew {
-      border: 1px solid green;
-      color: green;
-      background-color: #FFF;
+      border: none;
+      background-color: rgb(52, 109, 52);
+      color: white;
       border-radius: 6px;
-      padding: 1em / 2 1em;
-      margin-right: 1em;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: vars.$gutterXs vars.$gutterSm;
     }
       
     .RandomAnecdote__didnt-know {
-      border: 1px solid red;
-      color: red;
-      background-color: #FFF;
+      border: none;
+      background-color: rgb(160, 52, 52);
+      color: white;
       border-radius: 6px;
-      padding: 0.3em;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: vars.$gutterXs vars.$gutterSm;
     }
   }
 
@@ -118,8 +129,8 @@
     padding-top: 2em;
 
     .RandomAnecdote__sources-title {
-      margin-right: 1em;
-      margin-bottom: 2em;
+      margin-right: vars.$gutterSm;
+      margin-bottom: vars.$gutterSm;
     }
 
     /* .RandomAnecdote__source-list {
@@ -145,5 +156,12 @@
     }
 
   }
+}
+
+.RandomAnecdote__server-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: vars.$gutterMd;
 }
 
