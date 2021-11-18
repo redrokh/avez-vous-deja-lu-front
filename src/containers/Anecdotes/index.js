@@ -31,23 +31,26 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadData: (context, slug) => {
     switch (context) {
-      case 'anecdotes':
-        dispatch(setAnecdotesTitle('Toutes nos anecdotes'));
+      case 'anecdotes': {
         dispatch(loadAnecdotes());
+        dispatch(setAnecdotesTitle('Toutes nos anecdotes'));
         break;
-      case 'bests':
-        dispatch(setAnecdotesTitle('Découvrez nos meilleures anecdotes'));
+      }
+      case 'bests': {
         dispatch(loadBestAnecdotes());
+        dispatch(setAnecdotesTitle('Découvrez nos meilleures anecdotes'));
         break;
-      case 'categories':
+      }
+      case 'categories': {
         dispatch(loadCategoryName(slug));
         dispatch(loadAnecdotesOfCategory(slug));
         dispatch(loadCategoryName(slug));
         break;
+      }
       default:
         break;
     }
-  }
+  },
 });
 
 // Export container
