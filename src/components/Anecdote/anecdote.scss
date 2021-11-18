@@ -4,15 +4,15 @@
   display: flex;
   flex-direction: column;
   max-width: 800px;
-  padding: 0em 3em;
+  padding: 0em vars.$gutterLg;
 
   &__title {
     text-align: left;
-    margin-bottom: 2em;
+    margin-bottom: vars.$gutterSm;
   }
 
   &__categories {
-    margin-bottom: 2em;
+    margin-bottom: vars.$gutterMd;
   }
 
   &__top-part {

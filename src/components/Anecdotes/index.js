@@ -9,6 +9,7 @@ import AnecdoteCard from '../AnecdoteCard';
 
 // Import styles
 import './anecdotes.scss';
+import { setAnecdotesTitle } from '../../actions/anecdoteActions';
 
 const Anecdotes = ({
   title,
@@ -26,10 +27,32 @@ const Anecdotes = ({
   const context = useLocation().pathname;
 
   useEffect(() => {
-    if (!loadingData && !dataLoaded) {
+    // Route doesn't require authorization or user has authorization
+    if (slug === '' || isConnected) {
       loadData(anecdoteGroup, slug);
     }
+    // Route requires authorization and user is not reconnecting
+    else if (!reconnecting) {
+      history.push('/connexion');
+    }
   }, [context]);
+  /* useEffect(() => {
+    if (
+      (context === '/anecdotes' || context === '/nos-meilleures-anecdotes')
+      && !loadingData && !dataLoaded
+    ) {
+      loadData(anecdoteGroup, slug);
+    }
+    switch (context) {
+      case '/anecdotes':
+        setAnecdotesTitle('Toutes nos anecdotes');
+        break;
+      case '/nos-meilleures-anecdotes':
+        setAnecdotesTitle('Découvrez nos meilleures anecdotes');
+        break;
+      default:
+    }
+  }, [context]); */
 
   if (!isConnected && slug.length > 0 && !reconnecting) {
     history.push('/connexion');
