@@ -73,13 +73,15 @@ const Profile = ({
               }
             </div>
 
-            <Check
-              onClick={() => pseudoInputValidation()}
-              strokeWidth="2"
-              color="#32a64b"
-            />
+            <div className="Profile__field-icons">
+              <Check
+                onClick={() => pseudoInputValidation()}
+                strokeWidth="2"
+                color="#32a64b"
+              />
 
-            <X color="#e75454" onClick={() => togglePseudoEdition()} />
+              <X color="#e75454" onClick={() => togglePseudoEdition()} />
+            </div>
           </div>
         )
       }
@@ -113,13 +115,16 @@ const Profile = ({
                 )
               }
             </div>
-            <Check
-              onClick={() => emailInputValidation()}
-              strokeWidth="2"
-              color="#32a64b"
-            />
 
-            <X color="#e75454" onClick={() => toggleEmailEdition()} />
+            <div className="Profile__field-icons">
+              <Check
+                onClick={() => emailInputValidation()}
+                strokeWidth="2"
+                color="#32a64b"
+              />
+
+              <X color="#e75454" onClick={() => toggleEmailEdition()} />
+            </div>
           </div>
         )
       }
@@ -149,20 +154,23 @@ const Profile = ({
                 )
               }
             </div>
-            <Check
-              onClick={() => passwordInputValidation()}
-              strokeWidth="2"
-              color="#32a64b"
-            />
 
-            <X color="#e75454" onClick={() => togglePasswordEdition()} />
+            <div className="Profile__field-icons">
+              <Check
+                onClick={() => passwordInputValidation()}
+                strokeWidth="2"
+                color="#32a64b"
+              />
+
+              <X color="#e75454" onClick={() => togglePasswordEdition()} />
+            </div>
           </div>
         )
       }
       {
         !editingPassword && (
           <div className="Profile__password">
-            <button type="button" onClick={() => togglePasswordEdition()}>Modifier votre mot de passe</button>
+            <button className="Profile__password-button" type="button" onClick={() => togglePasswordEdition()}>Modifier votre mot de passe</button>
           </div>
         )
       }

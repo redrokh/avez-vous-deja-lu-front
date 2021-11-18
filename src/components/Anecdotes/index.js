@@ -35,7 +35,7 @@ const Anecdotes = ({
     else if (!reconnecting) {
       history.push('/connexion');
     }
-  }, [context]);
+  }, [reconnecting, context]);
   /* useEffect(() => {
     if (
       (context === '/anecdotes' || context === '/nos-meilleures-anecdotes')
