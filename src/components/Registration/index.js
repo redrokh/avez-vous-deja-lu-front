@@ -42,7 +42,7 @@ const Registration = ({
     return (
       <section>
         <div>
-          Inscription réussie. Pour vous connecter cliquer <span onClick={() => history.push('/connexion')}>ici</span>.
+          Inscription réussie. Pour vous connecter cliquer <div onClick={() => history.push('/connexion')}>ici</div>.
         </div>
       </section>
     );
@@ -97,9 +97,9 @@ const Registration = ({
 
         {
           pseudoInputIsInvalid && (
-            <span className="Registration__field-error">
+            <div className="Registration__field-error">
               { pseudoInputError }
-            </span>
+            </div>
           )
         }
       </div>
@@ -119,9 +119,9 @@ const Registration = ({
 
         {
           emailInputIsInvalid && (
-            <span className="Registration__field-error">
+            <div className="Registration__field-error">
               { emailInputError }
-            </span>
+            </div>
           )
         }
       </div>
@@ -144,9 +144,9 @@ const Registration = ({
 
         {
           passwordInputIsInvalid && (
-            <span className="Registration__field-error">
+            <div className="Registration__field-error">
               { passwordInputError }
-            </span>
+            </div>
           )
         }
       </div>

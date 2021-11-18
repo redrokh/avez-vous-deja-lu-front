@@ -32,7 +32,10 @@ const middleware = (store) => (next) => (action) => {
           store.dispatch(setFavorites(response.data));
           store.dispatch(favoritesLoaded());
         })
-        .catch(() => store.dispatch(loadFavoritesFailed()));
+        .catch((error) => {
+          store.dispatch(loadFavoritesFailed());
+          console.log(error);
+        });
       break;
     }
     case FAVORITES_DELETE_FAVORITE: {

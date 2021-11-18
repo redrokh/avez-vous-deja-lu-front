@@ -52,23 +52,6 @@ import {
 // Trigger treatment according to action type
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case LOAD_ANECDOTES: {
-      store.dispatch(loadingAnecdotes());
-      API.get(
-        'anecdote/best',
-        {
-          headers: {
-            Authorization: `Bearer ${store.getState().auth.token}`,
-          },
-        },
-      )
-        .then((response) => {
-          store.dispatch(setAnecdotes(response.data));
-          store.dispatch(anecdotesLoaded());
-        })
-        .catch(() => store.dispatch(loadAnecdotesFailed()));
-      break;
-    }
     case LOAD_ANECDOTE: {
       store.dispatch(loadingAnecdote());
       let baseUrl = '';
@@ -97,7 +80,9 @@ const middleware = (store) => (next) => (action) => {
             store.dispatch((loadIsFavorite(response.data.id)));
           }
         })
-        .catch(() => store.dispatch(loadAnecdoteFailed()));
+        .catch((error) => {
+          store.dispatch(loadAnecdoteFailed());
+        });
       break;
     }
     case LOAD_PREV_ANECDOTE: {

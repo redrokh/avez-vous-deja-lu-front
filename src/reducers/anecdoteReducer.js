@@ -85,7 +85,6 @@ const reducer = (state = initialState, action) => {
         isFavoriteLoaded: false,
       };
     case LOAD_IS_FAVORITE_FAILED: {
-      console.log('load is favorite failed');
       return {
         ...state,
         loadingIsFavorite: false,

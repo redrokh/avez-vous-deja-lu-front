@@ -26,7 +26,9 @@ const Anecdotes = ({
   const context = useLocation().pathname;
 
   useEffect(() => {
-    loadData(anecdoteGroup, slug);
+    if (!loadingData && !dataLoaded) {
+      loadData(anecdoteGroup, slug);
+    }
   }, [context]);
 
   if (!isConnected && slug.length > 0 && !reconnecting) {
@@ -47,7 +49,7 @@ const Anecdotes = ({
 
   if (loadDataFailed) {
     return (
-      <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>
+      <div className="Anecdotes__server-error">Désolé, nous rencontrons des problèmes de serveur temporaire</div>
     );
   }
 

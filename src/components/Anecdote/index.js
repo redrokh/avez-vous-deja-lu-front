@@ -117,7 +117,7 @@ const Anecdote = ({
     || iKnewFailed
     || iDidntKnowFailed
   ) {
-    return <div>Désolé, nous rencontrons des problèmes de serveur temporaire</div>;
+    return <div className="Anecdote__server-error">Désolé, nous rencontrons des problèmes de serveur temporaire</div>;
   }
 
   return (
@@ -135,8 +135,8 @@ const Anecdote = ({
       <div className="Anecdote__top-part">
         <div className="Anecdote__publication">Publier par {writer.pseudo}, le {createdAt}</div>
         <Star
-          stroke="yellow"
-          fill={isFavorite ? 'yellow' : 'none'}
+          stroke="#FFD700"
+          fill={isFavorite ? '#FFD700' : 'none'}
           onClick={() => {
             if (isConnected) {
               toggleIsFavorite(isFavorite);
@@ -152,6 +152,7 @@ const Anecdote = ({
         <div className="Anecdote__voter">
           <ArrowUpCircle
             className="Anecdote__upvote"
+            strokeWidth="2"
             onClick={() => {
               if (isConnected) {
                 upVote(context);
@@ -164,6 +165,7 @@ const Anecdote = ({
           <div className="Anecdote__vote-count">{voteCount}</div>
           <ArrowDownCircle
             className="Anecdote__downvote"
+            strokeWidth="2"
             onClick={() => {
               if (isConnected) {
                 downVote(context);
