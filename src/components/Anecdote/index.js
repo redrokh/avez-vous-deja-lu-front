@@ -68,9 +68,7 @@ const Anecdote = ({
   useEffect(() => {
     // Route doesn't require authorization or user has authorization
     if (context === 'bests' || context === 'latests' || isConnected) {
-      if (!anecdoteLoaded && !loadingAnecdote) {
-        loadAnecdote(context, parseInt(anecdoteId, 10));
-      }
+      loadAnecdote(context, parseInt(anecdoteId, 10));
     }
     // Route requires authorization and user is not reconnecting
     else if (!reconnecting) {

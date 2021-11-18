@@ -68,12 +68,20 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      flex-wrap: wrap;
       margin-bottom: 1em;
+
+      .Profile__value {
+        max-width: 400px;
+        overflow-x: auto;
+      }
 
       .Profile__field {
         display: flex;
         flex-direction: column;
         .Profile__field-input {
+          max-width: 400px;
+          margin-right: vars.$gutterSm;
           margin-bottom: 1em;
           padding-left: 0.5em;
           color: #fff;
@@ -95,6 +103,10 @@
         .Profile__field-error {
           color: rgb(231, 84, 84);
           font-style: italic;
+        }
+
+        .Profile__field-icons {
+          display: flex;
         }
       }
     }
